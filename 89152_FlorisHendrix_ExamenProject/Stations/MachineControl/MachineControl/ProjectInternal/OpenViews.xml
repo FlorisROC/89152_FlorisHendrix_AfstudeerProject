@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <OpenViews>
-	<View Key="CM_SpeedControl" Type="2" LineNr="1"/>
-	<View Key="CM_SpeedControl" Type="2" LineNr="1"/>
+	<View Key="CM_SpeedControl" Type="2" LineNr="13"/>
+	<View Key="CM_SpeedControl" Type="2" LineNr="13"/>
 	<Setting Variable="OutputDebugger" Value=""/>
 </OpenViews>
