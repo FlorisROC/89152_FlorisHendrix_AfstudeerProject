@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<File CRC="23E28A31" Version="1.1" SubVersion="2">
+<File CRC="7326F569" Version="1.1" SubVersion="2">
 	<Types>
 		<Type Name="_DRIVETYPE" Datatype="UDINT" TypeId="ENUM">
 			<Elements>
@@ -1669,10 +1669,10 @@
 		<Object Name="VI0211" Datatype="VI021" Guid="46D9E05E-DB92-45CC-8F18-63E0AD58BA26"/>
 	</Objects>
 	<IOElements>
-		<IOElement Name="IO_Element" IOType="Output" Type="Digital" Datatype="DINT" Guid="NULL"/>
-		<IOElement Name="IO_Element0" IOType="Output" Type="Digital" Datatype="DINT" Guid="NULL"/>
-		<IOElement Name="IO_Element1" IOType="Output" Type="Digital" Datatype="DINT" Guid="NULL"/>
-		<IOElement Name="IO_Element2" IOType="Output" Type="Digital" Datatype="DINT" Guid="NULL"/>
+		<IOElement Name="IO_Element" IOType="Output" Type="Digital" Datatype="DINT" Guid="22F7D7B1-DCA4-4EE3-94D0-38A2F4BFA955"/>
+		<IOElement Name="IO_Element0" IOType="Output" Type="Digital" Datatype="DINT" Guid="CB03370E-2335-41A1-A9D3-9C98CE353126"/>
+		<IOElement Name="IO_Element1" IOType="Output" Type="Digital" Datatype="DINT" Guid="C9004F0E-7252-4868-87F4-944D0534C5A8"/>
+		<IOElement Name="IO_Element2" IOType="Output" Type="Digital" Datatype="DINT" Guid="042D7BC7-A12E-4B2F-8FA7-857883582ECB"/>
 	</IOElements>
 	<UnitDefinitions>
 		<UnitGrp Name="Acceleration">

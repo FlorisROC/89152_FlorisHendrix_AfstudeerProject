@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<IOConnectionManager Version="0" Detail="0" PLC="">
+<IOConnectionManager Version="2" Detail="0" PLC="">
 	<!-- List of Entries -->
 	<Entry Name="**IOCONN_EMPTY**" GUID="{0F3C5AE6-9930-457C-BF48-01E71C766D05}" Objectsize="284">
 		<!-- List of Connections -->
@@ -15,42 +15,42 @@
 	</Entry>
 	<Entry
 		Name       = "IO_Element"
-		GUID       = "NULL"
+		GUID       = "{22F7D7B1-DCA4-4EE3-94D0-38A2F4BFA955}"
 		Objectsize = "284"
 		TempObj    = "true">
 		<!-- List of Connections -->
 		<IOConnections>
-			<IOConnection ObjSrv="DM0811" Server="Output1" ObjClt="Client_Splitter_41" Client="Ch1" IOI="Output" Type="Digital" SortIndex="2" KeyName="000007" Advanced="0"/>
+			<IOConnection ObjSrv="DM0811" Server="Output1" ObjClt="Client_Splitter_41" Client="Ch1" IOI="Output" Type="Digital" SortIndex="7" KeyName="000007" Advanced="0"/>
 		</IOConnections>
 	</Entry>
 	<Entry
 		Name       = "IO_Element0"
-		GUID       = "NULL"
+		GUID       = "{CB03370E-2335-41A1-A9D3-9C98CE353126}"
 		Objectsize = "284"
 		TempObj    = "true">
 		<!-- List of Connections -->
 		<IOConnections>
-			<IOConnection ObjSrv="DM0811" Server="Output2" ObjClt="Client_Splitter_41" Client="Ch2" IOI="Output" Type="Digital" SortIndex="3" KeyName="000008" Advanced="0"/>
+			<IOConnection ObjSrv="DM0811" Server="Output2" ObjClt="Client_Splitter_41" Client="Ch2" IOI="Output" Type="Digital" SortIndex="8" KeyName="000008" Advanced="0"/>
 		</IOConnections>
 	</Entry>
 	<Entry
 		Name       = "IO_Element1"
-		GUID       = "NULL"
+		GUID       = "{C9004F0E-7252-4868-87F4-944D0534C5A8}"
 		Objectsize = "284"
 		TempObj    = "true">
 		<!-- List of Connections -->
 		<IOConnections>
-			<IOConnection ObjSrv="DM0811" Server="Output4" ObjClt="Client_Splitter_41" Client="Ch3" IOI="Output" Type="Digital" SortIndex="4" KeyName="000009" Advanced="0"/>
+			<IOConnection ObjSrv="DM0811" Server="Output4" ObjClt="Client_Splitter_41" Client="Ch3" IOI="Output" Type="Digital" SortIndex="9" KeyName="000009" Advanced="0"/>
 		</IOConnections>
 	</Entry>
 	<Entry
 		Name       = "IO_Element2"
-		GUID       = "NULL"
+		GUID       = "{042D7BC7-A12E-4B2F-8FA7-857883582ECB}"
 		Objectsize = "284"
 		TempObj    = "true">
 		<!-- List of Connections -->
 		<IOConnections>
-			<IOConnection ObjSrv="DM0811" Server="Output3" ObjClt="Client_Splitter_41" Client="Ch4" IOI="Output" Type="Digital" SortIndex="6" KeyName="000010" Advanced="0"/>
+			<IOConnection ObjSrv="DM0811" Server="Output3" ObjClt="Client_Splitter_41" Client="Ch4" IOI="Output" Type="Digital" SortIndex="10" KeyName="000010" Advanced="0"/>
 		</IOConnections>
 	</Entry>
 	<!-- List of Folders -->

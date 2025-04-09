@@ -156,7 +156,7 @@
 			Name           = "_LMCAxisM1"
 			GUID           = "{B8AC634E-0D99-4FBE-92E3-900D23A5DE60}"
 			Class          = "_LMCAxis"
-			Position       = "(1770,900)"
+			Position       = "(1620,870)"
 			Visualized     = "true"
 			RealTime       = "1 ms"
 			CyclicTime     = "10 ms"
@@ -555,7 +555,7 @@
 			Name       = "_LMCMath_SO31"
 			GUID       = "{77787E46-D251-48DD-8498-E7DDD78E7BF0}"
 			Class      = "_LMCMath_SO3"
-			Position   = "(2790,1110)"
+			Position   = "(2760,1320)"
 			Visualized = "false">
 			<Channels>
 				<Server Name="Control"/>
@@ -565,7 +565,7 @@
 			Name       = "AxisAlarmsM1"
 			GUID       = "{66280B5C-2C39-424F-B4EA-5290217D8923}"
 			Class      = "_LMCAxisAlarmsOP"
-			Position   = "(2730,300)"
+			Position   = "(2760,720)"
 			Visualized = "true"
 			CyclicTime = "10 ms">
 			<Channels>
@@ -4658,7 +4658,7 @@
 			Name       = "Bridge1"
 			GUID       = "{123A5765-22B5-4AA7-BC02-3D1910A8F44A}"
 			Class      = "Bridge"
-			Position   = "(3450,1830)"
+			Position   = "(3180,1530)"
 			Visualized = "true"
 			Remotely   = "true"
 			CyclicTime = "100 ms">
@@ -4672,7 +4672,7 @@
 			Name       = "Client_Splitter_41"
 			GUID       = "{E047D40E-499F-4051-B6E6-5BDF747A0CE8}"
 			Class      = "Client_Splitter_4"
-			Position   = "(2970,1890)"
+			Position   = "(2790,1590)"
 			Visualized = "true"
 			Remotely   = "true">
 			<Channels>
@@ -4702,7 +4702,7 @@
 			Name           = "CM_SpeedControl1"
 			GUID           = "{D8497051-9D1B-4BF4-917F-52526EFB878F}"
 			Class          = "CM_SpeedControl"
-			Position       = "(3570,870)"
+			Position       = "(3630,1080)"
 			Visualized     = "true"
 			CyclicTime     = "10 ms"
 			BackgroundTime = "100 ms">
@@ -4728,7 +4728,7 @@
 			Name       = "DrivePosControl1"
 			GUID       = "{D08B4087-D787-46C2-83AA-174FD68567E1}"
 			Class      = "DrivePosControl"
-			Position   = "(1140,60)"
+			Position   = "(1110,240)"
 			Visualized = "true">
 			<Channels>
 				<Server Name="SetPosOut"/>
@@ -4762,29 +4762,29 @@
 	</Comments>
 	<!-- List of Connections in this network -->
 	<Connections>
-		<Connection Source="_LMCAxisM1.LMCController" Destination="DrivePosControl1.Signal_Input" Vertices="(1770,1050),(1654,150),"/>
-		<Connection Source="CM_SpeedControl1.coLMC" Destination="_LMCAxisM1.Control" Vertices="(3570,960),(2436,990),"/>
-		<Connection Source="DrivePosControl1.cDriveAxis" Destination="_DriveAxis1.CmdState" Vertices="(1140,150),(1130,810),"/>
-		<Connection Source="_LMCAxisM1.ActPosition" Destination="_DriveAxis1.ActPos" Vertices="(1770,990),(1130,990),"/>
+		<Connection Source="_LMCAxisM1.LMCController" Destination="DrivePosControl1.Signal_Input" Vertices="(1620,1020),(1624,330),"/>
+		<Connection Source="CM_SpeedControl1.coLMC" Destination="_LMCAxisM1.Control" Vertices="(3630,1170),(2286,960),"/>
+		<Connection Source="DrivePosControl1.cDriveAxis" Destination="_DriveAxis1.CmdState" Vertices="(1110,330),(1130,810),"/>
+		<Connection Source="_LMCAxisM1.ActPosition" Destination="_DriveAxis1.ActPos" Vertices="(1620,960),(1130,990),"/>
 		<Connection Source="_DriveAxis1.DriveMng" Destination="_DriveMng_DC0621.CmdState"/>
 		<Connection Source="CM_SpeedControl1.cDI_MotorRunEndless" Destination="DM0811.Input1"/>
 		<Connection Source="CM_SpeedControl1.cDI_ReverseDirection" Destination="DM0811.Input2"/>
 		<Connection Source="CM_SpeedControl1.cDI_ResetError" Destination="DM0811.Input3"/>
-		<Connection Source="CM_SpeedControl1.coLMCMath" Destination="_LMCMath_SO31.Control" Vertices="(3570,1200),(3376,1200),"/>
-		<Connection Source="AxisAlarmsM1.LMCAXIS" Destination="_LMCAxisM1.Control" Vertices="(2730,450),(2436,990),"/>
-		<Connection Source="AxisAlarmsM1.DriveAxis" Destination="_DriveAxis1.CmdState" Vertices="(2730,390),(1130,810),"/>
-		<Connection Source="Bridge1.Client_Write" Destination="Client_Splitter_41.To_Splitt" Vertices="(3450,1980),(3270,1980),"/>
-		<Connection Source="Client_Splitter_41.Ch1" Destination="__IO_Element2" Vertices="(2970,1980),(2940,1980)," IOObject="IO_Element"/>
-		<Connection Source="Client_Splitter_41.Ch2" Destination="__IO_Element02" Vertices="(2970,2040),(2940,2040)," IOObject="IO_Element0"/>
-		<Connection Source="Client_Splitter_41.Ch3" Destination="__IO_Element12" Vertices="(2970,2100),(2940,2100)," IOObject="IO_Element1"/>
-		<Connection Source="Client_Splitter_41.Ch4" Destination="__IO_Element22" Vertices="(2970,2160),(2940,2160)," IOObject="IO_Element2"/>
+		<Connection Source="CM_SpeedControl1.coLMCMath" Destination="_LMCMath_SO31.Control" Vertices="(3630,1410),(3346,1410),"/>
+		<Connection Source="AxisAlarmsM1.LMCAXIS" Destination="_LMCAxisM1.Control" Vertices="(2760,870),(2286,960),"/>
+		<Connection Source="AxisAlarmsM1.DriveAxis" Destination="_DriveAxis1.CmdState" Vertices="(2760,810),(1130,810),"/>
+		<Connection Source="Bridge1.Client_Write" Destination="Client_Splitter_41.To_Splitt" Vertices="(3180,1680),(3090,1680),"/>
+		<Connection Source="Client_Splitter_41.Ch1" Destination="__IO_Element2" Vertices="(2790,1680),(2730,1680)," IOObject="IO_Element"/>
+		<Connection Source="Client_Splitter_41.Ch2" Destination="__IO_Element02" Vertices="(2790,1740),(2730,1740)," IOObject="IO_Element0"/>
+		<Connection Source="Client_Splitter_41.Ch3" Destination="__IO_Element12" Vertices="(2790,1800),(2730,1800)," IOObject="IO_Element1"/>
+		<Connection Source="Client_Splitter_41.Ch4" Destination="__IO_Element22" Vertices="(2790,1860),(2730,1860)," IOObject="IO_Element2"/>
 	</Connections>
 	<!-- List of temp data objects in this network -->
 	<IOObjects>
-		<IOObject KeyName="__IO_Element02" Name="IO_Element0" Position="(2640,2010)" Client="Client_Splitter_41.Ch2"/>
-		<IOObject KeyName="__IO_Element12" Name="IO_Element1" Position="(2640,2070)" Client="Client_Splitter_41.Ch3"/>
-		<IOObject KeyName="__IO_Element2" Name="IO_Element" Position="(2640,1950)" Client="Client_Splitter_41.Ch1"/>
-		<IOObject KeyName="__IO_Element22" Name="IO_Element2" Position="(2640,2130)" Client="Client_Splitter_41.Ch4"/>
+		<IOObject KeyName="__IO_Element02" Name="IO_Element0" Position="(2430,1710)" Client="Client_Splitter_41.Ch2"/>
+		<IOObject KeyName="__IO_Element12" Name="IO_Element1" Position="(2430,1770)" Client="Client_Splitter_41.Ch3"/>
+		<IOObject KeyName="__IO_Element2" Name="IO_Element" Position="(2430,1650)" Client="Client_Splitter_41.Ch1"/>
+		<IOObject KeyName="__IO_Element22" Name="IO_Element2" Position="(2430,1830)" Client="Client_Splitter_41.Ch4"/>
 	</IOObjects>
 	<!-- Headerfiles -->
 	<Options>

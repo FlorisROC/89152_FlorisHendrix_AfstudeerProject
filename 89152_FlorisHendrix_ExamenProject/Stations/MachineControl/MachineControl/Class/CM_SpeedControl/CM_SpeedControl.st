@@ -36,13 +36,6 @@
 		<Client Name="coLMC" Required="true" Internal="false"/>
 		<Client Name="coLMCMath" Required="true" Internal="false"/>
 	</Channels>
-	<Separators>
-		<Servers>
-			<SepChn Position="3"/>
-			<SepChn Position="11"/>
-			<SepChn Position="7"/>
-		</Servers>
-	</Separators>
 </Class>
 *)
 CM_SpeedControl : CLASS
