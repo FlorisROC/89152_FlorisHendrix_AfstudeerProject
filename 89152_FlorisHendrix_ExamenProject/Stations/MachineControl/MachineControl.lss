@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<SlnStation Name="MachineControl" OnlineConnection="192.168.12.10 PLC" Color="9811536">
+	<OnlineConnectionInfo>
+		<TCPIP ConfigName="192.168.12.10 PLC" BUS="3" Password="" IP="192.168.12.10" PORT="1954" SomeFlags="0" PLCID="" Repeater="0" SSLTLS="0" Favorite="0"/>
+	</OnlineConnectionInfo>
+	<SlnProjects>
+		<SlnClassProject Name="MachineControl" File=".\MachineControl\MachineControl.lcp">
+		</SlnClassProject>
+	</SlnProjects>
+</SlnStation>

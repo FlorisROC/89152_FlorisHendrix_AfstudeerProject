@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<MultiMasterMgr>
+	<RemoteStations>
+		<RemoteStation
+			Name          = "MachineControl"
+			Name_DESC     = "World name of the station"
+			PrjRev        = "0.0"
+			PrjRev_DESC   = "Version of the project"
+			Project       = "MachineControl"
+			Project_DESC  = "Name of the project"
+			IP            = "192.168.12.10"
+			IP_DESC       = "IP address of this station"
+			Filename      = ".\MachineControl\MachineControl\MachineControl.lcp"
+			Filename_DESC = "File name to project">
+			<RemoteServers>
+				<RemoteServer Name="SysDateTimePLC.SysDate" Name_DESC="Name" GUID_Svr="{0B477768-BD5B-4C0B-BCA5-9E3AA91B2C1D}" GUID_Svr_DESC="GUID of the server" Class="_SysDateTime" Class_DESC="Class" DataType="DATE_LSL" DataType_DESC="DataType" GUID_Obj="{3E4FAD78-B890-4B3D-B710-8A14DBB02ADA}" GUID_Obj_DESC="GUID of the object" Type="Object Channel" Type_DESC="Type"/>
+				<RemoteServer Name="SysDateTimePLC.SysTime" Name_DESC="Name" GUID_Svr="{01AA06EB-72AD-4AE7-ACC7-2A3FF23A3213}" GUID_Svr_DESC="GUID of the server" DataType="TIME_LSL" DataType_DESC="DataType" GUID_Obj="{3E4FAD78-B890-4B3D-B710-8A14DBB02ADA}" GUID_Obj_DESC="GUID of the object"/>
+			</RemoteServers>
+		</RemoteStation>
+	</RemoteStations>
+</MultiMasterMgr>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Network Name="STDTimeSync" Revision="2.1">
+	<!-- List of Components in this network -->
+	<Components>
+		<Object
+			Name           = "SysDateTimePLC"
+			GUID           = "{3E4FAD78-B890-4B3D-B710-8A14DBB02ADA}"
+			Class          = "_SysDateTime"
+			Position       = "(180,150)"
+			Visualized     = "false"
+			Remotely       = "true"
+			BackgroundTime = "100 ms">
+			<Channels>
+				<Server Name="DayOfWeek"/>
+				<Server Name="SysDate"/>
+				<Server Name="SysTime"/>
+				<Client Name="DoSummerTime" Value="0"/>
+				<Client Name="System"/>
+			</Channels>
+			<!-- List of Networks in this component -->
+			<Networks>
+				<Network>
+					<!-- List of Components in this network -->
+					<Components>
+						<Object Name="SummerTime" GUID="{8D5F918A-029E-4326-8E46-99E55244583F}" Class="Ram">
+							<Channels>
+								<Server Name="Data"/>
+							</Channels>
+						</Object>
+					</Components>
+					<Connections>
+					</Connections>
+				</Network>
+			</Networks>
+		</Object>
+	</Components>
+	<Comments>
+	</Comments>
+	<!-- List of Connections in this network -->
+	<Connections>
+	</Connections>
+	<!-- Headerfiles -->
+	<Options>
+	</Options>
+	<RevDoku>
+		<Owner Company="Sigmatek"/>
+		<Dokumentation Revision="2.1" Date="2022-03-08" Author="HasHan,&#13;&#10;MarTho" Company="Sigmatek" Description="The Objects &quot;_SIG_LSL_CMultimasterState1&quot; and &quot;SyncTimePLC&quot; have been removed because the multimaster communication must not be established in both directions to exchange data in both directions."/>
+		<Dokumentation Revision="2.0" Date="2018-02-07" Author="KaiAnd" Company="Sigmatek" Description="new timesync procedure"/>
+		<Dokumentation Revision="1.0" Date="2016-05-25" Company="Sigmatek" Description="start release"/>
+	</RevDoku>
+</Network>

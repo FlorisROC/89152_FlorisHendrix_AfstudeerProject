@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<RemoteStation
+	PrjRev        = "0.0"
+	PrjRev_DESC   = "Version of the project"
+	Project       = "HMI"
+	Project_DESC  = "Name of the project"
+	IP            = "192.168.12.20"
+	IP_DESC       = "IP address of this station"
+	Filename      = ".\Terminal\HMI\HMI.lcp"
+	Filename_DESC = "File name to project">
+	<RemoteServers>
+		<RemoteServer Name="KeyPadANumStdTemplate.Screen" Name_DESC="Name" GUID_Svr="{E741BF69-4F63-11D5-8991-00902787C19C}" GUID_Svr_DESC="GUID of the server" Class="_Screen" Class_DESC="Class" DataType="DINT" DataType_DESC="DataType" GUID_Obj="{C8074AFC-739E-4193-A138-7788DA672E6F}" GUID_Obj_DESC="GUID of the object" Type="Object Channel" Type_DESC="Type"/>
+		<RemoteServer Name="KeyPadANumStdTemplate.ActLetters" Name_DESC="Name" GUID_Svr="{AE8433A6-A484-4FEC-B37A-BDA40BEB69B4}" GUID_Svr_DESC="GUID of the server" DataType="UDINT" DataType_DESC="DataType" GUID_Obj="{C8074AFC-739E-4193-A138-7788DA672E6F}" GUID_Obj_DESC="GUID of the object" WriteProtected="true" WriteProtected_DESC="Write protection of multimaster server" Comment="Current number of characters in Editor" Comment_DESC="Comment of server"/>
+		<RemoteServer Name="KeyPadANumStdTemplate.MaxLetters" Name_DESC="Name" GUID_Svr="{96ACD448-F019-473C-BD1B-43D186C9487C}" GUID_Svr_DESC="GUID of the server" DataType="UDINT" DataType_DESC="DataType" GUID_Obj="{C8074AFC-739E-4193-A138-7788DA672E6F}" GUID_Obj_DESC="GUID of the object" WriteProtected="true" WriteProtected_DESC="Write protection of multimaster server" Comment="Maxmimum number of characters in Editor" Comment_DESC="Comment of server"/>
+		<RemoteServer Name="KeyPadNumStdTemplate.Screen" Name_DESC="Name" GUID_Svr="{E741BF69-4F63-11D5-8991-00902787C19C}" GUID_Svr_DESC="GUID of the server" Class="_Screen" Class_DESC="Class" DataType="DINT" DataType_DESC="DataType" GUID_Obj="{3B59F321-6931-43C7-8488-5DAB5333D8EF}" GUID_Obj_DESC="GUID of the object" Type="Object Channel" Type_DESC="Type"/>
+	</RemoteServers>
+</RemoteStation>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<File CRC="E90FE193" Version="1.1" SubVersion="2">
+	<Types>
+		<Type Name="DM_CPU_Types" Datatype="UDINT" TypeId="ENUM">
+			<Elements>
+				<Type Name="CPUNotIdentified" Value="0"/>
+				<Type Name="IPC_Text_CPU" Value="1"/>
+				<Type Name="IPC_800_CPU" Value="2"/>
+				<Type Name="IPC_1024_CPU" Value="3"/>
+				<Type Name="PCD_CPU" Value="4"/>
+				<Type Name="DSE_CPU" Value="5"/>
+				<Type Name="DCP_CPU" Value="6"/>
+				<Type Name="DCC080_CPU" Value="7"/>
+				<Type Name="DCP645_CPU" Value="8"/>
+				<Type Name="AK500_CPU" Value="9"/>
+				<Type Name="TSTROM_CPU" Value="10"/>
+				<Type Name="NoCPU_11" Value="11"/>
+				<Type Name="NoCPU_12" Value="12"/>
+				<Type Name="NoCPU_13" Value="13"/>
+				<Type Name="NoCPU_14" Value="14"/>
+				<Type Name="NoCPU_15" Value="15"/>
+				<Type Name="ELAN_CPU" Value="16"/>
+				<Type Name="ELAN800_CPU" Value="17"/>
+				<Type Name="WINPC_CPU" Value="18"/>
+				<Type Name="TERMINAL_CPU" Value="19"/>
+				<Type Name="DTC281_CPU" Value="20"/>
+				<Type Name="ELAN_TEXT_CPU" Value="21"/>
+				<Type Name="ELAN_800_CPU" Value="22"/>
+				<Type Name="ETT321_CPU" Value="23"/>
+				<Type Name="HERZ_CPU" Value="24"/>
+				<Type Name="ETT261_CPU" Value="25"/>
+				<Type Name="ETT431_CPU" Value="26"/>
+				<Type Name="WIN_PC98_CPU" Value="27"/>
+				<Type Name="WINPC_NT_CPU" Value="28"/>
+				<Type Name="WINIPC_98_CPU" Value="29"/>
+				<Type Name="WINIPC_NT_CPU" Value="30"/>
+				<Type Name="IPC_320_CPU" Value="31"/>
+				<Type Name="C_IPC_CPU" Value="32"/>
+				<Type Name="NoCPU_33" Value="33"/>
+				<Type Name="RK500_CPU" Value="34"/>
+				<Type Name="CCL721_CPU" Value="35"/>
+				<Type Name="CCL911_CPU" Value="36"/>
+				<Type Name="BDF2000_CPU" Value="37"/>
+				<Type Name="StandardPC_CPU" Value="38"/>
+				<Type Name="CCL081CET_CPU" Value="39"/>
+				<Type Name="CCL081_CPU" Value="40"/>
+				<Type Name="CCL722_CPU" Value="41"/>
+				<Type Name="DCL642_CPU" Value="42"/>
+				<Type Name="Teachbox_CPU" Value="43"/>
+				<Type Name="DTC081_CPU" Value="44"/>
+				<Type Name="DTC081_IP_CPU" Value="45"/>
+				<Type Name="ETV_CPU" Value="46"/>
+				<Type Name="HZS511_CPU" Value="47"/>
+				<Type Name="AUW11X_CPU" Value="48"/>
+				<Type Name="BDF2000_USB_CPU" Value="49"/>
+				<Type Name="DTC101_CPU" Value="50"/>
+				<Type Name="HZS515_CPU" Value="51"/>
+				<Type Name="CCP511_CPU" Value="52"/>
+				<Type Name="ETVEDGE_CPU" Value="53"/>
+				<Type Name="ARM_IMX6_CPU" Value="65537"/>
+				<Type Name="ARM_IMX8MM_CPU" Value="65538"/>
+			</Elements>
+		</Type>
+		<Type Name="IO_FLAG" Datatype="BINT" TypeId="BIT">
+			<Elements>
+				<Type Name="WrongHW" BitNo="1"/>
+				<Type Name="NoHW" BitNo="2"/>
+				<Type Name="NoCalibration" BitNo="3"/>
+				<Type Name="ParaChkWrong" BitNo="4"/>
+				<Type Name="PhysicHiLimit" BitNo="5"/>
+				<Type Name="PhysicLoLimit" BitNo="6"/>
+				<Type Name="Invert" BitNo="7"/>
+				<Type Name="OnDummyMode" BitNo="14"/>
+				<Type Name="NotConnected" BitNo="15"/>
+				<Type Name="PhysicAccessOff" BitNo="16"/>
+			</Elements>
+		</Type>
+		<Type
+			Name      = "IO_State"
+			TypeId    = "STRUCT"
+			Size      = "4"
+			Alignment = "1">
+			<Elements>
+				<Type Name="uiIO_Flags" Datatype="IO_FLAG" Offset="0"/>
+				<Type Name="uiChNo" Datatype="UINT" Offset="2"/>
+			</Elements>
+		</Type>
+	</Types>
+	<Classes>
+		<Class
+			Name     = "_AlarmX0Para"
+			Datatype = "DINT"
+			Size     = "52"
+			Guid     = "858D5524-F314-4ED8-975A-A123450BF12B">
+			<Servers>
+				<Server Name="ClassSvr" Datatype="DINT" Guid="BE689487-005D-4C4C-8B98-759BCFF5A930" WriteProtected="false" IsAlarm="true"/>
+			</Servers>
+		</Class>
+		<Class
+			Name     = "PLC_Info"
+			Datatype = "IO_State"
+			Size     = "4832"
+			Guid     = "558D9A35-A514-4887-AA7B-B932E22A038E">
+			<Types>
+				<Type Name="e_PLC_InfoOSType" Datatype="DINT" TypeId="ENUM">
+					<Elements>
+						<Type Name="_Invalid" Value="2147483664"/>
+						<Type Name="RTK" Value="0"/>
+						<Type Name="Salamander" Value="1"/>
+						<Type Name="LARS" Value="2"/>
+						<Type Name="Gecko" Value="3"/>
+					</Elements>
+				</Type>
+				<Type Name="e_PLC_InfoProcessorType" Datatype="DINT" TypeId="ENUM">
+					<Elements>
+						<Type Name="_Invalid" Value="2147483664"/>
+						<Type Name="x86" Value="0"/>
+						<Type Name="ARM" Value="1"/>
+					</Elements>
+				</Type>
+			</Types>
+			<Servers>
+				<Server Name="State" Datatype="IO_State" Guid="5EE971A9-0DC5-41CA-8034-9B5B85EC643C" WriteProtected="true"/>
+				<Server Name="XilinxVersion" Datatype="HDINT" Guid="6C63AA4A-B06D-4171-8CAA-F8D1487A189B" WriteProtected="true"/>
+				<Server Name="HwVersion" Datatype="HDINT" Guid="ACD35A62-B0A1-4F39-ADA5-91FF227FDCD9" WriteProtected="true"/>
+				<Server Name="BatteryOk" Datatype="DINT" Guid="4CE7B2CB-8A5C-4EEF-8422-CE1718AC7C64" WriteProtected="true"/>
+				<Server Name="Supply24VOk" Datatype="DINT" Guid="5508CB8B-34B1-45D6-B991-D2FC4DE5039E" WriteProtected="true"/>
+				<Server Name="TemperatureOk" Datatype="DINT" Guid="1F6FF22B-500D-453C-8FD9-9BC54D12CADA" WriteProtected="true"/>
+				<Server Name="CPUTemperature" Datatype="DINT" Guid="264519E2-5D5B-4CD4-8895-6D370FA12D78" WriteProtected="true"/>
+				<Server Name="CPUTempCritical" Datatype="DINT" Guid="D687B82B-F4DE-4D10-8546-7773CB45BBB2" WriteProtected="true"/>
+				<Server Name="FanOk" Datatype="DINT" Guid="D6D9FD5F-78D8-42F9-8E1A-6D98184DF8A1" WriteProtected="true"/>
+				<Server Name="SerNum" Datatype="STRING" Guid="004E30EC-F8AE-46F7-9FB0-26B9D6ED3F3A" WriteProtected="true"/>
+				<Server Name="WhoAmI" Datatype="DM_CPU_Types" Guid="6CABAB76-3CA7-4121-8768-A29B3954CF3C" WriteProtected="true"/>
+				<Server Name="CPU_Name" Datatype="STRING" Guid="87A390C1-6C7F-4074-AAA7-09C8A4263635" WriteProtected="true"/>
+				<Server Name="CPUIDString" Datatype="HDINT" Guid="34CDC86B-BCDB-4B54-A80C-0AB2CA513ABC" WriteProtected="true"/>
+				<Server Name="CPUModel" Datatype="DINT" Guid="EA9AD75B-BC1D-42D9-9468-C112236506C8" WriteProtected="true"/>
+				<Server Name="CPUStepping" Datatype="DINT" Guid="50B695C8-5438-4117-92DA-751CAAD55B1F" WriteProtected="true"/>
+				<Server Name="CPUType" Datatype="DINT" Guid="D4C5933D-7561-43AE-9266-B54D7CCF8485" WriteProtected="true"/>
+				<Server Name="CPUFamily" Datatype="DINT" Guid="41E60102-1ED0-4DCF-99B3-7AD6E2EB3FD8" WriteProtected="true"/>
+				<Server Name="CPUFeatures" Datatype="BDINT" Guid="7756EEEC-B59B-4371-9868-FA7561697A8D" WriteProtected="true"/>
+				<Server Name="ApplicationName" Datatype="STRING" Guid="A21DC7CD-FB10-4EE2-94C4-563AECB7CC68" WriteProtected="true"/>
+				<Server Name="ProjectRevision" Datatype="HDINT" Guid="4241F0FD-C175-4570-85BD-9F58034C43F2" WriteProtected="true"/>
+				<Server Name="CPUBoardName" Datatype="UDINT" Guid="11E47FAA-DE77-484A-B6C7-5CA48F7433B8" WriteProtected="true"/>
+				<Server Name="GetSysInfoID" Datatype="DINT" Guid="B600C727-1034-4F33-A76A-C1A51B37DD6F" WriteProtected="false"/>
+				<Server Name="SysInfoType" Datatype="DINT" Guid="72BD7EBC-8C95-4B66-8E3C-83875CD4C9F5" WriteProtected="false"/>
+				<Server Name="SysInfoValue" Datatype="DINT" Guid="148A59B1-6BF6-4D42-8352-488ED17A5BA4" WriteProtected="true"/>
+				<Server Name="SysInfoString" Datatype="UDINT" Guid="E5CBE70B-8B44-4800-921B-C66E4DBD5073" WriteProtected="true"/>
+				<Server Name="SDCardHealth" Datatype="DINT" Guid="A1BDD2FA-3646-4DF0-B6D8-357411C4C08C" WriteProtected="true"/>
+				<Server Name="DisplayName" Datatype="STRING" Guid="4F9DF7DA-4E7B-4434-9032-53A678C0EDEC" WriteProtected="true"/>
+				<Server Name="ApplicationChkSum" Datatype="HDINT" Guid="6E8FDCD7-E07A-49D4-9220-B664FD1E22AD" WriteProtected="true"/>
+				<Server Name="DiskOperatingSeconds" Datatype="DINT" Guid="1542A679-94F5-43DE-B0CA-6D7D3E5EA8DE" WriteProtected="true"/>
+				<Server Name="ProcessorType" Datatype="PLC_Info::e_PLC_InfoProcessorType" Guid="CFD3645B-F98D-4435-BCDF-299C05936FA7" WriteProtected="true"/>
+				<Server Name="OSType" Datatype="PLC_Info::e_PLC_InfoOSType" Guid="89841A31-AEB6-47EB-B663-D88C2EDFC9F0" WriteProtected="true"/>
+			</Servers>
+			<Objects>
+				<Object Name="AppliName" Datatype="String" Guid="FCD65643-5EB5-4660-B272-DD83947A9B9D"/>
+				<Object Name="ChassisType" Datatype="String" Guid="D3982D34-7682-4EF8-A6CE-3D38674E723F"/>
+				<Object Name="CPUBoard" Datatype="String" Guid="27C8094B-20A3-4E3C-BB3E-7C37D506E107"/>
+				<Object Name="String0" Datatype="String" Guid="2A456D16-DF61-49B5-BEAB-DE5021938093"/>
+				<Object Name="String1" Datatype="String" Guid="226FE40A-CB64-43F2-93A2-57B7B1968D48"/>
+				<Object Name="SysInfo" Datatype="String" Guid="EC89488F-4E28-4A43-AB3F-204EFF8B9B8C"/>
+			</Objects>
+		</Class>
+		<Class
+			Name     = "String"
+			Datatype = "UDINT"
+			Base     = "StringInternal"
+			Size     = "60"
+			Guid     = "26C84422-A6E4-4372-A53C-A964595DA01D">
+			<Servers>
+				<Server Name="Data" Datatype="STRING" Guid="81990015-D505-4977-9326-733789F9FEAA" WriteProtected="false"/>
+			</Servers>
+		</Class>
+		<Class
+			Name     = "StringInternal"
+			Datatype = "UDINT"
+			Base     = "VirtualBaseInit"
+			Size     = "48"
+			Guid     = "2C12408A-7CCA-458A-912B-98C634EE4BD9">
+		</Class>
+		<Class
+			Name     = "VirtualBaseInit"
+			Datatype = "UDINT"
+			Size     = "12"
+			Guid     = "9FBB5A34-CCCF-441F-A614-0CCECBD76648">
+		</Class>
+	</Classes>
+	<Objects>
+		<Object Name="AlarmCommunication" Datatype="_AlarmX0Para" Guid="3A3D9FBF-E825-430E-88F9-EFDDD3898420"/>
+		<Object Name="BatterieLow_Error" Datatype="_AlarmX0Para" Guid="1FDC253B-2658-4EB1-B5F4-A0215FC441DC"/>
+		<Object Name="STDPLC_InfoMC1" Datatype="PLC_Info" Guid="15E4E01C-5367-49B3-94D8-B0816F917D5B"/>
+		<Object Name="StringOSVersion_Plc" Datatype="String" Guid="D6F18298-04FF-4934-A7A3-34DBBABF0843"/>
+	</Objects>
+	<UnitDefinitions>
+		<UnitGrp Name="Acceleration">
+			<Units>
+				<Unit Name="mmPsec2" Factor="1" Divisor="1"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Angle">
+			<Units>
+				<Unit Name="deg" Factor="1" Divisor="10000"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Area">
+			<Units>
+				<Unit Name="mm2" Factor="1" Divisor="10"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Force">
+			<Units>
+				<Unit Name="kN" Factor="1" Divisor="1000" Base="N"/>
+				<Unit Name="N" Factor="1" Divisor="1"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Length">
+			<Units>
+				<Unit Name="m" Factor="1" Divisor="1000" Base="mm"/>
+				<Unit Name="mm" Factor="1" Divisor="10000"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Memory">
+			<Units>
+				<Unit Name="GB" Factor="1" Divisor="1024" Base="MB"/>
+				<Unit Name="kB" Factor="1" Divisor="1024"/>
+				<Unit Name="MB" Factor="1" Divisor="1024" Base="kB"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Pressure">
+			<Units>
+				<Unit Name="bar" Factor="1" Divisor="1000"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Revolution">
+			<Units>
+				<Unit Name="RPM" Factor="1" Divisor="1000"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Speed">
+			<Units>
+				<Unit Name="mlpmin" Factor="1" Divisor="1"/>
+				<Unit Name="mmpsec" Factor="1" Divisor="10000"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Time">
+			<Units>
+				<Unit Name="hours" Factor="1" Divisor="60" Base="min"/>
+				<Unit Name="min" Factor="1" Divisor="60" Base="secs"/>
+				<Unit Name="ms" Factor="1" Divisor="1"/>
+				<Unit Name="sec" Factor="1" Divisor="1000"/>
+				<Unit Name="secs" Factor="1" Divisor="1000" Base="ms"/>
+			</Units>
+		</UnitGrp>
+		<UnitGrp Name="Volume">
+			<Units>
+				<Unit Name="ccm" Factor="1" Divisor="1"/>
+			</Units>
+		</UnitGrp>
+	</UnitDefinitions>
+</File>
