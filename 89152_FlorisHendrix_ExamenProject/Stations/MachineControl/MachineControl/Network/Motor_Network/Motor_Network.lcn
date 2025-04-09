@@ -1,0 +1,4792 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Network Name="Motor_Network" Revision="0.0">
+	<!-- List of Components in this network -->
+	<Components>
+		<Object
+			Name       = "_DriveAxis1"
+			GUID       = "{923B6BF9-2D26-4CB3-A7A9-4892140C013B}"
+			Class      = "_DriveAxis"
+			Position   = "(528,720)"
+			Visualized = "true"
+			Remotely   = "true">
+			<Channels>
+				<Server Name="ActCurrent"/>
+				<Server Name="ActPos"/>
+				<Server Name="ActSpeed"/>
+				<Server Name="ActXw"/>
+				<Server Name="AxEnable"/>
+				<Server Name="AxError"/>
+				<Server Name="AxErrorQuit"/>
+				<Server Name="AxisState"/>
+				<Server Name="AxTorqueControl"/>
+				<Server Name="CmdState"/>
+				<Server Name="ControlWord"/>
+				<Server Name="I_HC"/>
+				<Server Name="Input1"/>
+				<Server Name="Input2"/>
+				<Server Name="Input3"/>
+				<Server Name="Input4"/>
+				<Server Name="Input5"/>
+				<Server Name="Input6"/>
+				<Server Name="Input7"/>
+				<Server Name="Input8"/>
+				<Server Name="Online"/>
+				<Server Name="Output1"/>
+				<Server Name="Output2"/>
+				<Server Name="SDDCmdIntfc"/>
+				<Server Name="SerialNo"/>
+				<Server Name="SetCurrent"/>
+				<Server Name="SetPos"/>
+				<Server Name="SetSpeed"/>
+				<Server Name="StateWord"/>
+				<Server Name="ZPulsLatch"/>
+				<Client Name="AxisExtend" Value="1"/>
+				<Client Name="AxisNo" Value="1"/>
+				<Client Name="DriveMng"/>
+				<Client Name="FileHandle"/>
+				<Client Name="OverwriteMotorPara" Value="0"/>
+				<Client Name="ParaSaveType" Value="1"/>
+				<Client Name="ParaTab"/>
+				<Client Name="Place" Value="0"/>
+				<Client Name="TableIndex"/>
+			</Channels>
+			<!-- List of Networks in this component -->
+			<Networks>
+				<Network>
+					<!-- List of Components in this network -->
+					<Components>
+						<Object Name="_base" GUID="{8E760ACF-CD88-4C08-92DD-0B2C6D65180F}" Class="_DriveAxisBase">
+							<Channels>
+								<Server Name="ActCurrent"/>
+								<Server Name="ActPos"/>
+								<Server Name="ActSpeed"/>
+								<Server Name="ActXw"/>
+								<Server Name="AxEnable"/>
+								<Server Name="AxError"/>
+								<Server Name="AxErrorQuit"/>
+								<Server Name="AxisState"/>
+								<Server Name="AxTorqueControl"/>
+								<Server Name="CmdState"/>
+								<Server Name="ControlWord"/>
+								<Server Name="I_HC"/>
+								<Server Name="Input1"/>
+								<Server Name="Input2"/>
+								<Server Name="Input3"/>
+								<Server Name="Input4"/>
+								<Server Name="Input5"/>
+								<Server Name="Input6"/>
+								<Server Name="Input7"/>
+								<Server Name="Input8"/>
+								<Server Name="Online"/>
+								<Server Name="Output1"/>
+								<Server Name="Output2"/>
+								<Server Name="SDDCmdIntfc"/>
+								<Server Name="SerialNo"/>
+								<Server Name="SetCurrent"/>
+								<Server Name="SetPos"/>
+								<Server Name="SetSpeed"/>
+								<Server Name="StateWord"/>
+								<Server Name="ZPulsLatch"/>
+								<Client Name="AxisExtend" Value="1"/>
+								<Client Name="AxisNo" Value="1"/>
+								<Client Name="coLinker"/>
+								<Client Name="coStdLib"/>
+								<Client Name="DriveAxisSet"/>
+								<Client Name="DriveMng"/>
+								<Client Name="Place" Value="0"/>
+							</Channels>
+						</Object>
+						<Object Name="MerkerEx2" GUID="{35A78AD4-A4D3-4ABE-9D72-8236201BF41E}" Class="MerkerEx">
+							<Channels>
+								<Server Name="m_udLength"/>
+								<Client Name="ThreadSafe" Value="0"/>
+							</Channels>
+						</Object>
+						<Object Name="RAMex2" GUID="{4087D4D9-818A-49D3-BEB7-FF34C466AD38}" Class="RAMex">
+							<Channels>
+								<Server Name="m_udLength"/>
+								<Client Name="MultiTask"/>
+								<Client Name="ThreadSafe" Value="0"/>
+								<Client Name="UseFile"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{69FA3C23-B049-4F83-B4BC-D30F993C8C98}" Class="MerkerEx">
+											<Channels>
+												<Server Name="m_udLength"/>
+												<Client Name="ThreadSafe" Value="0"/>
+											</Channels>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDDAxSet1" GUID="{26F51E37-D3D4-4780-B1D7-2FAFECD04824}" Class="_DriveAxisSet">
+							<Channels>
+								<Server Name="Server0"/>
+								<Client Name="coLinker"/>
+								<Client Name="coMerkerEx"/>
+								<Client Name="coRamEx"/>
+								<Client Name="FileHandle"/>
+								<Client Name="OverwriteMotorPara" Value="0"/>
+								<Client Name="ParaSaveType" Value="1"/>
+								<Client Name="ParaTab"/>
+								<Client Name="TableIndex"/>
+							</Channels>
+						</Object>
+					</Components>
+					<Connections>
+					</Connections>
+				</Network>
+			</Networks>
+			<AdditionalData>
+				<Entry Name="DeviceType" Value="Axis"/>
+				<Entry Name="MgrObject" Value="_DriveMng_DC0621"/>
+				<Section Name="Drive">
+					<Entry Name="95" Value="1"/>
+				</Section>
+			</AdditionalData>
+		</Object>
+		<Object
+			Name           = "_LMCAxisM1"
+			GUID           = "{B8AC634E-0D99-4FBE-92E3-900D23A5DE60}"
+			Class          = "_LMCAxis"
+			Position       = "(1770,900)"
+			Visualized     = "true"
+			RealTime       = "1 ms"
+			CyclicTime     = "10 ms"
+			BackgroundTime = "100 ms"
+			RealIndex      = "5376">
+			<Channels>
+				<Server Name="AbsEncoder" Value="0"/>
+				<Server Name="ActPos"/>
+				<Server Name="ActVelocity"/>
+				<Server Name="AEmergency" Value="0"/>
+				<Server Name="AMax" Value="600000000"/>
+				<Server Name="AxisError"/>
+				<Server Name="AxisStatus"/>
+				<Server Name="Control"/>
+				<Server Name="Destination"/>
+				<Server Name="ErrorConfig" Value="2#0000000001000000"/>
+				<Server Name="ExUnits" Value="65536"/>
+				<Server Name="IntUnits" Value="360000"/>
+				<Server Name="JMax" Value="0"/>
+				<Server Name="Modulo" Value="0"/>
+				<Server Name="MoveType" Value="_JERK_PROFILE"/>
+				<Server Name="Override"/>
+				<Server Name="PosMode"/>
+				<Server Name="Resolution" Value="1"/>
+				<Server Name="SetPos"/>
+				<Server Name="SetVelocity"/>
+				<Server Name="SimulateMode" Value="0"/>
+				<Server Name="SWMaxPos" Value="0"/>
+				<Server Name="SWMinPos" Value="0"/>
+				<Server Name="Tjerk" Value="20"/>
+				<Server Name="VMax" Value="24000000"/>
+				<Client Name="ActPosition" Value="0"/>
+				<Client Name="Config" Value="0"/>
+				<Client Name="Emergency" Value="0"/>
+				<Client Name="HWError" Value="0"/>
+				<Client Name="HWMax" Value="0"/>
+				<Client Name="HWMin" Value="0"/>
+				<Client Name="HWReady" Value="0"/>
+				<Client Name="ID" Value="0"/>
+				<Client Name="LatchPos" Value="0"/>
+				<Client Name="LMCController" Value="0"/>
+				<Client Name="LMCPostRtWorkTrigger" Value="0"/>
+				<Client Name="LMCPreRtWorkTrigger" Value="0"/>
+				<Client Name="Provider"/>
+				<Client Name="RefSwitch" Value="0"/>
+				<Client Name="ZImpulse" Value="0"/>
+			</Channels>
+			<!-- List of Networks in this component -->
+			<Networks>
+				<Network>
+					<!-- List of Components in this network -->
+					<Components>
+						<Object Name="_base" GUID="{C43A02B1-A319-4132-B2FA-36A920C832E8}" Class="_LMCAxisBase">
+							<Channels>
+								<Server Name="ActPos"/>
+								<Server Name="ActVelocity"/>
+								<Server Name="AEmergency" Value="0"/>
+								<Server Name="AMax" Value="600000000"/>
+								<Server Name="AxisError"/>
+								<Server Name="AxisStatus"/>
+								<Server Name="Control"/>
+								<Server Name="Destination"/>
+								<Server Name="ErrorConfig" Value="2#0000000001000000"/>
+								<Server Name="ExUnits" Value="65536"/>
+								<Server Name="IntUnits" Value="360000"/>
+								<Server Name="JMax" Value="0"/>
+								<Server Name="Modulo" Value="0"/>
+								<Server Name="MoveType" Value="_JERK_PROFILE"/>
+								<Server Name="Override"/>
+								<Server Name="PosMode"/>
+								<Server Name="Resolution" Value="1"/>
+								<Server Name="SetPos"/>
+								<Server Name="SetVelocity"/>
+								<Server Name="SimulateMode" Value="0"/>
+								<Server Name="SWMaxPos" Value="0"/>
+								<Server Name="SWMinPos" Value="0"/>
+								<Server Name="Tjerk" Value="20"/>
+								<Server Name="VMax" Value="24000000"/>
+								<Client Name="ActPosition" Value="0"/>
+								<Client Name="LMCAbsEncoder"/>
+								<Client Name="LMCController" Value="0"/>
+								<Client Name="LMCMath"/>
+								<Client Name="LMCPostRtWorkTrigger" Value="0"/>
+								<Client Name="LMCPreRtWorkTrigger" Value="0"/>
+								<Client Name="LMCPublisher"/>
+								<Client Name="LMCReference"/>
+								<Client Name="LMCSafety"/>
+								<Client Name="TaskObjectControl"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{E661412E-354E-4C9A-A848-2B297415C10D}" Class="_AxisBase">
+											<Channels>
+												<Server Name="AxisStatus"/>
+												<Server Name="Control"/>
+											</Channels>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_LMCABSEncoder1" GUID="{4997BF67-81DA-49B7-8B08-D58CDF069D7E}" Class="_LMCABSEncoder">
+							<Channels>
+								<Server Name="AbsEncoder" Value="0"/>
+								<Server Name="ClassSvr"/>
+								<Server Name="PosCRC32"/>
+								<Server Name="PosOffset"/>
+								<Server Name="PosOffsetOk"/>
+								<Client Name="_Linker"/>
+							</Channels>
+						</Object>
+						<Object Name="_LMCAxisRef1" GUID="{8527575C-8C8D-4427-B640-713377E99444}" Class="_LMCAxisRef">
+							<Channels>
+								<Server Name="RefInput"/>
+								<Server Name="ZPulseDist"/>
+								<Client Name="HWMax" Value="0"/>
+								<Client Name="HWMin" Value="0"/>
+								<Client Name="LatchPos" Value="0"/>
+								<Client Name="RefSwitch" Value="0"/>
+								<Client Name="ZImpulse" Value="0"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{6D72E8D7-A2D8-441A-BA21-1670B6A2A5BC}" Class="_LMCRefBase">
+											<Channels>
+												<Server Name="RefInput"/>
+											</Channels>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_LMCAxisVis1" GUID="{3701FC36-2E16-4B1A-8232-F571CF23D782}" Class="_LMCAxisVis">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="LMCAxisBase"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object
+											Name           = "_LMCAxisVisInt1"
+											GUID           = "{751FDDCB-9406-4719-9201-8CD0B1F5487A}"
+											Class          = "_LMCAxisVisInt"
+											BackgroundTime = "500 ms">
+											<Channels>
+												<Server Name="AccHand"/>
+												<Server Name="ClassSvr"/>
+												<Server Name="Command"/>
+												<Server Name="CommandState"/>
+												<Server Name="ControllerType"/>
+												<Server Name="CtrcEmerStop"/>
+												<Server Name="CtrcImode"/>
+												<Server Name="CtrcMaxSignal"/>
+												<Server Name="CtrcMaxSignalStepper"/>
+												<Server Name="CtrcMaxSpeed"/>
+												<Server Name="CtrcOffSignal"/>
+												<Server Name="CtrcXWOffset"/>
+												<Server Name="CtrDeadbandDisable"/>
+												<Server Name="CtrDeadbandEnable"/>
+												<Server Name="CtrDisabledIfStopped"/>
+												<Server Name="CtrDragCalcDelay"/>
+												<Server Name="CtrDraglimit"/>
+												<Server Name="CtrDraglimitPowerOnDelay"/>
+												<Server Name="CtrPosOffset"/>
+												<Server Name="CtrSetConf"/>
+												<Server Name="CtrvKD"/>
+												<Server Name="CtrvKI"/>
+												<Server Name="CtrvKV"/>
+												<Server Name="CtrvKVVFDSTepper"/>
+												<Server Name="CtrvVu"/>
+												<Server Name="DecHand"/>
+												<Server Name="ErrorConfig"/>
+												<Server Name="GlobalTab"/>
+												<Server Name="InitDone"/>
+												<Server Name="intUnitsadjusted"/>
+												<Server Name="InversControllerDiasDrive"/>
+												<Server Name="LogInfoMerker"/>
+												<Server Name="MaxOverridePercent"/>
+												<Server Name="MovNegFast"/>
+												<Server Name="MovnegFastEndless"/>
+												<Server Name="MovNegSlow"/>
+												<Server Name="MovPosFast"/>
+												<Server Name="MovPosFastEndless"/>
+												<Server Name="MovPosSlow"/>
+												<Server Name="OverridePercent"/>
+												<Server Name="PowerOnMode"/>
+												<Server Name="PowerOnOff"/>
+												<Server Name="QuitAllError"/>
+												<Server Name="SettingsTab"/>
+												<Server Name="StateMerker"/>
+												<Server Name="TabState"/>
+												<Server Name="TriangleMode" Value="1"/>
+												<Server Name="UnitDecPoint"/>
+												<Server Name="UnitFactor"/>
+												<Server Name="UnitFactorSel"/>
+												<Server Name="UnitSel"/>
+												<Server Name="VelHand"/>
+												<Server Name="Xw"/>
+												<Server Name="XwMax"/>
+												<Client Name="LMCAxisBase"/>
+												<Client Name="LMCAxisVisPara"/>
+											</Channels>
+										</Object>
+										<Object Name="_LMCAxisVisLogHandle1" GUID="{579CAA11-CCAF-46C4-9B4C-1691B5014CEB}" Class="_LMCAxisVisLogHandle">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Server Name="LogIndex"/>
+												<Server Name="LogMode"/>
+												<Server Name="LogOffset"/>
+												<Server Name="LogOffsetMax"/>
+												<Client Name="LMCAxisBase"/>
+											</Channels>
+										</Object>
+										<Object Name="_LMCAxisVisLogViewer1" GUID="{B293064B-AAFC-4E37-9DA9-594CE2821ABD}" Class="_LMCAxisVisLogViewer">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Server Name="LogCmd"/>
+												<Server Name="LogIndexVisu"/>
+												<Server Name="LogRTStamp"/>
+												<Server Name="LogState"/>
+												<Server Name="LogTimeH"/>
+												<Server Name="LogTimeM"/>
+												<Server Name="LogTimeMS"/>
+												<Server Name="LogTimeS"/>
+												<Server Name="LogTimeStamp"/>
+												<Server Name="LogValid"/>
+												<Client Name="LMCAxisBase"/>
+												<Client Name="LogIndex"/>
+												<Client Name="LogOffset" Value="0"/>
+											</Channels>
+										</Object>
+										<Object Name="_LMCAxisVisLogViewer2" GUID="{E9ED5DC9-6217-4942-91BC-B6B48325142A}" Class="_LMCAxisVisLogViewer">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Server Name="LogCmd"/>
+												<Server Name="LogIndexVisu"/>
+												<Server Name="LogRTStamp"/>
+												<Server Name="LogState"/>
+												<Server Name="LogTimeH"/>
+												<Server Name="LogTimeM"/>
+												<Server Name="LogTimeMS"/>
+												<Server Name="LogTimeS"/>
+												<Server Name="LogTimeStamp"/>
+												<Server Name="LogValid"/>
+												<Client Name="LMCAxisBase"/>
+												<Client Name="LogIndex"/>
+												<Client Name="LogOffset" Value="1"/>
+											</Channels>
+										</Object>
+										<Object Name="_LMCAxisVisLogViewer3" GUID="{D6B21B59-2B16-429B-9FF4-0F38C1D09724}" Class="_LMCAxisVisLogViewer">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Server Name="LogCmd"/>
+												<Server Name="LogIndexVisu"/>
+												<Server Name="LogRTStamp"/>
+												<Server Name="LogState"/>
+												<Server Name="LogTimeH"/>
+												<Server Name="LogTimeM"/>
+												<Server Name="LogTimeMS"/>
+												<Server Name="LogTimeS"/>
+												<Server Name="LogTimeStamp"/>
+												<Server Name="LogValid"/>
+												<Client Name="LMCAxisBase"/>
+												<Client Name="LogIndex"/>
+												<Client Name="LogOffset" Value="2"/>
+											</Channels>
+										</Object>
+										<Object Name="_LMCAxisVisLogViewer4" GUID="{AD6791E0-AEDC-45CE-8D22-5E43317EBA0E}" Class="_LMCAxisVisLogViewer">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Server Name="LogCmd"/>
+												<Server Name="LogIndexVisu"/>
+												<Server Name="LogRTStamp"/>
+												<Server Name="LogState"/>
+												<Server Name="LogTimeH"/>
+												<Server Name="LogTimeM"/>
+												<Server Name="LogTimeMS"/>
+												<Server Name="LogTimeS"/>
+												<Server Name="LogTimeStamp"/>
+												<Server Name="LogValid"/>
+												<Client Name="LMCAxisBase"/>
+												<Client Name="LogIndex"/>
+												<Client Name="LogOffset" Value="3"/>
+											</Channels>
+										</Object>
+										<Object Name="_LMCAxisVisLogViewer5" GUID="{455FAA6C-A801-4F92-9131-D41FDF56CED1}" Class="_LMCAxisVisLogViewer">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Server Name="LogCmd"/>
+												<Server Name="LogIndexVisu"/>
+												<Server Name="LogRTStamp"/>
+												<Server Name="LogState"/>
+												<Server Name="LogTimeH"/>
+												<Server Name="LogTimeM"/>
+												<Server Name="LogTimeMS"/>
+												<Server Name="LogTimeS"/>
+												<Server Name="LogTimeStamp"/>
+												<Server Name="LogValid"/>
+												<Client Name="LMCAxisBase"/>
+												<Client Name="LogIndex"/>
+												<Client Name="LogOffset" Value="4"/>
+											</Channels>
+										</Object>
+										<Object Name="_LMCAxisVisPara1" GUID="{0E6F8B42-A0D3-4291-A11B-F82C004100A2}" Class="_LMCAxisVisPara">
+											<Channels>
+												<Server Name="Accel"/>
+												<Server Name="ClassSvr"/>
+												<Server Name="Decel"/>
+												<Server Name="Jerk"/>
+												<Server Name="MovAbsPos"/>
+												<Server Name="MovDirection"/>
+												<Server Name="MovRefAcc"/>
+												<Server Name="MovRefMode"/>
+												<Server Name="MovRefPos"/>
+												<Server Name="MovRefPosWindow"/>
+												<Server Name="MovRefVel1"/>
+												<Server Name="MovRefVel2"/>
+												<Server Name="MovRelMode"/>
+												<Server Name="MovRelPos"/>
+												<Server Name="Position"/>
+												<Server Name="PowOffMode"/>
+												<Server Name="SetParMode"/>
+												<Server Name="SetParNo"/>
+												<Server Name="SetParVal"/>
+												<Server Name="SetPosMode"/>
+												<Server Name="SetPosVal"/>
+												<Server Name="SetSWPosMode"/>
+												<Server Name="SetSWPosVal"/>
+												<Server Name="TuneMode"/>
+												<Server Name="TunePos"/>
+												<Server Name="Velocity"/>
+												<Server Name="WaitTime"/>
+												<Client Name="ocLMCAxisVisInt"/>
+											</Channels>
+										</Object>
+										<Object
+											Name           = "_LMCAxisVOVMonitoring"
+											GUID           = "{2BC2C339-C0BF-4E9B-B0F3-64367B39F6DD}"
+											Class          = "_LMCAxisVOVMonitoring"
+											BackgroundTime = "10 ms">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="ToVisInt"/>
+											</Channels>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_LMCMathFunctions1" GUID="{0B90E254-A9E3-4704-B5A1-614F7986265F}" Class="_LMCMathFunctions">
+							<Channels>
+								<Server Name="ClassSvr"/>
+							</Channels>
+						</Object>
+						<Object Name="_LMCPublisher1" GUID="{B0919C80-CE58-4E90-990E-AB221AFF5CEA}" Class="_LMCPublisher">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="ID" Value="0"/>
+								<Client Name="Provider"/>
+							</Channels>
+						</Object>
+						<Object Name="_LMCSafety1" GUID="{7AEC0395-7659-45AE-A8A2-B6A282D5095D}" Class="_LMCSafety">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Emergency" Value="0"/>
+								<Client Name="HWError" Value="0"/>
+								<Client Name="HWMax" Value="0"/>
+								<Client Name="HWMin" Value="0"/>
+								<Client Name="HWReady" Value="0"/>
+								<Client Name="LMCController"/>
+							</Channels>
+						</Object>
+					</Components>
+					<Connections>
+					</Connections>
+				</Network>
+			</Networks>
+		</Object>
+		<Object
+			Name       = "_LMCMath_SO31"
+			GUID       = "{77787E46-D251-48DD-8498-E7DDD78E7BF0}"
+			Class      = "_LMCMath_SO3"
+			Position   = "(2790,1110)"
+			Visualized = "false">
+			<Channels>
+				<Server Name="Control"/>
+			</Channels>
+		</Object>
+		<Object
+			Name       = "AxisAlarmsM1"
+			GUID       = "{66280B5C-2C39-424F-B4EA-5290217D8923}"
+			Class      = "_LMCAxisAlarmsOP"
+			Position   = "(2730,300)"
+			Visualized = "true"
+			CyclicTime = "10 ms">
+			<Channels>
+				<Server Name="AxisError"/>
+				<Server Name="ClassSvr"/>
+				<Server Name="DriveError"/>
+				<Server Name="DriveState"/>
+				<Client Name="DriveAxis"/>
+				<Client Name="LMCAXIS"/>
+				<Client Name="OPMode" Value="OPMode_Stop"/>
+			</Channels>
+			<!-- List of Networks in this component -->
+			<Networks>
+				<Network>
+					<!-- List of Components in this network -->
+					<Components>
+						<Object Name="_DriveError_Bit_18" GUID="{AC920DCA-63FD-4D04-B62E-3D3A5836B697}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_Bit_19" GUID="{7CC73CBD-F0A5-4360-89B1-9414BCDEF8E1}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_Bit_20" GUID="{294B4AFD-EEBD-4207-A1A6-58BFD43CBE30}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_Bit_21" GUID="{B1748F74-A529-47E9-AC81-227B6B9F172F}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_Bit_23" GUID="{108F051B-53D9-42F5-9CF6-E1624041D818}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_Bit_25" GUID="{443A91C0-53EC-46E0-A61A-EAC17366810A}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_Bit_26" GUID="{638AAA84-E025-4268-918A-A8F50E96859E}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_Bit_27" GUID="{64502DF6-7160-488F-9FD4-AC297D5A00BE}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_Bit_28" GUID="{5435BF4B-6B41-4069-9A0C-D8EC9FB675F0}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_Bit_29" GUID="{5F44A97A-896D-4D67-BF98-792709BF342E}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_Bit_30" GUID="{B490B763-B01F-4D4B-8B8E-A5F2A46F02DC}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_Bit_31" GUID="{ACA20A16-DC8B-4B8F-987D-6CB072425A5F}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_Bit_32" GUID="{4F49CAED-EC0F-4A88-8694-BE780739C8EF}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_ADOFF_Error" GUID="{013025CF-1102-49BE-AA44-09942E9CAAF9}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_ASMFU_IMAX_ERROR" GUID="{19A64F6C-53E2-4EA8-B78C-E0106A53BEFE}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Init"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Init"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_ENCODER_COUNTER_ERROR" GUID="{E74F874E-5071-433A-9F2F-98E6A47E128D}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Init"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Init"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_FEEDBACK_ADC" GUID="{4B5B260A-29AC-4353-A24E-270D1F5BBCC5}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Init"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Init"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_FEEDBACK_SUPPLY" GUID="{E12C4A89-49BB-4383-9B84-363FD3177C1C}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Init"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Init"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_FPGA_Error" GUID="{83FF27BC-36B3-41BC-A219-4ADAE2DB9342}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_HOST_Error" GUID="{C3649861-290A-4D1A-A272-12A317516764}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_LVDS_ERROR" GUID="{8DEEA3EB-D744-45B4-A243-869881738C03}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Init"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Init"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_RAM_Error" GUID="{1F2638FA-EBE7-4213-AACA-662B14BD8123}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_REGEN_ERROR" GUID="{98DA463D-BD93-474E-A6F2-0D16E6716631}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Init"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Init"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_SAFETY_ERROR" GUID="{9F056F65-84B8-46A2-AF89-F50ACE0BDED9}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Init"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Init"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_SAFETY_WARNING" GUID="{B52403AB-7FCC-403F-B32F-3BF00E863B34}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Init"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Init"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_SHORT_Error" GUID="{D1410947-81FB-48D1-9742-4CD033EFFFDB}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_SINCOS_MinMaxError" GUID="{01219AF2-A2AD-4E81-8A97-01501555DF2C}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_SINCOS_Move_Error" GUID="{6C387026-2D61-46C5-8E1C-A2C80FEC74D6}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_SSI_Error" GUID="{8AC08DFC-171D-4F70-90D5-3D804458FBE2}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_VCC18_Error" GUID="{98764053-DC41-4F83-8F6E-EE5078A48C2A}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_VCCE_Error" GUID="{1BDC6E42-E21B-405B-B91A-A2D6C2B8056F}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveError_SDD_Z_IMPULS_ERROR" GUID="{11B0EB5C-DFBF-4EE9-BD8D-BCB925735F68}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Init"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Init"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_DriveErrorHandling1" GUID="{EE8ADEB4-FF61-4654-9CF5-B72E6A32E680}" Class="_DriveErrorHandling">
+							<Channels>
+								<Server Name="GetErrorInfo"/>
+								<Server Name="I_DERROR"/>
+								<Server Name="I_DERROR2"/>
+								<Server Name="I_DERROR3"/>
+								<Server Name="I_STATUS"/>
+								<Server Name="State"/>
+								<Client Name="Activate_I_DError2" Value="0"/>
+								<Client Name="Activate_I_DError3" Value="0"/>
+								<Client Name="DriveAxis"/>
+								<Client Name="ErrorCode"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{5D924F4A-1ABE-40D2-9865-FF18A3FDFCE0}" Class="_DriveParaBase">
+											<Channels>
+												<Server Name="State"/>
+												<Client Name="DriveAxis"/>
+												<Client Name="ErrorCode"/>
+											</Channels>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="AbsOffsetError" GUID="{C07EFDC2-49E8-4315-A75D-3CFEB64A3EAE}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="ActPosError" GUID="{07EDE283-2B46-478C-B86E-BEA2514661D3}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="ContouringError" GUID="{A38E692D-B9AD-4A3F-BB5A-78AF28C02433}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="EmergencyError" GUID="{89AAC96A-9700-4F40-81A6-59F346D7E205}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="GlobErr" GUID="{DECE68D5-8E15-49CE-9E65-EE7BFFA7886F}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="HWError" GUID="{42BE5B3A-57C2-4EAA-A645-26396EA3193E}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="HwMaxError" GUID="{08F0AE68-EA60-4BD8-973E-BE005ED1B4E6}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="HwMinError" GUID="{8F61C6F8-2B27-4B5B-BAEA-F46DDF42E2CC}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="OverFlowError" GUID="{D2AF50EF-7C67-42B8-A099-1EBB267A2CA5}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="PowerOffError" GUID="{A859ECB5-C457-46A1-A33D-36A05094D72B}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Init"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Init"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="PowerOnError" GUID="{52A0C6D6-2EF0-4434-95A6-36E8A26CA289}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="QuitErrorLMCaxis1" GUID="{8E14E334-1776-4D4B-B04C-5D7E059B0CF4}" Class="_QuitErrorLMCAxis">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="LMCAXIS"/>
+							</Channels>
+						</Object>
+						<Object Name="ReferenceError" GUID="{F6944802-85B6-4D42-879A-58FE476FC7F3}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="ResolutionError" GUID="{8685477F-DDEF-44FF-9EDE-41573C5F8288}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_AmbientOverTemp" GUID="{3DB807FC-2224-43A3-AAEE-0E75CBF66251}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_Brake24VError" GUID="{07C9485F-64FC-44F6-98B6-0DF980F30235}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_BrakeEnableError" GUID="{75F263A4-748A-4722-9F05-B7457A202519}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_BrakeError" GUID="{696DC065-8A38-421A-A243-483C61B541F1}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_BrakeSwitchError" GUID="{807B209E-01FF-4111-98D2-9227C4D4037F}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_CommutationError" GUID="{499F2580-0584-4CE6-B1F1-E7034B9D413C}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_DCOver" GUID="{37501010-E8A1-4C88-BFE9-4C6C02657C85}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_DCUnder" GUID="{ACD0110F-5D52-4AD7-870B-7F2846DED883}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_DriveError_E1" GUID="{C72E9A10-7F03-448A-8543-27B1540DF648}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_DriveError_E2" GUID="{398D19D5-F0F5-4267-903C-B9006285EA3E}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_DriverVoltageError" GUID="{A4F8F853-65E4-4F64-9A47-131126F1B57B}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_EnableLockedError" GUID="{369AE106-088D-41CF-AC36-A8138E7C1ACD}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_FanError" GUID="{A3A853B6-9FEA-495A-846B-6AC5F8D792F8}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Init"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Init"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_FeedBackError" GUID="{71FC1914-6165-40D0-AD9C-E8B1BF39EA2E}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_Free3" GUID="{E89F6445-5CA4-4E36-93A1-2E94A093365A}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_HeatSinkOverTemp" GUID="{A548B1E3-768B-47FB-87B7-67E30BDBFDEB}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_HostComError" GUID="{4EAC786C-3CA4-47FC-BB80-EF7B401813B8}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_I2TError" GUID="{2302F801-C8D9-4846-A604-AAF6B81CC878}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_MainError" GUID="{29130475-FD7B-4C94-930C-A66026D872F0}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_MaxRegenPower" GUID="{1B529971-7E44-41B9-BA55-8CD45BF0A126}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_MaxSumPowerLimit" GUID="{6F0E0775-7DC5-40D4-9A70-0559A1B6AECB}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_MotorAxisOverCurrent" GUID="{FC121D83-4276-499C-852B-6E3427F944ED}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Init"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Init"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_MotorObjectError" GUID="{58D94C6D-7CB6-4C15-8A00-5D37013D795A}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_MotorOverTemp" GUID="{5B221321-ED5A-40E2-908A-93B3A8835719}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_MotorTempWarn" GUID="{19B10DC4-7299-4797-A6AC-0BDCB9FBEE44}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_MultiPosError" GUID="{A1508F3E-C642-4A2B-A6C2-141E08298108}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_OnePhase" GUID="{6C4D04DD-FCA7-485F-8951-E42C9DC9ADC2}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_OverSpeed" GUID="{F7CBC2CF-D02B-45F2-8B1E-34EDCA8ACFBD}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_PCmdError" GUID="{429A4B04-BF47-454C-B41F-EEACEA109D47}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_PEMAx" GUID="{272F248E-1684-4A44-BC66-0C2AD48A5A03}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_PhaseFailure" GUID="{F76804E6-FBF5-4515-9E33-319DF7607B04}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Init"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Init"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SDD_SpeedControlerSaturation" GUID="{D801A2CC-496B-4DD0-A088-676C9A1B17EA}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Init"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Init"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SwMaxError" GUID="{19845F37-A91C-4224-B566-1B6CA2CC9871}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="SwMinError" GUID="{74166882-5139-4E1C-9E5A-8222F0091BD1}" Class="AlarmOPMode3Para">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Acknow"/>
+								<Client Name="AlarmInfo" Value="2#00000000"/>
+								<Client Name="AlarmMode" Value="2#0"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="OPMode" Value="OPMode_Stop"/>
+								<Client Name="Parameter1"/>
+								<Client Name="Parameter2"/>
+								<Client Name="Parameter3"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{4599F760-87C9-4F47-9B42-694CB19F23F1}" Class="AlarmOPMode0Para">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Client Name="Acknow"/>
+												<Client Name="AlarmInfo" Value="2#00000000"/>
+												<Client Name="AlarmMode" Value="2#0"/>
+												<Client Name="Config" Value="0"/>
+												<Client Name="OPMode" Value="OPMode_Stop"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{ABEDA7EA-9B2E-4F8C-B5E9-C7C895E9C61C}" Class="_AlarmX0Para">
+															<Channels>
+																<Server Name="ClassSvr"/>
+																<Client Name="Acknow"/>
+																<Client Name="Config" Value="0"/>
+																<Client Name="Group"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+					</Components>
+					<Connections>
+					</Connections>
+				</Network>
+			</Networks>
+		</Object>
+		<Object
+			Name       = "Bridge1"
+			GUID       = "{123A5765-22B5-4AA7-BC02-3D1910A8F44A}"
+			Class      = "Bridge"
+			Position   = "(3450,1830)"
+			Visualized = "true"
+			Remotely   = "true"
+			CyclicTime = "100 ms">
+			<Channels>
+				<Server Name="dummy"/>
+				<Client Name="Client_Read" Value="1"/>
+				<Client Name="Client_Write"/>
+			</Channels>
+		</Object>
+		<Object
+			Name       = "Client_Splitter_41"
+			GUID       = "{E047D40E-499F-4051-B6E6-5BDF747A0CE8}"
+			Class      = "Client_Splitter_4"
+			Position   = "(2970,1890)"
+			Visualized = "true"
+			Remotely   = "true">
+			<Channels>
+				<Server Name="To_Splitt"/>
+				<Client Name="Ch1"/>
+				<Client Name="Ch2"/>
+				<Client Name="Ch3"/>
+				<Client Name="Ch4"/>
+			</Channels>
+			<!-- List of Networks in this component -->
+			<Networks>
+				<Network>
+					<!-- List of Components in this network -->
+					<Components>
+						<Object Name="_base" GUID="{913E6D9D-DF21-11D5-B925-0010609208D7}" Class="Client_Splitter_Base">
+							<Channels>
+								<Server Name="To_Splitt"/>
+							</Channels>
+						</Object>
+					</Components>
+					<Connections>
+					</Connections>
+				</Network>
+			</Networks>
+		</Object>
+		<Object
+			Name           = "CM_SpeedControl1"
+			GUID           = "{D8497051-9D1B-4BF4-917F-52526EFB878F}"
+			Class          = "CM_SpeedControl"
+			Position       = "(3570,870)"
+			Visualized     = "true"
+			CyclicTime     = "10 ms"
+			BackgroundTime = "100 ms">
+			<Channels>
+				<Server Name="ClassSvr"/>
+				<Server Name="sCycleCount"/>
+				<Server Name="sDiameter"/>
+				<Server Name="sMotorRunEndless"/>
+				<Server Name="sPosInMM"/>
+				<Server Name="sRemainingCycles"/>
+				<Server Name="sSpeedBaseRPM" Value="36"/>
+				<Server Name="sSpeedDegPerSec"/>
+				<Server Name="sSpeedRPM"/>
+				<Server Name="sStartCycles"/>
+				<Client Name="cDI_MotorRunEndless"/>
+				<Client Name="cDI_ResetError"/>
+				<Client Name="cDI_ReverseDirection"/>
+				<Client Name="coLMC"/>
+				<Client Name="coLMCMath"/>
+			</Channels>
+		</Object>
+		<Object
+			Name       = "DrivePosControl1"
+			GUID       = "{D08B4087-D787-46C2-83AA-174FD68567E1}"
+			Class      = "DrivePosControl"
+			Position   = "(1140,60)"
+			Visualized = "true">
+			<Channels>
+				<Server Name="SetPosOut"/>
+				<Server Name="SetVelOut"/>
+				<Server Name="Signal_Input"/>
+				<Server Name="XW"/>
+				<Server Name="XWMax"/>
+				<Client Name="cDraglimit"/>
+				<Client Name="cDriveAxis"/>
+				<Client Name="PosOffset"/>
+				<Client Name="SetConf" Value="2#1"/>
+			</Channels>
+			<!-- List of Networks in this component -->
+			<Networks>
+				<Network>
+					<!-- List of Components in this network -->
+					<Components>
+						<Object Name="_base" GUID="{B691716C-8462-4CBF-B00E-25D77FA0C2C0}" Class="Controller">
+							<Channels>
+								<Server Name="Signal_Input"/>
+							</Channels>
+						</Object>
+					</Components>
+					<Connections>
+					</Connections>
+				</Network>
+			</Networks>
+		</Object>
+	</Components>
+	<Comments>
+	</Comments>
+	<!-- List of Connections in this network -->
+	<Connections>
+		<Connection Source="_LMCAxisM1.LMCController" Destination="DrivePosControl1.Signal_Input" Vertices="(1770,1050),(1654,150),"/>
+		<Connection Source="CM_SpeedControl1.coLMC" Destination="_LMCAxisM1.Control" Vertices="(3570,960),(2436,990),"/>
+		<Connection Source="DrivePosControl1.cDriveAxis" Destination="_DriveAxis1.CmdState" Vertices="(1140,150),(1130,810),"/>
+		<Connection Source="_LMCAxisM1.ActPosition" Destination="_DriveAxis1.ActPos" Vertices="(1770,990),(1130,990),"/>
+		<Connection Source="_DriveAxis1.DriveMng" Destination="_DriveMng_DC0621.CmdState"/>
+		<Connection Source="CM_SpeedControl1.cDI_MotorRunEndless" Destination="DM0811.Input1"/>
+		<Connection Source="CM_SpeedControl1.cDI_ReverseDirection" Destination="DM0811.Input2"/>
+		<Connection Source="CM_SpeedControl1.cDI_ResetError" Destination="DM0811.Input3"/>
+		<Connection Source="CM_SpeedControl1.coLMCMath" Destination="_LMCMath_SO31.Control" Vertices="(3570,1200),(3376,1200),"/>
+		<Connection Source="AxisAlarmsM1.LMCAXIS" Destination="_LMCAxisM1.Control" Vertices="(2730,450),(2436,990),"/>
+		<Connection Source="AxisAlarmsM1.DriveAxis" Destination="_DriveAxis1.CmdState" Vertices="(2730,390),(1130,810),"/>
+		<Connection Source="Bridge1.Client_Write" Destination="Client_Splitter_41.To_Splitt" Vertices="(3450,1980),(3270,1980),"/>
+		<Connection Source="Client_Splitter_41.Ch1" Destination="__IO_Element2" Vertices="(2970,1980),(2940,1980)," IOObject="IO_Element"/>
+		<Connection Source="Client_Splitter_41.Ch2" Destination="__IO_Element02" Vertices="(2970,2040),(2940,2040)," IOObject="IO_Element0"/>
+		<Connection Source="Client_Splitter_41.Ch3" Destination="__IO_Element12" Vertices="(2970,2100),(2940,2100)," IOObject="IO_Element1"/>
+		<Connection Source="Client_Splitter_41.Ch4" Destination="__IO_Element22" Vertices="(2970,2160),(2940,2160)," IOObject="IO_Element2"/>
+	</Connections>
+	<!-- List of temp data objects in this network -->
+	<IOObjects>
+		<IOObject KeyName="__IO_Element02" Name="IO_Element0" Position="(2640,2010)" Client="Client_Splitter_41.Ch2"/>
+		<IOObject KeyName="__IO_Element12" Name="IO_Element1" Position="(2640,2070)" Client="Client_Splitter_41.Ch3"/>
+		<IOObject KeyName="__IO_Element2" Name="IO_Element" Position="(2640,1950)" Client="Client_Splitter_41.Ch1"/>
+		<IOObject KeyName="__IO_Element22" Name="IO_Element2" Position="(2640,2130)" Client="Client_Splitter_41.Ch4"/>
+	</IOObjects>
+	<!-- Headerfiles -->
+	<Options>
+	</Options>
+</Network>

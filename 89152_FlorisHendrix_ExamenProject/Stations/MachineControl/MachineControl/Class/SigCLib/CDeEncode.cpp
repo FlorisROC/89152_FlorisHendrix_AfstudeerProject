@@ -8,7 +8,12 @@
 // |                                                                                              |
 // +----------------------------------------------------------------------------------------------+
 
+#if defined(_GNUC) && !defined(__OPTIMIZE__)
+ #warning Optimization is OFF
+#endif 
+
 #include "SigCLib.h"
+#include "SigCLibKey.h"
 
 static const unsigned char TabBase64Encode[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
@@ -634,25 +639,17 @@ unsigned long sigclib_base64_decode(void *dst0, unsigned long dstsize, const uns
 // ************************************************************************************************
 // ************************************************************************************************
 
-void sigclib_intern_shuffle(unsigned char *pa, unsigned long size, unsigned long key);
-void sigclib_intern_code(unsigned char *p, unsigned long size, unsigned long key);
+void sigclib_intern_decode_bin(void *p0, unsigned long bytesize, unsigned long key0, unsigned long key1);
+void sigclib_intern_encode_bin(void *p0, unsigned long bytesize, unsigned long key0, unsigned long key1);
 
-void sigclib_decode_bin(void *p0, unsigned long bytesize, unsigned long key)
+void sigclib_decode_bin(void *p0, unsigned long bytesize, unsigned long key0, unsigned long key1)
 {
-  if((p0 != NULL) && (bytesize > 0))
-  {
-    sigclib_intern_shuffle((unsigned char*)p0, bytesize, key);
-    sigclib_intern_code((unsigned char*)p0, bytesize, key);
-  }
+  sigclib_intern_decode_bin(p0, bytesize, key0, key1);
 }
 
-void sigclib_encode_bin(void *p0, unsigned long bytesize, unsigned long key)
+void sigclib_encode_bin(void *p0, unsigned long bytesize, unsigned long key0, unsigned long key1)
 {
-  if((p0 != NULL) && (bytesize > 0))
-  {
-    sigclib_intern_code((unsigned char*)p0, bytesize, key);
-    sigclib_intern_shuffle((unsigned char*)p0, bytesize, key);
-  }
+  sigclib_intern_encode_bin(p0, bytesize, key0, key1);
 }
 
 

@@ -107,9 +107,15 @@
     // format date and/or time to string
     cExtern unsigned long sigclib_strfdatetime(char* s, unsigned long maxsize, const char* format, SYSDATE *pdat, SYSTIME *ptim);
   
+    // format string to date, 
+    // function will return pointer to first character which is not used to encode string
+    // following characters are valid separator [SPACE],[/],[.],[-] and [_]
+    // Example: "2023/11/17", "17.11.2023", "17-11-23"
+    cExtern char *sigclib_string_to_date(unsigned long *date, const char *text);
+  
     // format string to time, 
     // function will return pointer to first character which is not used to encode string
-    // following characters are valid separator [SPACE],[:],[.],[-] and caseinsensitive sequenzes of "am" and "pm"
+    // following characters are valid separator [SPACE],[:],[.],[-],[_] and caseinsensitive sequenzes of "am" and "pm"
     cExtern char *sigclib_string_to_time(unsigned long *time, const char *text);
 
     // compute number of days since 01.01.0001 from given date
@@ -248,6 +254,12 @@
 
     // format date and/or time to string
     function global __cdecl sigclib_strfdatetime var_input dst0:^char; maxsize:udint; format:^char; pdat:^SYSDATE; ptim:^SYSTIME; end_var var_output retcode:udint; end_var;
+
+    // format string to date, 
+    // function will return pointer to first character which is not used to encode string
+    // following characters are valid separator [SPACE],[/],[.],[-] and [_]
+    // Example: "2023/11/17", "17.11.2023", "17-11-23"
+    function global __cdecl sigclib_string_to_date var_input pdate:^udint; text:^char; end_var var_output retcode:^char; end_var;
 
     // format string to time, 
     // function will return pointer to first character which is not used to encode string
@@ -453,11 +465,20 @@
 // set sysdate
 // --> pdate ........... pointer to structure including date to set
 // Info: Struct "SYSDATE" will contain following components "wDay", "wMonth", "wYear"
+
+// ------------------------------------------------------------------------------------------------
+// char *sigclib_string_to_date(unsigned long *date, const char *text);
+// format string to time (ascii-0-string)
+// following characters are valid separator [SPACE],[/],[.],[-] and [_]
+// --> time ............ adress where datestamp (lasal-datee) should be captured
+// --> text ............ pointer to string to encode
+// <-- function will return pointer to first character which is not used to encode string
+// Example: "2023/11/17", "17.11.2023", "17-11-23"
  
 // ------------------------------------------------------------------------------------------------
 // char *sigclib_string_to_time(unsigned long *time, const char *text);
 // format string to time (ascii-0-string)
-// following characters are valid separator [SPACE],[:],[.],[-] and caseinsensitive sequences of "am" and "pm"
+// following characters are valid separator [SPACE],[:],[.],[-],[_] and caseinsensitive sequences of "am" and "pm"
 // --> time ............ adress where timestamp (lasal-time) should be captured
 // --> text ............ pointer to string to encode
 // <-- function will return pointer to first character which is not used to encode string

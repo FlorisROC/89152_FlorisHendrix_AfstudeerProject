@@ -27,7 +27,7 @@
     cExtern void sigclib_mutex_section_stop(unsigned long mutexhdl);
     
     // send command to serviceprovider
-    cExtern void sigclib_serviceprovider(const char*txt);
+    cExtern long sigclib_serviceprovider(const char*txt);
     
     // check if opsys is salamander
     cExtern unsigned long sigclib_is_salamander(void);
@@ -142,7 +142,7 @@
     function global __cdecl sigclib_mutex_section_stop var_input mutexhdl : udint; end_var;
     
     // send command to serviceprovider
-    function global __cdecl sigclib_serviceprovider var_input txt:^char; end_var;  
+    function global __cdecl sigclib_serviceprovider var_input txt:^char; end_var var_output retcode:dint; end_var;
     
     // check if opsys is salamander
     function global __cdecl sigclib_is_salamander var_output retcode:udint; end_var;
@@ -278,8 +278,10 @@
 // NOTE: do not stop critical sectipon without previous start
 
 // ------------------------------------------------------------------------------------------------
-// void sigclib_serviceprovider(const char*txt);
-// send command to serviceprovider
+// void sigclib_serviceprovider(const char *txt);
+// send command to serviceprovider at opsys
+// --> txt ............. textual command to perform
+// function will return individual value created by opsys
     
 // ------------------------------------------------------------------------------------------------
 // unsigned long sigclib_is_salamander(void);

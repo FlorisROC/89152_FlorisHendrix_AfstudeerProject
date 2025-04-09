@@ -65,6 +65,10 @@
   #define hsort        sigclib_hsort
   #define hfind        sigclib_hfind
   #define printf       sigclib_printf
+ #ifdef sigclib_sprintf
+  #undef sigclib_sprintf
+ #endif
+  #define sigclib_sprintf sigclib_get_sprintf_fptr()
   #define sprintf      sigclib_sprintf
   
   // CMemLib

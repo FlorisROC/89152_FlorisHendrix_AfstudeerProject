@@ -85,6 +85,14 @@
     cExtern long            sigclib_sscanfST(const char *source, const char* format, void *p0, void *p1=NULL, void *p2=NULL, void *p3=NULL, void *p4=NULL, void *p5=NULL, void *p6=NULL, void *p7=NULL, void *p8=NULL, void *p9=NULL);
     cExtern unsigned long   sigclib_strcutat(char *pd, const char *txt, char chr);
     cExtern unsigned long   sigclib_strcutatlast(char *pd, const char *txt, char chr);
+    cExtern unsigned long   sigclib_strend(const char *str, const char *searchee);
+    cExtern unsigned long   sigclib_striend(const char *str, const char *searchee);
+    cExtern unsigned long   sigclib_strstart(const char *str, const char *searchee);
+    cExtern unsigned long   sigclib_stristart(const char *str, const char *searchee);
+
+            typedef int ( *tSprintfPtr) (char *s, const char *format, ... );
+            tSprintfPtr     sigclib_get_sprintf_fptr(void);
+
 
   #else
   
@@ -154,6 +162,10 @@
     function global __cdecl sigclib_strcmp_ex var_input str:^void; str_size:udint; src:^void; src_size:udint; end_var var_output retcode:dint; end_var;
     function global __cdecl sigclib_strcutat var_input pd:^char; txt:^char; chr:char; end_var var_output retcode:udint; end_var;
     function global __cdecl sigclib_strcutatlast var_input pd:^char; txt:^char; chr:char; end_var var_output retcode:udint; end_var;
+    function global __cdecl sigclib_strend var_input str:^char; searchee:^char; end_var var_output retcode:udint; end_var;
+    function global __cdecl sigclib_striend var_input str:^char; searchee:^char; end_var var_output retcode:udint; end_var;
+    function global __cdecl sigclib_strstart var_input str:^char; searchee:^char; end_var var_output retcode:udint; end_var;
+    function global __cdecl sigclib_stristart var_input str:^char; searchee:^char; end_var var_output retcode:udint; end_var;
     
     function global __cdecl sigclib_sprintfST
       var_input
@@ -861,6 +873,28 @@
 
 // Note: user is allowed to forward same address as 'pd' and 'txt'
 //       If 'chr' does not exist in 'txt', a copy of 'txt' will be done
+
+
+// ------------------------------------------------------------------------------------------------
+// Case sensitive (sigclib_strend()) and insensitive (sigclib_striend()) check if given string 'str' ends with string 'searchee'
+// unsigned long sigclib_strend(const char *str, const char *searchee)
+// unsigned long sigclib_striend(const char *str, const char *searchee)
+
+// Parameters:
+// --> str ............. given ascii-0-string to check
+// --> searchee ........ given serachee
+// Function will return stringlength of 'searchee' when given string ends with 'searchee', on the other hand 0
+
+
+// ------------------------------------------------------------------------------------------------
+// Case sensitive (sigclib_strstart()) and insensitive (sigclib_stristart()) check if given string 'str' starts with string 'searchee'
+// unsigned long sigclib_strstart(const char *str, const char *searchee)
+// unsigned long sigclib_stristart(const char *str, const char *searchee)
+
+// Parameters:
+// --> str ............. given ascii-0-string to check
+// --> searchee ........ given serachee
+// Function will return stringlength of 'searchee' when given string starts with 'searchee', on the other hand 0
 
 
 // ------------------------------------------------------------------------------------------------

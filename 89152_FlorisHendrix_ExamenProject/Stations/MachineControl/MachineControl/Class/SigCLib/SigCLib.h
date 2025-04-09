@@ -26,9 +26,38 @@
   #include "CHeap.h"
   #include "CDeEncode.h"
 
-  #define sigclib_version 38
+  #define sigclib_version 41
  
 #endif
+
+
+// version 0.41, 05.03.2024 ----------------------------------------------------------------------
+// new functions added:
+//   sigclib_cfprintf(), sigclib_string_to_date(), sigclib_file_iterator(),
+//   sigclib_logfileline_datim(), sigclib_logfile_datimST(), sigclib_logfile_datim(),
+//   sigclib_fexist(), sigclib_sigkey() + #define SigCLibKey_INUSE
+// miscellaneous:
+//   sigclib_encode_bin() and sigclib_decode_bin() will have a second 32-bit-key
+//   printf() and sprintf() in c-File will work when #include "SigCLibNew.h" is implemented
+//   intern changes in function sigclib_thread_create() and sigclib_thread_create2() to ensure compatibility to WA032 or other old OpSys
+
+
+// version 0.40, 14.04.2023 ----------------------------------------------------------------------
+// corrections:
+//   8D-7859: error in function sigclib_mktime(), sigclib_lasal_to_date(), sigclib_lasal_to_time()
+// new functions added:
+//   sigclib_logfilebin()
+
+
+// version 0.39, 10.01.2023 ----------------------------------------------------------------------
+// corrections: 
+//   retcode of function sigclib_cfseek() changed from unsigned to signed
+//   8D-6608: function sigclib_strtod(), method StrToLREAL() will work with more than 9 places after decimalpoint
+// new functions added:
+//   sigclib_strend(), sigclib_striend(), sigclib_strstart(), sigclib_stristart()
+// miscellaneous:
+//   Function sigclib_serviceprovider() will return retcode given from opsys
+
 
 // version 0.38, 04.07.2022 ----------------------------------------------------------------------
 // speedup function sigclib_memmove() and sigclib_memcpyrev()

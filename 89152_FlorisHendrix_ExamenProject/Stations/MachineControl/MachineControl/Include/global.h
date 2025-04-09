@@ -24,6 +24,21 @@
 #include "..\Class\_SysDateTime\_SysDateTime.h"
 #include <Lsl_st_ifssr.h>
 #include <lsl_st_tcp_user.h>
+#include "..\Class\DiasMasterC\MasterSettings.h"
+#include "..\Class\DiasMaster\DIASMaster.h"
+#include <LSL_STITask.h>
+#include "..\Class\I2CCDIAS\EEFuncDef.h"
+#include "..\Class\VaranManager_Base\VaranManager_Base.h"
+#include "..\Class\_DriveMngBase\DriveComL2.h"
+#include "..\Source\interfaces\lsl_st_sdias.h"
+#include "..\Source\interfaces\lsl_st_tcp_user.h"
+#include "..\Source\interfaces\lsl_st_varan.h"
+#include "..\Source\interfaces\lsl_st_cdias.h"
+#include <File_IOTypes.h>
+#include <CanTypes.h>
+#include <lsl_st_serial.h>
+#include <LinkerTypes.h>
+#include "..\Source\code\Global_Functions\H_Get_ptr_on_Obj.h"
 
 #include "unit.h"
 #include "UserDef.h"

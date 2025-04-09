@@ -54,17 +54,16 @@
     cExtern unsigned long sigclib_base64_decode(void *dst0, unsigned long dstsize, const unsigned char *src, unsigned long srcsize);
  
     // inplace encode of binary data
-    cExtern void sigclib_encode_bin(void *p0, unsigned long bytesize, unsigned long key);
+    cExtern void sigclib_encode_bin(void *p0, unsigned long bytesize, unsigned long key0, unsigned long key1 = 0);
     
     // inplace decode of binary data
-    cExtern void sigclib_decode_bin(void *p0, unsigned long bytesize, unsigned long key);
+    cExtern void sigclib_decode_bin(void *p0, unsigned long bytesize, unsigned long key0, unsigned long key1 = 0);
 
     // inplace encode of textual data
     cExtern void sigclib_encode_txt(void *p0, unsigned long bytesize, unsigned long key);
 
     // inplace decode of textual data
     cExtern void sigclib_decode_txt(void *p0, unsigned long bytesize, unsigned long key);
- 
  
  #else // *****************************************************************************************
     // convert unicode-0-string to utf8-0-string, function will return number of used bytes in destination, excluding final zero
@@ -107,17 +106,16 @@
     function global __cdecl sigclib_base64_decode var_input dst0:^void; dstsize:udint; src:^usint; srcsize:udint; end_var var_output retcode:udint; end_var;
 
     // inplace encode of binary data
-    function global __cdecl sigclib_encode_bin var_input p0:^void; bytesize:udint; key:udint; end_var;
+    function global __cdecl sigclib_encode_bin var_input p0:^void; bytesize:udint; key:udint; key1:udint:=0; end_var;
     
     // inplace decode of binary data
-    function global __cdecl sigclib_decode_bin var_input p0:^void; bytesize:udint; key:udint; end_var;
+    function global __cdecl sigclib_decode_bin var_input p0:^void; bytesize:udint; key:udint; key1:udint:=0; end_var;
  
     // inplace encode of textual data
     function global __cdecl sigclib_encode_txt var_input p0:^void; bytesize:udint; key:udint; end_var;
 
     // inplace decode of textual data
     function global __cdecl sigclib_decode_txt var_input p0:^void; bytesize:udint; key:udint; end_var;
- 
  
  #endif // ****************************************************************************************
 #endif
@@ -231,15 +229,15 @@
 // inplace encode of binary data
 // --> p0 .............. data to encode
 // --> bytesize ........ size of bytes to encode    
-// --> key ............. arbitrary userkey (necessary to decode)
-// NOTE: data can be decoded by using function sigclib_decode_bin() with same bytelength and key
+// --> key0, key1 ...... arbitrary userkeys (necessary to decode)
+// NOTE: data can be decoded by using function sigclib_decode_bin() with same bytelength and keys
    
 // ------------------------------------------------------------------------------------------------
 // void sigclib_decode_bin(void *p0, unsigned long bytesize, unsigned long key);
 // inplace decode of binary data, encoded by using function sigclib_encode_bin()
 // --> p0 .............. data to decode
 // --> bytesize ........ size of bytes to decode    
-// --> key ............. arbitrary userkey (same value used to encode)
+// --> key0, key1 ...... arbitrary userkey (same value used to encode)
 
 // ------------------------------------------------------------------------------------------------
 // void sigclib_encode_txt(void *p0, unsigned long bytesize, unsigned long key);
@@ -255,6 +253,3 @@
 // --> p0 .............. data to decode
 // --> bytesize ........ size of bytes to decode    
 // --> key ............. arbitrary userkey (same value used to encode)
-
-
-

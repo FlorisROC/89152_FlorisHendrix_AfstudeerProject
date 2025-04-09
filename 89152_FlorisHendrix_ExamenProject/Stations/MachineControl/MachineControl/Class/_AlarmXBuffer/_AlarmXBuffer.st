@@ -7,7 +7,7 @@
 (*!
 <Class
 	Name               = "_AlarmXBuffer"
-	Revision           = "0.21"
+	Revision           = "0.30"
 	GUID               = "{526E2C4B-797D-4675-91FA-3685FAA594F8}"
 	RealtimeTask       = "false"
 	CyclicTask         = "false"
@@ -38,6 +38,7 @@
 	</Dependencies>
 	<RevDoku>
 		<Owner Company="sigmatek" Author="kolott"/>
+		<Dokumentation Revision="0.30" Date="2023-07-28" Author="kolott" Company="sigmatek" Description="Userdata of arbitrary length (P04323) implemented"/>
 		<Dokumentation Revision="0.21" Date="2020-08-12" Author="kolott" Company="sigmatek" Description="Functionality to get multi AlarmConfiguration added (NewInstCmd 11)&#13;&#10;Functionality to scan for alarms with given state added (NewInstCmd 206)&#13;&#10;Functionality to skip oldest unused handle implemented"/>
 		<Dokumentation Revision="0.20" Date="2018-11-06" Author="kolott" Company="sigmatek" Description="Functionality to get single Alarmconfiguration added"/>
 		<Dokumentation Revision="0.19" Date="2018-02-01" Author="kolott" Company="sigmatek" Description="new virtual method ActionAlarmIntern() added"/>
@@ -61,6 +62,14 @@ _AlarmXBuffer : CLASS
 	    lasalid : UDINT;
 	  END_STRUCT;
 #pragma pack(pop)
+#pragma pack(push, 1)
+	  _AB_ALARM_USERDATA : STRUCT
+	    ptr : ^void;
+	    byteallocated : UDINT;
+	    bytesize : UDINT;
+	    userid : UDINT;
+	  END_STRUCT;
+#pragma pack(pop)
 	  _AB_ALARM : STRUCT
 	    alano : UDINT;
 	    group : UDINT;
@@ -69,6 +78,7 @@ _AlarmXBuffer : CLASS
 	    para : ARRAY [0..MAX_ALARMPARA-1] OF DINT;
 	    state : USINT;
 	    parano : USINT;
+	    userdata : _AB_ALARM_USERDATA;
 	  END_STRUCT;
 	  _AB_CONFIG : STRUCT
 	    pThis : UDINT;
@@ -77,6 +87,7 @@ _AlarmXBuffer : CLASS
 	    nopara : USINT;
 	    para : ARRAY [0..MAX_ALARMPARA-1] OF UDINT;
 	    configDone : BOOL;
+	    multiconfig : UDINT;
 	  END_STRUCT;
 	  _AB_MEM_ALARM : STRUCT
 	    no : UDINT;
@@ -87,6 +98,7 @@ _AlarmXBuffer : CLASS
 	    no : UDINT;
 	    size : UDINT;
 	    ptr : ^_AB_CONFIG;
+	    is_multiconfig : BOOL;
 	  END_STRUCT;
 	  _HMI_MAP : STRUCT
 	    no : UDINT;
@@ -199,6 +211,7 @@ _AlarmXBuffer : CLASS
 			group 	: UDINT;
 			no 	: UDINT;
 			paras 	: ^UDINT;
+			multiconfig 	: UDINT := 0;
 		END_VAR
 		VAR_OUTPUT
 			retcode 	: UDINT;
@@ -212,10 +225,25 @@ _AlarmXBuffer : CLASS
 			state 	: DINT;
 			parano 	: UDINT;
 			ppara 	: ^DINT;
+			userdata 	: ^void := nil;
+			userdata_size 	: UDINT := 0;
+			userdata_id 	: UDINT := 0;
 		END_VAR;
 	
-	FUNCTION CreateTXBuffer200
+	FUNCTION CreateTXBuffer202
 		VAR_INPUT
+			tx 	: ^USINT;
+			txsize 	: UDINT;
+			index 	: UDINT;
+			anz 	: UDINT;
+		END_VAR
+		VAR_OUTPUT
+			retcode 	: UDINT;
+		END_VAR;
+	
+	FUNCTION CreateTXBuffer203
+		VAR_INPUT
+			precsize 	: ^UINT;
 			tx 	: ^USINT;
 			txsize 	: UDINT;
 			index 	: UDINT;
@@ -255,6 +283,9 @@ _AlarmXBuffer : CLASS
 			state 	: DINT;
 			parano 	: UDINT;
 			ppara 	: ^DINT;
+			userdata 	: ^void := nil;
+			userdata_size 	: UDINT := 0;
+			userdata_id 	: UDINT := 0;
 		END_VAR;
 	
 	FUNCTION CopyConfig
@@ -276,7 +307,19 @@ _AlarmXBuffer : CLASS
 			retcode 	: UDINT;
 		END_VAR;
 	
-	FUNCTION ScanAlarmState
+	FUNCTION ScanAlarmState206
+		VAR_INPUT
+			pd 	: ^USINT;
+			max_pd_size 	: UDINT;
+			startidx 	: UDINT;
+			state 	: DINT;
+			buffstate 	: UDINT;
+		END_VAR
+		VAR_OUTPUT
+			retcode 	: UDINT;
+		END_VAR;
+	
+	FUNCTION ScanAlarmState208
 		VAR_INPUT
 			pd 	: ^USINT;
 			max_pd_size 	: UDINT;
@@ -311,6 +354,72 @@ _AlarmXBuffer : CLASS
 	FUNCTION SeekHmiUnused
 		VAR_OUTPUT
 			retcode 	: UDINT;
+		END_VAR;
+	
+	FUNCTION VIRTUAL AddUserData
+		VAR_INPUT
+			pala 	: ^_AB_ALARM;
+			userdata 	: ^void;
+			userdata_size 	: UDINT;
+			userdata_id 	: UDINT;
+		END_VAR
+		VAR_OUTPUT
+			retcode 	: BOOL;
+		END_VAR;
+	
+	FUNCTION AlarmMemory
+		VAR_INPUT
+			pptr 	: ^pVoid;
+			bytesize 	: UDINT;
+		END_VAR
+		VAR_OUTPUT
+			retcode 	: BOOL;
+		END_VAR;
+	
+	FUNCTION VIRTUAL SeekMultiConfigBase
+		VAR_INPUT
+			alano 	: UDINT;
+		END_VAR
+		VAR_OUTPUT
+			retcode 	: ^_AlarmX0Para;
+		END_VAR;
+	
+	FUNCTION ComputeIndexAnz
+		VAR_INPUT
+			panz 	: ^UDINT;
+			pidx 	: ^UDINT;
+			clsvr 	: UDINT;
+		END_VAR
+		VAR_OUTPUT
+			overflow 	: BOOL;
+		END_VAR;
+	
+	FUNCTION AddAlarmVersion5
+		VAR_INPUT
+			tx 	: ^USINT;
+			pala 	: ^_AB_ALARM;
+			recsize 	: UDINT;
+		END_VAR
+		VAR_OUTPUT
+			retcode 	: ^USINT;
+		END_VAR;
+	
+	FUNCTION SizeAlarmVersion5
+		VAR_INPUT
+			pala 	: ^_AB_ALARM;
+		END_VAR
+		VAR_OUTPUT
+			retcode 	: UDINT;
+		END_VAR;
+	
+	FUNCTION LookupBuffer208
+		VAR_INPUT
+			lid 	: UDINT;
+			alano 	: UDINT;
+			state 	: DINT;
+		END_VAR
+		VAR_OUTPUT
+			retcode 	: ^_AB_ALARM;
 		END_VAR;
 	
 	FUNCTION VIRTUAL GLOBAL ClassSvr::NewInst
@@ -367,7 +476,7 @@ END_CLASS;
 FUNCTION GLOBAL TAB _AlarmXBuffer::@CT_
 0$UINT,
 2#0100000000000000$UINT, //TY__ALARMXBUFFER
-0$UINT, 21$UINT, (SIZEOF(::_AlarmXBuffer))$UINT, 
+0$UINT, 30$UINT, (SIZEOF(::_AlarmXBuffer))$UINT, 
 5$UINT, 1$UINT, 0$UINT, 
 TO_UDINT(2835625764), "_AlarmXBuffer", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
@@ -382,7 +491,7 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 END_FUNCTION
 
 
-#define USER_CNT__AlarmXBuffer 9
+#define USER_CNT__AlarmXBuffer 11
 
 TYPE
 	_LSL_STD_VMETH	: STRUCT
@@ -438,6 +547,14 @@ FUNCTION _AlarmXBuffer::@STD
 #pragma warning (default : 74)
 #pragma warning (disable : 74)
 	vmt.UserFcts[8]		:= #ActionAlarmIntern();
+
+#pragma warning (default : 74)
+#pragma warning (disable : 74)
+	vmt.UserFcts[9]		:= #AddUserData();
+
+#pragma warning (default : 74)
+#pragma warning (disable : 74)
+	vmt.UserFcts[10]		:= #SeekMultiConfigBase();
 
 #pragma warning (default : 74)
 	ClassSvr.pMeth		:= StoreCmd (pCmd := #vmt.CmdTable, SHARED);
@@ -507,6 +624,7 @@ FUNCTION _AlarmXBuffer::_AlarmXBuffer
   end_if;
 
   // init configdata
+  MemConfig.is_multiconfig := false;
   MemConfig.no   := 0;   // no of entries
   MemConfig.size := 0;   // buffersize
   MemConfig.ptr  := NIL; // --> to buffer
@@ -530,10 +648,14 @@ FUNCTION _AlarmXBuffer::CreateBuffer
   VAR_INPUT
     anz : udint;
   END_VAR
+  VAR
+  	bytes : udint;
+  END_VAR
 
   if(anz > 0) then
-    MemAlarm.ptr := OS_SSR_Malloc(anz * sizeof(_AB_ALARM))$^_AB_ALARM;
-    if(MemAlarm.ptr <> NIL) then
+    bytes := anz * sizeof(_AB_ALARM);
+    if(AlarmMemory(#MemAlarm.ptr, bytes) = true) then
+      _memset(MemAlarm.ptr, 0, bytes); // set memory to 0
       MemAlarm.size := anz; // max no of entries
       MemAlarm.no   := 0;   // act no of entries 
       No            := to_dint(anz);
@@ -558,6 +680,44 @@ FUNCTION VIRTUAL GLOBAL _AlarmXBuffer::Init
 
 END_FUNCTION
 
+FUNCTION _AlarmXBuffer::AlarmMemory
+	VAR_INPUT
+		pptr 	: ^pvoid;
+		bytesize 	: UDINT;
+	END_VAR
+  var_output
+    retcode : bool;
+  end_var
+  VAR
+  	ptr, ph : ^void;
+  END_VAR
+  
+  retcode := true;
+  ptr := pptr^;
+  
+  if(bytesize = 0) then
+    if(ptr <> nil) then
+      OS_SSR_Free(ptr);
+      ptr := nil; 
+    end_if;
+  elsif(ptr = nil) then
+    ptr := OS_SSR_Malloc(bytesize);
+    if(ptr = nil) then
+      retcode := false;
+    end_if;
+  else
+    retcode := false;
+    ph := OS_SSR_Realloc(ptr, bytesize);
+    if(ph <> nil) then
+      retcode := true;
+      ptr := ph;
+    end_if;
+  end_if;
+
+  pptr^ := ptr;
+
+END_FUNCTION
+
 FUNCTION VIRTUAL GLOBAL _AlarmXBuffer::RegisterAlarmXPara
 	VAR_INPUT
 		pThis 	: ^void;
@@ -565,6 +725,7 @@ FUNCTION VIRTUAL GLOBAL _AlarmXBuffer::RegisterAlarmXPara
 		group 	: UDINT;
 		no 	: UDINT;
 		paras 	: ^UDINT;
+		multiconfig 	: UDINT;(* := 0 *)
 	END_VAR
 	VAR_OUTPUT
 		retcode 	: UDINT;
@@ -576,15 +737,8 @@ FUNCTION VIRTUAL GLOBAL _AlarmXBuffer::RegisterAlarmXPara
   retcode := 0;
 
   if(MemConfig.no >= MemConfig.size) then
-    if(MemConfig.ptr = NIL) then
-      ptr := OS_SSR_Malloc(32 * sizeof(_AB_CONFIG))$^_AB_CONFIG;
-      MemConfig.size := 0;
-    else
-      ptr := OS_SSR_Realloc(MemConfig.ptr, (MemConfig.no + 32) * sizeof(_AB_CONFIG))$^_AB_CONFIG;
-    end_if;
-    if(ptr <> NIL) then
-      _memset(ptr+MemConfig.size*sizeof(_AB_CONFIG), 0, 32*sizeof(_AB_CONFIG)); // init new memory
-      MemConfig.ptr  := ptr;
+    if(AlarmMemory(#MemConfig.ptr, (MemConfig.no + 32) * sizeof(_AB_CONFIG)) = true) then
+      _memset(MemConfig.ptr + MemConfig.size*sizeof(_AB_CONFIG), 0, 32*sizeof(_AB_CONFIG)); // init new memory
       MemConfig.size += 32;
     end_if;
   end_if;
@@ -593,12 +747,13 @@ FUNCTION VIRTUAL GLOBAL _AlarmXBuffer::RegisterAlarmXPara
     if(config = 0) then
       config := 16#FFFE - MemConfig.no;
     end_if;
-    retcode         := config;
-    ptr             := MemConfig.ptr + (MemConfig.no * sizeof(_AB_CONFIG));
-    ptr^.pThis      := pThis$UDINT;
-    ptr^.config     := config;
-    ptr^.group      := group;
-    ptr^.configDone := false;
+    retcode          := config;
+    ptr              := MemConfig.ptr + (MemConfig.no * sizeof(_AB_CONFIG));
+    ptr^.pThis       := pThis$UDINT;
+    ptr^.config      := config;
+    ptr^.group       := group;
+    ptr^.multiconfig := multiconfig;
+    ptr^.configDone  := false;
 
     if(no > MAX_ALARMPARA) then
       no := MAX_ALARMPARA;
@@ -607,6 +762,11 @@ FUNCTION VIRTUAL GLOBAL _AlarmXBuffer::RegisterAlarmXPara
     ptr^.nopara := to_usint(no);
     _memcpy(#ptr^.para[0], paras, no * sizeof(udint));
     MemConfig.no += 1;
+    
+    if(multiconfig <> 0) then
+      MemConfig.is_multiconfig := true; // alarm with multiconfig is present
+    end_if;  
+    
   end_if;
   
 END_FUNCTION
@@ -647,6 +807,45 @@ FUNCTION _AlarmXBuffer::DoMutex
 
 END_FUNCTION
 
+FUNCTION VIRTUAL _AlarmXBuffer::AddUserData
+	VAR_INPUT
+		pala 	: ^_AB_ALARM;
+		userdata 	: ^void;
+		userdata_size 	: UDINT;
+		userdata_id 	: UDINT;
+	END_VAR
+  var_output
+    retcode : bool;
+  end_var
+
+  retcode := true;
+  pala^.userdata.bytesize := 0;
+  pala^.userdata.userid := userdata_id;
+  
+  if(userdata_size > 0) then
+    retcode := false;
+    if(userdata_size >= pala^.userdata.byteallocated) then
+      // alloc/realloc memory
+      if(AlarmMemory(#pala^.userdata.ptr, userdata_size) = true) then
+        pala^.userdata.byteallocated := userdata_size;
+      end_if;
+    end_if;
+  
+    if(userdata_size <= pala^.userdata.byteallocated) then
+      // copy userdata
+      _memcpy(pala^.userdata.ptr, userdata, userdata_size);
+      pala^.userdata.bytesize := userdata_size;
+      retcode := true;
+    end_if;
+  elsif(pala^.userdata.ptr <> NIL) then
+    // free memory
+    AlarmMemory(#pala^.userdata.ptr, 0);
+    pala^.userdata.byteallocated := 0;
+    retcode := true;
+  end_if;
+
+END_FUNCTION
+
 FUNCTION VIRTUAL GLOBAL _AlarmXBuffer::ActionAlarmIntern
 	VAR_INPUT
 		pThis 	: UDINT;
@@ -655,6 +854,9 @@ FUNCTION VIRTUAL GLOBAL _AlarmXBuffer::ActionAlarmIntern
 		state 	: DINT;
 		parano 	: UDINT;
 		ppara 	: ^DINT;
+		userdata 	: ^void;(* := nil *)
+		userdata_size 	: UDINT;(* := 0 *)
+		userdata_id 	: UDINT;(* := 0 *)
 	END_VAR
   VAR
     index : UDINT;
@@ -671,7 +873,8 @@ FUNCTION VIRTUAL GLOBAL _AlarmXBuffer::ActionAlarmIntern
   if(MemAlarm.size > 0) then
     index := ClassSvr mod MemAlarm.size;                 // make wpos
     ptr   := MemAlarm.ptr + (index * sizeof(_AB_ALARM)); // --> to dst
-    _memset(ptr, 0, sizeof(_AB_ALARM));                  // init
+    
+    // _memset(ptr, 0, sizeof(_AB_ALARM));                  // init
 
     ptr^.alano    := config;
     ptr^.group    := group;
@@ -688,6 +891,8 @@ FUNCTION VIRTUAL GLOBAL _AlarmXBuffer::ActionAlarmIntern
     if(parano <> 0) then
       _memcpy(#ptr^.para[0], ppara, parano * sizeof(udint));
     end_if;
+    
+    AddUserData(ptr, userdata, userdata_size, userdata_id);
     
     ClassSvr      += 1;
     if(MemAlarm.no < MemAlarm.size) then
@@ -723,11 +928,14 @@ FUNCTION VIRTUAL GLOBAL _AlarmXBuffer::ActionAlarm
 		state 	: DINT;
 		parano 	: UDINT;
 		ppara 	: ^DINT;
+		userdata 	: ^void;(* := nil *)
+		userdata_size 	: UDINT;(* := 0 *)
+		userdata_id 	: UDINT;(* := 0 *)
 	END_VAR
 
   DoMutex(TRUE);
 
-  ActionAlarmIntern(pThis, config, group, state, parano, ppara);
+  ActionAlarmIntern(pThis, config, group, state, parano, ppara, userdata, userdata_size, userdata_id);
 
   DoMutex(FALSE);
 
@@ -995,6 +1203,40 @@ FUNCTION _AlarmXBuffer::GetMemConfig
 
 END_FUNCTION
 
+FUNCTION VIRTUAL _AlarmXBuffer::SeekMultiConfigBase
+	VAR_INPUT
+		alano 	: UDINT;
+	END_VAR
+	VAR_OUTPUT
+		retcode 	: ^_AlarmX0Para;
+	END_VAR
+  VAR
+    nox, end : UDINT;
+    pConfig : ^_AB_CONFIG;
+  END_VAR
+
+  if(MemConfig.is_multiconfig = true) then // ask if there is any alarm with multiconfig
+  
+    pConfig := MemConfig.ptr;
+    nox     := MemConfig.no;
+    
+    while(nox <> 0) do // iterate
+      nox -= 1;
+      if(alano >= pConfig^.config$UINT) & (pConfig^.pThis <> NIL)  then
+        end := pConfig^.config$UINT + pConfig^.multiconfig;
+        if(alano < end) then 
+          retcode := pConfig^.pThis$^_AlarmX0Para;
+          return;
+        end_if;
+      end_if;
+      pConfig += sizeof(_AB_CONFIG);
+    end_while;
+  end_if;
+  
+  retcode := NIL;
+
+END_FUNCTION
+
 FUNCTION VIRTUAL _AlarmXBuffer::Quit_AlarmSingle
 	VAR_INPUT
 		alano 	: UDINT;
@@ -1014,17 +1256,23 @@ FUNCTION VIRTUAL _AlarmXBuffer::Quit_AlarmSingle
   i := 0;
   pConfig := MemConfig.ptr;
   while(i < MemConfig.no) do
-    if(pConfig^.config$UINT = alano) then
+    if(alano = pConfig^.config$UINT) then
       pAlarmXPara := pConfig^.pThis$^_AlarmX0Para;
       if(pAlarmXPara <> NIL) then
-        pAlarmXPara^.QuitAlarm();
+        pAlarmXPara^.QuitAlarm(alano);
         retcode := TRUE;
-        exit;
+        return;
       end_if;
     end_if;
     pConfig += sizeof(_AB_CONFIG);
     i += 1;
   end_while;
+  
+  pAlarmXPara := SeekMultiConfigBase(alano);
+  if(pAlarmXPara <> NIL) then
+    pAlarmXPara^.QuitAlarm(alano);
+    retcode := TRUE;
+  end_if;
 
 END_FUNCTION
 
@@ -1198,12 +1446,53 @@ FUNCTION VIRTUAL GLOBAL _AlarmXBuffer::QuitGroupEx::Write
 
 END_FUNCTION
 
-FUNCTION _AlarmXBuffer::CreateTXBuffer200
+FUNCTION _AlarmXBuffer::ComputeIndexAnz
+  VAR_INPUT
+    panz : ^UDINT;
+    pidx : ^UDINT;
+    clsvr : UDINT;
+  END_VAR
+	VAR_OUTPUT
+		overflow : BOOL;
+	END_VAR
+  var
+    maxanz, index, anz : UDINT;
+  end_var
+
+  maxanz := MemAlarm.size;
+  index  := pidx^;
+  anz    := panz^;
+  
+  if(index >= clsvr) then // check
+    anz   := 0;
+    index := 0;
+    if(clsvr > 0) then
+      index := clsvr - 1;
+      anz := 1;
+    end_if;
+  elsif(clsvr > maxanz) then // Overflow im Ringbuffer
+    if(index < (clsvr - maxanz)) then
+      index := clsvr - maxanz;
+      anz   := maxanz;
+      overflow := true;
+    end_if;
+  end_if;
+    
+  if((index + anz) > clsvr) then
+    anz := clsvr - index;
+  end_if;
+
+  panz^ := anz;
+  pidx^ := index;
+
+END_FUNCTION
+
+FUNCTION _AlarmXBuffer::CreateTXBuffer202
 	VAR_INPUT
 		tx 	: ^USINT;
 		txsize 	: UDINT;
 		index 	: UDINT;
-    anz     : UDINT;
+		anz 	: UDINT;
 	END_VAR
 	VAR_OUTPUT
 		retcode 	: UDINT;
@@ -1232,24 +1521,26 @@ FUNCTION _AlarmXBuffer::CreateTXBuffer200
     tx^$udint := 0; tx += 4; // index of first entry
     tx^$udint := 0; // number of entries
   else
-    maxanz := MemAlarm.size;
-    if(index >= ClassSvr) then
-      anz := 0;
-      index := 0;
-      if(ClassSvr > 0) then
-        index := ClassSvr - 1;
-      end_if;
-    elsif(ClassSvr > maxanz) then
-      if(index < (ClassSvr - maxanz)) then
-        index := ClassSvr - MemAlarm.size;
-        anz   := MemAlarm.size;
-        overflow := true;
-      end_if;
-    end_if;
-    
-    if((index + anz) > ClassSvr) then
-      anz := ClassSvr - index;
-    end_if;
+    overflow := ComputeIndexAnz(#anz, #index, ClassSvr);
+  
+//    maxanz := MemAlarm.size;
+//    if(index >= ClassSvr) then
+//      anz := 0;
+//      index := 0;
+//      if(ClassSvr > 0) then
+//        index := ClassSvr - 1;
+//      end_if;
+//    elsif(ClassSvr > maxanz) then
+//      if(index < (ClassSvr - maxanz)) then
+//        index := ClassSvr - MemAlarm.size;
+//        anz   := MemAlarm.size;
+//        overflow := true;
+//      end_if;
+//    end_if;
+//    
+//    if((index + anz) > ClassSvr) then
+//      anz := ClassSvr - index;
+//    end_if;
     
     tx^$udint := index; tx += 4; // index of first entry
     tx^$udint := 0; // number of entries
@@ -1302,6 +1593,85 @@ FUNCTION _AlarmXBuffer::CreateTXBuffer200
     end_if;
   end_if;
   
+END_FUNCTION
+
+FUNCTION _AlarmXBuffer::CreateTXBuffer203
+	VAR_INPUT
+    precsize : ^uint;
+		tx 	: ^USINT;
+		txsize 	: UDINT;
+		index 	: UDINT;
+    anz : UDINT;
+	END_VAR
+	VAR_OUTPUT
+		retcode 	: UDINT;
+	END_VAR
+  VAR
+    pala    : ^_AB_ALARM;
+    overflow : bool;
+    pno : ^udint;
+    idx, recsize : udint;
+  END_VAR
+
+  // out: [4] ................... index of entry in resultbuffer
+  //      [4] ................... number of entries (1 oder 0) in resultbuffer + (msb is set if overflow occured)
+  //       [4] .................. alano
+  //       [4] .................. date and time
+  //       [2] .................. bytelength of single record
+  //       [1] .................. nc (init with 0)
+  //       [1] .................. state (bit0), parano (bit 1-6), group (bit 7)
+  //       [4] .................. group
+  //       [4] .................. lasalid
+  //       [4] .................. userdata bytesize
+  //       [4] .................. userdataid
+  //       [parano * 4] ......... parameter
+  //       [userdata bytesize] .. userdata
+
+  if(txsize = 0) | (txsize > 0xFFFF) then
+    txsize := sizeof(results.aData);
+  end_if;
+
+  retcode := 0;  // number of enclosed recods
+  if(txsize >= 8) then // zur Sicherheit
+
+    txsize   -= 8; // Korrektur
+    overflow := false;
+
+    tx^$udint  := index; tx += 4; // index of entry
+    pno$^usint := tx;             // pointer to number of records
+    tx^$udint  := 0;     tx += 4; // number of enclosed entries
+ 
+    if((MemAlarm.size > 0) & (MemAlarm.no > 0)) then
+      
+      overflow := ComputeIndexAnz(#anz, #index, ClassSvr);
+    
+      while(anz) do
+        anz -= 1;
+        
+        idx     := index mod MemAlarm.size;
+        index   += 1;
+        pala    := MemAlarm.ptr + (idx * sizeof(_AB_ALARM));
+        recsize := SizeAlarmVersion5(pala);
+        
+        if(recsize <= txsize) then // check if there is enough space in resultbuffer
+          txsize    -= recsize; // verbleibende Anzahl an Bytes im dst-Buffer
+          retcode   += 1;
+          precsize^ += to_uint(recsize);
+          pno^      := pno^ + 1; // number of enclosed entries
+    
+          if(overflow = true) then
+            pno^ := pno^ or 16#80000000; // number of enclosed entries + overflowflag
+          end_if;
+    
+          tx := AddAlarmVersion5(tx, pala, recsize);
+    
+        else
+          anz := 0; // finito
+        end_if;
+      end_while;
+    end_if;
+  end_if;
+
 END_FUNCTION
 
 FUNCTION _AlarmXBuffer::CreateUnregTXBuffer
@@ -1582,11 +1952,40 @@ FUNCTION VIRTUAL GLOBAL _AlarmXBuffer::ClassSvr::NewInst
         index := pPara^.aPara[0]$UDINT;
         if(index < HmiNo) then
           HmiMap[index].tix := ops.tAbsolute; // last update
-          ii := CreateTXBuffer200(#pResult^.aData[0], sizeof(pResult^.aData)-2, pPara^.aPara[1]$UDINT, pPara^.aPara[2]$UDINT); 
+          ii := CreateTXBuffer202(#pResult^.aData[0], sizeof(pResult^.aData)-2, pPara^.aPara[1]$UDINT, pPara^.aPara[2]$UDINT); 
           pResult^.uiLng := to_uint(2 + 8 + ii * (17 + 4 * MAX_ALARMPARA));
           if(ii <> 0) then
             tmp1 := ClassSvr - HmiMap[index].no;
             tmp2 := pPara^.aPara[1]$UDINT + ii;
+            if(tmp2 > tmp1) then
+              HmiMap[index].no -= tmp2 - tmp1;
+            end_if;
+          end_if;
+        end_if;
+        DoMutex(false);
+
+    203 : // read arbitrary entrys + ggf. vorhandene userdata (erst ab Version 5)
+        // in:   [4] ... handle
+        //       [4] ... startindex of entry
+        //       [4] ... number of entries
+        //       [4] ... bytesize of resultbuffer 
+        
+        // out:  [4] ... index of first entry in resultbuffer
+        //       [4] ... number of entries in resultbuffer + (msb is set if overflow occured)
+        //       [ ..... recordstream
+
+        pResult^.uiLng := 2 + 8;
+        pResult^.aData[0]$udint := 0;
+        pResult^.aData[4]$udint := 0;
+        
+        DoMutex(true);
+        index := pPara^.aPara[0]$UDINT;
+        if(index < HmiNo) then
+          HmiMap[index].tix := ops.tAbsolute; // last update
+          ii := CreateTXBuffer203(#pResult^.uiLng, #pResult^.aData[0], pPara^.aPara[3]$UDINT, pPara^.aPara[1]$UDINT, pPara^.aPara[2]$UDINT); 
+          if(ii <> 0) then
+            tmp1 := ClassSvr - HmiMap[index].no;
+            tmp2 := pPara^.aPara[1]$UDINT + 1;
             if(tmp2 > tmp1) then
               HmiMap[index].no -= tmp2 - tmp1;
             end_if;
@@ -1625,7 +2024,21 @@ FUNCTION VIRTUAL GLOBAL _AlarmXBuffer::ClassSvr::NewInst
           HmiMap[index].tix := ops.tAbsolute; // last update
         end_if;
         DoMutex(false);
-        pResult^.uiLng := 2 + to_uint(ScanAlarmState(#pResult^.aData[0], sizeof(pResult^.aData), pPara^.aPara[1]$UDINT, pPara^.aPara[2], pPara^.aPara[3]$UDINT));
+        pResult^.uiLng := 2 + to_uint(ScanAlarmState206(#pResult^.aData[0], sizeof(pResult^.aData), pPara^.aPara[1]$UDINT, pPara^.aPara[2], pPara^.aPara[3]$UDINT));
+
+    208 : // scan all alarms + ggf. vorhandene userdata (erst ab Version 5)
+        // in:   [4] ... handle
+        //       [4] ... index start
+        //       [4] ... alarmstate to scan for
+        //       [4] ... 0=alle, 1=nur wenn im Buffer gefunden, 2=nur wenn im Buffer nicht gefunden
+        //       [4] ... bytesize of resultbuffer
+        DoMutex(true);
+        index := pPara^.aPara[0]$UDINT;
+        if(index < HmiNo) then
+          HmiMap[index].tix := ops.tAbsolute; // last update
+        end_if;
+        DoMutex(false);
+        pResult^.uiLng := 2 + to_uint(ScanAlarmState208(#pResult^.aData[0], pPara^.aPara[4]$UDINT, pPara^.aPara[1]$UDINT, pPara^.aPara[2], pPara^.aPara[3]$UDINT));
 
     210 : // get single alarm configuration
         // in:   [4] ... handle
@@ -1658,7 +2071,8 @@ FUNCTION VIRTUAL _AlarmXBuffer::GetVersion
 		retcode 	: UDINT;
 	END_VAR
 
-  retcode := 4;
+  retcode := 5;
+  // version 5: ability to add userdata of arbitrary length to each alarm
   // version 4: command 11, 201, 206, 207 (12.08.2020)
   // version 2: command 6 (COMMAND_GETUNREGID) and 7 (COMMAND_GETALARMCONFIGEX) are available
   // version 3: command 210 
@@ -1764,13 +2178,13 @@ FUNCTION _AlarmXBuffer::LookupBuffer
 
 END_FUNCTION
 
-FUNCTION _AlarmXBuffer::ScanAlarmState
+FUNCTION _AlarmXBuffer::ScanAlarmState206
 	VAR_INPUT
 		pd 	: ^USINT;
 		max_pd_size 	: UDINT;
 		startidx 	: UDINT;
 		state 	: DINT;
-    buffstate : udint;
+		buffstate 	: UDINT;
 	END_VAR
 	VAR_OUTPUT
 		retcode 	: UDINT;
@@ -1830,54 +2244,58 @@ FUNCTION _AlarmXBuffer::ScanAlarmState
     idx  += 1;
     pala := pcf^.pThis$^_AlarmX0Para;
     
-    if(pala^.ClassSvr.Read() = state) then // alarmstatus ist gleich abzufragender status
+    if(pala <> nil) then // check
     
-      lid    := pala$udint;
-      datim  := datimdef;
-      parano := 0;
-      found  := LookupBuffer(lid, state, #parano, #datim, #para[0]); // alarm + parameter im aktuellen ringpuffer suchen falls vorhanden
-      
-      if((all = true) | (found = addstate)) then
-      
-//        size := 17 + parano * 4;                // byteanzahl
-        size := 17 + MAX_ALARMPARA * 4;         // byteanzahl
-      
-        if(size <= max_pd_size) then
-          retcode     += size;
-          max_pd_size -= size;
-          panzahl^    += 1;                     // anzahl erhöhen
+      if(pala^.GetActualState(pcf^.Config) = state) then // alarmstatus ist gleich abzufragender status
+        lid    := pala$udint;
+        datim  := datimdef;
+        parano := 0;
+          
+        found := LookupBuffer(lid, state, #parano, #datim, #para[0]); // alarm + parameter im aktuellen ringpuffer suchen falls vorhanden
+        
+        if((all = true) | (found = addstate)) then
+        
+  //          size := 17 + parano * 4;                // byteanzahl
+          size := 17 + MAX_ALARMPARA * 4;         // byteanzahl
+        
+          if(size <= max_pd_size) then
+            retcode     += size;
+            max_pd_size -= size;
+            panzahl^    += 1;                     // anzahl erhöhen
 
-          spg := 255;
-          if(state <> 255) then
-            spg := 16#80 or (parano shl 1);
-            if(state <> 0) then
-              spg := spg or 1;
+            spg := 255;
+            if(state <> 255) then
+              spg := 16#80 or (parano shl 1);
+              if(state <> 0) then
+                spg := spg or 1;
+              end_if;
             end_if;
-          end_if;
-        
-          pdact$^udint^ := pala^.Config$udint;  pdact += 4;
-          pdact$^udint^ := datim;               pdact += 4;
-          pdact$^usint^ := spg$usint;           pdact += 1;
-          pdact$^dint^  := pala^.Group.Read();  pdact += 4;
-          pdact$^udint^ := lid;                 pdact += 4;
+          
+            pdact$^udint^ := pcf^.Config$udint;   pdact += 4;
+            pdact$^udint^ := datim;               pdact += 4;
+            pdact$^usint^ := spg$usint;           pdact += 1;
+            pdact$^dint^  := pala^.Group.Read();  pdact += 4;
+            pdact$^udint^ := lid;                 pdact += 4;
 
-          tmp := MAX_ALARMPARA;
-          ph  := pdact$^udint;
-          while(tmp) do
-            ph^ := 0;
-            ph  += 4;
-            tmp -= 1;
-          end_while;
-        
-          if(parano > 0) then
-            _memcpy(pdact, #para[0], parano*4);
+            tmp := MAX_ALARMPARA;
+            ph  := pdact$^udint;
+            while(tmp) do
+              ph^ := 0;
+              ph  += 4;
+              tmp -= 1;
+            end_while;
+          
+            if(parano > 0) then
+              _memcpy(pdact, #para[0], parano*4);
+            end_if;
+          
+            pdact += MAX_ALARMPARA * 4;
+         
+          else
+            return;
           end_if;
-        
-          pdact += MAX_ALARMPARA * 4;
-        
-        else
-          return;
         end_if;
+          
       end_if;
     end_if;
     
@@ -1890,3 +2308,253 @@ FUNCTION _AlarmXBuffer::ScanAlarmState
   end_if;
   
 END_FUNCTION
+
+FUNCTION _AlarmXBuffer::LookupBuffer208
+	VAR_INPUT
+		lid 	: UDINT;
+		alano 	: UDINT;
+		state 	: DINT;
+	END_VAR
+	VAR_OUTPUT
+		retcode 	: ^_AB_ALARM;
+	END_VAR
+  VAR
+  	idx, cix, nox : udint;
+    pala : ^_AB_ALARM;
+  END_VAR
+
+  // es wird der ringpuffer auf letztes eingetragenes Vorkommen von alarm durchsucht
+  
+  retcode := NIL;
+  
+  if(MemAlarm.size > 0) then
+    cix := ClassSvr;
+    nox := cix;
+    if(nox > memAlarm.no) then
+      nox := memAlarm.no;
+    end_if;
+    
+    while(nox) do
+      nox -= 1;
+      cix -= 1;
+      
+      idx := cix mod MemAlarm.size;                    // make rpos
+      pala := MemAlarm.ptr + (idx * sizeof(_AB_ALARM)); // --> to alarm
+   
+      if(pala^.lasalid = lid) & (pala^.alano = alano) & (pala^.state = state) then
+        retcode := pala;
+        return; // finito
+      end_if;
+   
+    end_while;
+  end_if;
+
+END_FUNCTION
+
+FUNCTION _AlarmXBuffer::ScanAlarmState208
+	VAR_INPUT
+		pd 	: ^USINT;
+		max_pd_size 	: UDINT;
+		startidx 	: UDINT;
+		state 	: DINT;
+		buffstate 	: UDINT;
+	END_VAR
+	VAR_OUTPUT
+		retcode 	: UDINT;
+	END_VAR
+  VAR
+  	idx, nox, config, nomc : udint;
+    size, datimdef : udint; 
+    pobj : ^_AlarmX0Para;
+    pcf : ^_AB_CONFIG;
+    pdact : ^usint;
+    pendidx, panzahl : ^udint;
+    all, add, addstate : bool;
+    pala : ^_AB_ALARM;
+    dummy : _AB_ALARM;
+  END_VAR
+  
+  // buffstate .... 0 alle alarme mit status eintragen
+  //                1 nur wenn sie im Buffer gefunden wurden eintragen
+  //                2 nur wenn sie nicht im Buffer gefunden wurden eintragen
+  
+  // out: [4] ..... Endindex
+  //      [4] ..... Anzahl
+  //      *[ ...... Alarm V5
+  
+  if(max_pd_size = 0) | (max_pd_size > 0xFFFF) then
+    max_pd_size := sizeof(results.aData);
+  end_if;
+  
+  _memset(#dummy, 0, sizeof(dummy)); // init default alarm
+  
+  retcode     := 8; // anzahl der bytes im dst-puffer
+  max_pd_size -= 8;
+  
+  idx      := startidx;
+  nox      := MemConfig.no;
+  
+  pendidx  := pd$^udint;
+  panzahl  := pendidx + 4;
+  pdact    := pd + 8;
+  
+  pendidx^ := idx;            // startindex initialiseren
+  panzahl^ := 0;              // anzahl initialisieren
+  
+  pcf      := MemConfig.ptr + idx * sizeof(_AB_CONFIG);
+  datimdef := MakeDateTime();    // date und time
+  
+  all      := true; // alle eintragen
+  addstate := true; // init
+  if(buffstate = 1) then
+    all      := false; // nicht alle eintragen
+    addstate := true;  // nur wenn im Buffer eingetragen
+  elsif(buffstate = 2) then
+    all      := false; // nicht alle eintragen
+    addstate := false;  // nur wenn im Buffer nicht eingetragen
+  end_if;
+    
+  while(idx < nox) do
+    idx  += 1;
+    pobj := pcf^.pThis$^_AlarmX0Para;
+    
+    if(pobj <> nil) then // check
+    
+      nomc := pcf^.multiconfig;
+      repeat
+        if(nomc > 0) then
+          nomc -= 1;
+        end_if;
+        config := pcf^.Config + nomc;
+        
+        if(pobj^.GetActualState(config) = state) then // alarmstatus ist gleich abzufragender status
+      
+          DoMutex(true); // *************************************************************************
+          
+          pala := LookupBuffer208(pobj$udint, config, state); // alarm im ringpuffer suchen falls vorhanden
+        
+          add := all;
+          if(all = false) then
+            if(addstate = true) then
+              add := (pala <> NIL);
+            else
+              add := (pala = NIL);
+            end_if;
+          end_if;
+        
+          if(add = true) then
+            if(pala = NIL) then // create dummy alarm
+              dummy.alano      := config$udint;
+              dummy.group$dint := pobj^.Group.Read();
+              dummy.lasalid    := pobj$UDINT;
+              dummy.dateTime   := datimdef;
+              dummy.parano     := 0;
+              dummy.state      := state$usint;
+              pala := #dummy;
+            end_if;
+        
+            size := SizeAlarmVersion5(pala); // get dst-size of alarm
+            
+            if(size <= max_pd_size) then
+              retcode     += size;
+              max_pd_size -= size;
+              panzahl^    += 1; // inc number of alarms
+              
+              pdact := AddAlarmVersion5(pdact, pala, size); // add alarm to dst
+            else
+              DoMutex(false); // not nice, but that's how it is **************************************
+              return;
+            end_if;
+          end_if;
+          
+          DoMutex(false); // *************************************************************************
+          
+        end_if;
+      until(nomc = 0) end_repeat;
+    end_if;
+    
+    pendidx^ := idx;
+    pcf += sizeof(_AB_CONFIG);
+  end_while;
+  
+  if(idx >= nox) then
+    pendidx^ := 0xFFFFFFFF; // finito
+  end_if;
+  
+END_FUNCTION
+
+
+FUNCTION _AlarmXBuffer::SizeAlarmVersion5
+	VAR_INPUT
+    pala : ^_AB_ALARM;
+	END_VAR
+	VAR_OUTPUT
+    retcode : UDINT;
+	END_VAR
+
+  retcode := (6 * 4) + (2 + 1 + 1) + pala^.parano * 4 + pala^.userdata.bytesize;
+
+END_FUNCTION
+
+FUNCTION _AlarmXBuffer::AddAlarmVersion5
+	VAR_INPUT
+		tx 	: ^USINT;
+		pala 	: ^_AB_ALARM;
+		recsize 	: UDINT;
+	END_VAR
+	VAR_OUTPUT
+		retcode 	: ^USINT;
+	END_VAR
+  VAR
+  	tmp : usint;
+  END_VAR
+ 
+  // [4] .................. alano
+  // [4] .................. date and time
+  // [2] .................. bytelength of single record
+  // [1] .................. nc (init with 0)
+  // [1] .................. state (bit0), parano (bit 1-6), group (bit 7)
+  // [4] .................. group
+  // [4] .................. lasalid
+  // [4] .................. userdata bytesize
+  // [4] .................. userdataid
+  // [parano * 4] ......... parameter
+  // [userdata bytesize] .. userdata
+ 
+  tx^$udint := pala^.alano;    tx += 4; // alano
+  tx^$udint := pala^.dateTime; tx += 4; // date and time
+
+  if(pala^.state = 255) then
+    tmp := 255;
+  else
+    tmp := pala^.parano shl 1;
+    if(pala^.state <> 0) then
+      tmp := tmp or 1;
+    end_if;
+    if(pala^.group <> 0) then
+      tmp := tmp or 16#80;
+    end_if;
+  end_if;
+
+  tx^$uint  := to_uint(recsize);        tx += 2; // bytesize of record
+  tx^$usint := 0;                       tx += 1; // nc, set to 0
+  tx^$usint := tmp;                     tx += 1; // state, parano, group
+  tx^$udint := pala^.group;             tx += 4; // group
+  tx^$udint := pala^.lasalid;           tx += 4; // lasalid
+  tx^$udint := pala^.userdata.bytesize; tx += 4; // bytesize of userdata
+  tx^$udint := pala^.userdata.userid;   tx += 4; // id of userdata
+          
+  if(pala^.parano > 0) then
+    _memcpy(tx, #pala^.para[0], pala^.parano * sizeof(DINT)); // parameter
+    tx += (4 * pala^.parano);
+  end_if;
+          
+  if(pala^.userdata.bytesize > 0) then
+    _memcpy(tx, pala^.userdata.ptr, pala^.userdata.bytesize); // userdata
+    tx += pala^.userdata.bytesize;
+  end_if;
+
+  retcode := tx;
+
+END_FUNCTION
+

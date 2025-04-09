@@ -26,11 +26,12 @@
 #define INTERFACE_LSL_SYSINFO            "LSL_SYSINFO"
 
 // defines for possible Error Codes
-#define LSL_SYSINFO_ERR_NONE		0		// no error
-#define LSL_SYSINFO_ERR_ID			-1		// Unknown ID for SYSINFO_GetProperty
-#define LSL_SYSINFO_ERR_NOT_AVAIL	-2		// Information for given ID not available on this CPU
-#define LSL_SYSINFO_ERR_BUF			-3		// Invalid Buffer or Buffer length
-#define LSL_SYSINFO_ERR_CIL			-99		// CIL not available
+#define LSL_SYSINFO_ERR_NONE      0   ///< no error
+#define LSL_SYSINFO_ERR_ID        -1  ///< Unknown ID for SYSINFO
+#define LSL_SYSINFO_ERR_NOT_AVAIL -2  ///< Information for given ID not available on this CPU
+#define LSL_SYSINFO_ERR_BUF       -3  ///< Invalid Buffer or Buffer length
+#define LSL_SYSINFO_ERR_DATA      -4  ///< error while get data
+#define LSL_SYSINFO_ERR_CIL       -99 ///< CIL not available
 
 TYPE
   LSL_SYSINFO_ID :
@@ -148,6 +149,27 @@ TYPE
 	LSL_SYSINFOEX_SDCARD_POWER_ON_CNT,			// uint32: power on counter
 	LSL_SYSINFOEX_SDCARD_TYPE,					// string: type (SD,MMC,...)
   LSL_SYSINFOEX_SDCARD_ISBOOT,					// int32_t: is bootdevice
+
+	LSL_SYSINFOEX_SENSORS_COUNT                := 0x00050000, ///< uint32: get count of sensors values
+	LSL_SYSINFOEX_SENSORS_TYPE_COUNT,                         ///< uint32:
+	LSL_SYSINFOEX_SENSORS_TYPE_LIST,                          ///< uint32[..]:
+	LSL_SYSINFOEX_SENSORS_INFO_GET,                           ///< struct:
+	LSL_SYSINFOEX_SENSORS_VALUE_GET,                          ///< struct:
+
+  LSL_SYSINFOEX_FPGA_COUNT                   := 0x00060000, ///< uint32: get count of FPGA on PCI
+	LSL_SYSINFOEX_FPGA_SPI_COUNT,			                        ///< uint32: get count of SPI-Master (idx = fpga_nbr)
+	LSL_SYSINFOEX_FPGA_SPI_LIST,  			                      ///< uint32: get count of SPI-Master (idx = fpga_nbr) 
+	LSL_SYSINFOEX_SPI_VENDOR_ID                := 0x00060100, ///< uint32: get VendorID via SPI Interface (idx = spi handle)
+	LSL_SYSINFOEX_SPI_DEVICE_ID,                              ///< uint32: get DeviceID via SPI Interface (idx = spi handle)
+	LSL_SYSINFOEX_SPI_PLATFORM_ID,                            ///< uint32: get PlatformId via SPI Interface (idx = spi handle)
+	LSL_SYSINFOEX_SPI_HW_VERSION,                             ///< uint32: get HWVersion via SPI Interface (idx = spi handle)
+	LSL_SYSINFOEX_SPI_FLASH_SIZE,                             ///< uint32: get Flash Size via SPI Interface (idx = spi handle)
+	LSL_SYSINFOEX_SPI_PROG_SIZE,                              ///< uint32: get Program Size via SPI Interface (idx = spi handle)
+	LSL_SYSINFOEX_SPI_VENDOR_NAME,                            ///< string: get Vendor Name via SPI Interface (idx = spi handle)
+	LSL_SYSINFOEX_SPI_DEVICE_NAME,                            ///< string: get Device Name via SPI Interface (idx = spi handle)
+	LSL_SYSINFOEX_SPI_SERIAL_STR,                             ///< string: get Serial String via SPI Interface (idx = spi handle)
+	LSL_SYSINFOEX_SPI_FLASH_FORMAT_FEATURE,                   ///< uint32: get Flash Format Feature via SPI Interface (idx = spi handle)
+	LSL_SYSINFOEX_FPGA_VERSION,   		  	
 
   LSL_SYSINFOEX_ID_LAST
 	)$UDINT;

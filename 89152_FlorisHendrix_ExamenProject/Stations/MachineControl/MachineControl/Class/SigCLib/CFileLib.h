@@ -11,7 +11,7 @@
     #include "file_iotypes.h"
 
     #define sigclib_logfile(...) { char __tmp[512]; sigclib_sprintf(__tmp, __VA_ARGS__); sigclib_logfileline(__tmp); }
-
+    #define sigclib_logfile_datim(...) { char __tmp[512]; sigclib_sprintf(__tmp, __VA_ARGS__); sigclib_logfileline_datim(__tmp); }
 
     // file open
     cExtern long sigclib_fopen(char *dpne, unsigned long state);
@@ -21,6 +21,9 @@
   
     // file close
     cExtern void sigclib_fclose(long hdl);
+  
+    // check if file exists
+    cExtern long sigclib_fexist(const char *dpne);
   
     // read from file
     cExtern unsigned long sigclib_fread(long hdl, void *dst, unsigned long length);
@@ -47,7 +50,7 @@
     cExtern unsigned long sigclib_fwrite_crlf16(long hdl);
   
     // set position of filepointer
-    cExtern unsigned long sigclib_fseek(long hdl, long offset, unsigned long fromwhere);
+    cExtern long sigclib_fseek(long hdl, long offset, unsigned long fromwhere);
       // #define FILE_BEGIN   0
       // #define FILE_CURRENT 1
       // #define FILE_END     2
@@ -131,7 +134,10 @@
     // read u16-stream from file till LF or EOF occures, CR will be ignored
     cExtern unsigned short *sigclib_cfgets16(void* hdl, unsigned short *s, unsigned long size);
 
-    // write 0-terminated string into file    
+    // write 0-terminated ascii-string into file, all occurrences of '\n' will be replaced by 'CRLF'
+    cExtern unsigned long sigclib_cfprintf(void *hdl, const char *s);
+
+    // write 0-terminated ascii-string into file    
     cExtern unsigned long sigclib_cfputs(void *hdl, const char *s);
     
     // write 0-terminated u16 string into file    
@@ -179,10 +185,21 @@
     // function is used to write text into c:\sigclog.txt
     cExtern void sigclib_logfileline(const char *txt);
 
+    // function is used to write datetimestamp + text into c:\sigclog.txt
+    cExtern void sigclib_logfileline_datim(const char *txt);
+
     // function is used to write formatted text into c:\sigclog.txt
     cExtern void sigclib_logfileST(const char *format, void *p0, void *p1, void *p2, void *p3, void *p4, void *p5, void *p6, void *p7, void *p8, void *p9);
     
+    // function is used to write datetimestamp + formatted text into c:\sigclog.txt
+    cExtern void sigclib_logfile_datimST(const char *format, void *p0, void *p1, void *p2, void *p3, void *p4, void *p5, void *p6, void *p7, void *p8, void *p9);
     
+    // function is used to write hex-bytes into c:\sigclog.txt
+    cExtern void sigclib_logfilebin(void *psrc, unsigned long len, const char *prefix);
+    
+    // function is used to iterate all requested files in given directory including subdirectories
+    typedef unsigned long ( *_sigclib_FILE_ITERATOR) (const char*, void* );
+    cExtern unsigned long sigclib_file_iterator(const char *dp, const char *e, unsigned long subdir, _sigclib_FILE_ITERATOR pfct, void *pcookie);
     
   #else
     #include "file_iotypes.h"
@@ -192,6 +209,9 @@
   
     // file close
     function global __cdecl sigclib_fclose var_input hdl:dint; end_var;
+
+    // check if file exists
+    function global __cdecl sigclib_fexist var_input dpne:^char; end_var var_output retcode : dint; end_var;
   
     // read from file
     function global __cdecl sigclib_fread var_input hdl:dint; dst:^void; length:udint; end_var var_output retcode : udint; end_var;
@@ -218,7 +238,7 @@
     function global __cdecl sigclib_fwrite_crlf16 var_input hdl:dint; end_var var_output retcode:udint; end_var;
   
     // set position of filepointer
-    function global __cdecl sigclib_fseek var_input hdl:dint; offset:dint; fromwhere:udint; end_var var_output retcode : udint; end_var;
+    function global __cdecl sigclib_fseek var_input hdl:dint; offset:dint; fromwhere:udint; end_var var_output retcode : dint; end_var;
   
     // get position of filepointer
     function global __cdecl sigclib_ftell var_input hdl:dint; end_var var_output retcode : dint; end_var;
@@ -306,7 +326,10 @@
     // read u16-stream from file till LF or EOF occures, CR will be ignored
     function global __cdecl  sigclib_cfgets16 var_input hdl:^void; s:^uint; size:udint; end_var var_output retcode:^uint; end_var;
     
-    // write 0-terminated string into file
+    // write 0-terminated ascii-string into file, all occurrences of '\n' will be replaced by CRLF
+    function global __cdecl  sigclib_cfprintf var_input hdl:^void; s:^char; end_var var_output retcode:udint; end_var;
+
+    // write 0-terminated ascii-string into file
     function global __cdecl  sigclib_cfputs var_input hdl:^void; s:^char; end_var var_output retcode:udint; end_var;
     
     // write 0-terminated string into file
@@ -354,6 +377,9 @@
     // function is used to write textline into c:\sigclog.txt
     function global __cdecl sigclib_logfileline var_input txt:^char; end_var;
     
+    // function is used to write datetimestamp + text into c:\sigclog.txt
+    function global __cdecl sigclib_logfileline_datim var_input txt:^char; end_var;
+    
     // function is used to write formatted textline into c:\sigclog.txt
     function global __cdecl sigclib_logfileST
       var_input
@@ -369,6 +395,28 @@
         p8 : ^void := NIL;
         p9 : ^void := NIL;
       end_var;
+    
+    // function is used to write datetimestamp + formatted text into c:\sigclog.txt
+    function global __cdecl sigclib_logfile_datimST
+      var_input
+        format : ^char;
+        p0 : ^void := NIL;
+        p1 : ^void := NIL;
+        p2 : ^void := NIL;
+        p3 : ^void := NIL;
+        p4 : ^void := NIL;
+        p5 : ^void := NIL;
+        p6 : ^void := NIL;
+        p7 : ^void := NIL;
+        p8 : ^void := NIL;
+        p9 : ^void := NIL;
+      end_var;
+    
+    // function is used to write hex-bytes into c:\sigclog.txt
+    function global __cdecl sigclib_logfilebin var_input psrc:^void; len:udint; prefix:^char; end_var;
+    
+    // function is used to iterate all requested files in given directory including subdirectories
+    function global __cdecl sigclib_file_iterator var_input dp:^char; ext:^char; subdir:udint; pfct:^void; pcookie:^void; end_var var_output retcode:udint; end_var;
     
   #endif
 
@@ -390,6 +438,12 @@
 // void sigclib_fclose(long hdl);
 // file close
 // --> hdl ............. valid filehandle
+  
+// ------------------------------------------------------------------------------------------------
+// long sigclib_fexist(const char *dpne);
+// check if file already exists
+// --> dpne ............ Drive, Path, Name + Extention of file to check (eg. c:\subdir\file.bin)
+// function will return value >= 0 if requested file exists, on the other hand a negativ value
   
 // ------------------------------------------------------------------------------------------------
 // unsigned long sigclib_fread(long hdl, void *dst, unsigned long length);
@@ -440,12 +494,13 @@
 // <-- function will return amount of written bytes
   
 // ------------------------------------------------------------------------------------------------
-// unsigned long sigclib_fseek(long hdl, long offset, unsigned long fromwhere);
+// long sigclib_fseek(long hdl, long offset, unsigned long fromwhere);
 // set position of filepointer
 // --> hdl ............. valid filehandle
 // --> offset .......... offset in bytes
 // --> fromwhere ....... FILE_BEGIN 0, FILE_CURRENT 1, FILE_END 2
-  
+// <-- in case of error function will return a negative value
+
 // ------------------------------------------------------------------------------------------------
 // long sigclib_ftell(long hdl);
 // get position of filepointer
@@ -632,10 +687,17 @@
 // NOTE: destination will always be terminated by 0 (u16-0-string)
    
 // ------------------------------------------------------------------------------------------------
+// unsigned long sigclib_cfprintf(void *hdl, const char *s);
+// Write 0-terminated ascii-string into file. All occurrences of '\n' in string will be replaced by 'CRLF'
+// --> hdl ............. valid filehandle
+// --> s ............... 0-terminated ascii-string to write
+// <-- function will return amount of written bytes
+   
+// ------------------------------------------------------------------------------------------------
 // char *sigclib_cfputs(void *hdl, const char *s);
 // write ascii-0-string into file
 // --> hdl ............. valid filehandle
-// --> s ............... string to write
+// --> s ............... 0-terminated ascii-string to write
 // <-- function will return amount of written bytes
 
 // ------------------------------------------------------------------------------------------------
@@ -745,7 +807,7 @@
 // --> dpne ............ drive, path and name of file to set attributes
 // --> attributes ...... combination of attributes to set
 // <-- Function will return a negative value on error.
-// NOTE: A comobation of following attributes ca ne used
+// NOTE: A combination of following attributes can be used
 //   RTF_ATTR_READ_ONLY ... file is read only
 //   RTF_ATTR_HIDDEN ...... file is marked as hidden
 //   RTF_ATTR_SYSTEM ...... file is marked as being a system file
@@ -759,16 +821,46 @@
 // NOTE: Logfile will not exceed size of 100000 bytes. In that case logfile will be deleted and start with first line "...".
 
 // ------------------------------------------------------------------------------------------------
-// Function is used to write (append) a single textline into C:\SigCLog.txt
+// Functions are used to write (append) a single textline into C:\SigCLog.txt
 // void sigclib_logfileline(const char *txt);
-// --> dpne ............ ascii-text to write into log-file
+// void sigclib_logfileline_datim(const char *txt);
+// --> txt ............ ascii-text to write into log-file
+// NOTE: Function sigclib_logfileline_datim() will write datetimestamp as well into file
 // NOTE: Each single usage of function will lead to a single line in textfile (CR-LF will be automatically added)
 // NOTE: Each call of function will extend file C:\SigCLog.txt. Therefore do not use it periodically, you will spoil the flashdrive.
 // NOTE: Logfile will not exceed size of 100000 bytes. In that case logfile will be deleted and start with first line "...".
 
 // ------------------------------------------------------------------------------------------------
-// Function is used to write (append) formatted textline into C:\SigCLog.txt
+// function is used to write hex-bytes into c:\sigclog.txt
+// void sigclib_logfilebin(void *psrc, unsigned long len, const char *prefix);
+// --> psrc ........... Pointer to bytes to write ast hex-text into log-file
+// --> len ............ number of bytes at psrc
+// --> prefix ......... preceding text in front of bytes
+// NOTE: if more than 128 bytes are given, psrc will be truncated after 128 bytes.
+// see function sigclib_logfileline() as well
+
+// ------------------------------------------------------------------------------------------------
+// Functions are used to write (append) formatted textline into C:\SigCLog.txt
 // void sigclib_logfileST(const char *format, void *p0, void *p1, void *p2, void *p3, void *p4, void *p5, void *p6, void *p7, void *p8, void *p9);
+// void sigclib_logfile_datimST(const char *format, void *p0, void *p1, void *p2, void *p3, void *p4, void *p5, void *p6, void *p7, void *p8, void *p9);
 // Parameter usage is like sigclib_sprintfST() without first parameter 'pd'
+// NOTE: Function sigclib_logfile_datimST() will write datetimestamp as well into file
 // NOTE: Each call of function will extend file C:\SigCLog.txt. Therefore do not use it periodically, you will spoil the flashdrive.
 // NOTE: Logfile will not exceed size of 100000 bytes. In that case logfile will be deleted and restart with first line "...".
+
+// ------------------------------------------------------------------------------------------------
+// Function iterates all files with extention 'e' in given path 'dp' including subdirectories (when needed)
+// unsigned long sigclib_file_iterator(const char *dp, const char *e, unsigned long subdir, _sigclib_FILE_ITERATOR pfct, void *pcookie);
+// --> dp ............. drive and path of directory to be iterated (eg.: "c:\test\" or "c:\test") note: do not use wildcards like '*' or '?'
+// --> e .............. extention of files to be iterated (eg.: ".dat", ".*" or NULL)
+// --> subdir ......... use '1' to iterate all subdirectories as well, on the other hand 0
+// --> pfct ........... userfunction used to inform about each found file during iteration 
+//                      prototype: unsigned long fct(const char *dpne, void *pcookie);
+//                                 dpne ........ drive:\path\name.extention of actual iterated file
+//                                 pcookie ..... arbitrary usercookie, eg. this-pointer of calling object
+//                                 userfunction should return 1 as long as you want to go on with iteration, return 0 to stop iteration right now (user-break)
+//                                 NOTE: If userfunction is done in ST, keyword __cdecl has to be of use 
+// --> pcookie ........ arbitrary usercookie, eg. this-pointer of calling object
+// Function will return number of iterated files till end or user-break
+
+

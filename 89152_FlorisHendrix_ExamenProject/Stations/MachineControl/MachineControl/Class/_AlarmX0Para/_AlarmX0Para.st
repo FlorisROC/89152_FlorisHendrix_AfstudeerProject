@@ -6,7 +6,7 @@
 (*!
 <Class
 	Name               = "_AlarmX0Para"
-	Revision           = "0.11"
+	Revision           = "0.20"
 	GUID               = "{858D5524-F314-4ED8-975A-A123450BF12B}"
 	RealtimeTask       = "false"
 	CyclicTask         = "false"
@@ -17,12 +17,13 @@
 	Automatic          = "false"
 	UpdateMode         = "Prescan"
 	SharedCommandTable = "true"
-	Objectsize         = "(328,120)">
+	Objectsize         = "(328,120)"
+	Comment            = "Implements the representation of a basic alarm and provides necessary interfaces to create custom alarm classes.">
 	<Channels>
-		<Server Name="ClassSvr" GUID="{BE689487-005D-4C4C-8B98-759BCFF5A930}" Visualized="true" Alarm="true" Initialize="false" WriteProtected="false" Retentive="false"/>
-		<Client Name="Acknow" Required="false" Internal="false"/>
-		<Client Name="Config" Required="true" Internal="false" DefValue="0"/>
-		<Client Name="Group" Required="false" Internal="false"/>
+		<Server Name="ClassSvr" GUID="{BE689487-005D-4C4C-8B98-759BCFF5A930}" Visualized="true" Alarm="true" Initialize="false" WriteProtected="false" Retentive="false" Comment="Interface to read/change the alarm state and for accessing the gloabal methods&#13;&#10;0 passive&#13;&#10;1 active&#13;&#10;255 quits the alarm and triggers write to Acknow client"/>
+		<Client Name="Acknow" Required="false" Internal="false" Comment="The alarm quit event of this alarm will trigger a write through this client. &#13;&#10;This behaviour can be used to implement custom handling of the alarm quit event in the machine application."/>
+		<Client Name="Config" Required="true" Internal="false" DefValue="0" Comment="Config number of the alarm.&#13;&#10;This will be the unique identifier of the alarm within the machine application."/>
+		<Client Name="Group" Required="false" Internal="false" Comment="The group number of the alarm. &#13;&#10;This can be used to group alarms, so for example they can be quit as a group or styled as a group in the visualization."/>
 	</Channels>
 	<Dependencies>
 		<Files>
@@ -31,6 +32,7 @@
 	</Dependencies>
 	<RevDoku>
 		<Owner Company="sigmatek" Author="kolott"/>
+		<Dokumentation Revision="0.20" Date="2023-07-28" Author="kolott" Company="sigmatek" Description="Userdata of arbitrary length (P04323) implemented"/>
 		<Dokumentation Revision="0.11" Date="2018-05-04" Author="ObeChr" Company="sigmatek" Description="Added virtual methode GetType to determine type of alarm. Information can be evaluated in class _AlarmXBuffer."/>
 		<Dokumentation Revision="0.10" Date="2018-02-01" Author="kolott" Company="sigmatek" Description="change in WriteMethod of ClassSvr() to ensure multithreading"/>
 		<Dokumentation Revision="0.9" Date="2016-07-21" Author="HubChr" Company="sigmatek" Description="Set alarmflag of ClassSvr to TRUE"/>
@@ -58,38 +60,77 @@ _AlarmX0Para : CLASS
 		sInitCnt 	: SINT;
 		bAcknowEx 	: BOOL;
 		bClientConnected 	: BOOL;
+		MultiConfig 	: UDINT;
   //Functions:
-	
+				//! <Function Comment="The constructor of the alarm class." Name="_AlarmX0Para"/>
 	FUNCTION _AlarmX0Para
 		VAR_OUTPUT
 			ret_code 	: ConfStates;
 		END_VAR;
-	
+				//! <Function Comment="Initializes the alarm object.&#13;&#10;Override this method in your own subclass, if custom initialization is required." Name="Init"/>
 	FUNCTION VIRTUAL GLOBAL Init;
-	
+				//! <Function Comment="Returns the amount of numeric alarm parameters, provided by the given implementation and fills the ppara array with the Lasal IDs of the connected parameter servers. &#13;&#10;Override this method in your own subclass to provide custom handling of numeric alarm parameters." Name="GetParaID"/>
 	FUNCTION VIRTUAL GLOBAL GetParaID
 		VAR_INPUT
-			ppara 	: ^UDINT;
+			ppara 	: ^UDINT;			//! <Variable Comment="Pointer to an UDINT array, that is to be filled with the Lasal IDs of the connected numeric parameter servers of the given alarm implementation. &#13;&#10;This is usually done by inserting the pCH data field of the parameter client at the corresponding array location. &#13;&#10;If the numeric value is a constant value, the array location is to be filled with 0." Name="GetParaID.ppara"/>
 		END_VAR
 		VAR_OUTPUT
-			retcode 	: UDINT;
+			retcode 	: UDINT;			//! <Variable Comment="Returns the number of numeric parameters provided by the given alarm implementation." Name="GetParaID.retcode"/>
 		END_VAR;
-	
+				//! <Function Comment="This method reads the actual values of the parameter clients and fills them into the array of DINT parameter values given by ppara. &#13;&#10;Override this method in your own subclass to provide custom handling of numeric alarm parameters." Name="GetParaVal"/>
 	FUNCTION VIRTUAL GLOBAL GetParaVal
 		VAR_INPUT
-			ppara 	: ^DINT;
+			ppara 	: ^DINT;			//! <Variable Comment="Pointer to a DINT array with the size specified by the return value of GetParaID(). &#13;&#10;The array is to be filled with the current numeric parameter values, usually by calling the Read() method of the corresponding parameter client." Name="GetParaVal.ppara"/>
 		END_VAR
 		VAR_OUTPUT
-			retcode 	: UDINT;
+			retcode 	: UDINT;			//! <Variable Comment="Returns the number of numeric parameters provided by the given alarm implementation." Name="GetParaVal.retcode"/>
 		END_VAR;
-	
-	FUNCTION VIRTUAL GLOBAL QuitAlarm;
-				//! <Function Comment="Quit alarm when state has ever become active in past." Name="QuitAlarmEx"/>
-	FUNCTION VIRTUAL GLOBAL QuitAlarmEx;
-	
+				//! <Function Comment="This method confirms an alarm with the given alarm config number (triggers a write access over the Acknow client). &#13;&#10;Override this method in your own subclass, if the implementation needs to support multiple alarms, because in this case the alarm class is responsible to manage the state of all subalarms within the configured range." Name="QuitAlarm"/>
+	FUNCTION VIRTUAL GLOBAL QuitAlarm
+		VAR_INPUT
+			alano 	: UDINT := 0xFFFFFFFF;			//! <Variable Comment="Default value: 0xFFFFFFFF &#13;&#10;The alarm number which should be quit. &#13;&#10;Use the default value if the alarm object represents only one alarm number (GetMultiConfig returns 0 or 1) or a valid alarm number (start + offset) within the configured range if the alarm object represents several alarms (GetMultiConfig returns &gt; 1)" Name="QuitAlarm.alano"/>
+		END_VAR;
+				//! <Function Comment="This method confirms an alarm with the given alarm config number (triggers a write access over the Acknow client)." Name="QuitAlarmEx"/>
+	FUNCTION VIRTUAL GLOBAL QuitAlarmEx
+		VAR_INPUT
+			alano 	: UDINT := 0xFFFFFFFF;			//! <Variable Comment="Default value: 0xFFFFFFFF &#13;&#10;The alarm number which should be quit. &#13;&#10;Use the default value if the alarm object represents only one alarm number (GetMultiConfig returns 0 or 1) or a valid alarm number (start + offset) within the configured range if the alarm object represents several alarms (GetMultiConfig returns &gt; 1)" Name="QuitAlarmEx.alano"/>
+		END_VAR;
+				//! <Function Comment="Returns the type of the alarm." Name="GetType"/>
 	FUNCTION VIRTUAL GLOBAL GetType
 		VAR_OUTPUT
-			usType 	: USINT;
+			usType 	: USINT;			//! <Variable Comment="Default value: 0&#13;&#10;Returns the type of the alarm." Name="GetType.usType"/>
+		END_VAR;
+				//! <Function Comment="Override this method to add custom user data whenever the alarm state of an instance of the alarm class changes. &#13;&#10;Type 1 to 10 can be used to add 1 to 10 String parameters, which will be displayed in alarm texts of the LVD-system by using the %pstr formatting placeholder. &#13;&#10;The buffer returned by retcode must stay valid after the call to GetUserData and will not be freed by the callee, therefore it is recommended to either use a static array with fixed size or a pointer that is initialized with a dynamically allocated buffer in the init phase of the application. &#13;&#10;See _AlarmX0ParaUserText -&gt; GetUserData() for a sample implementation." Name="GetUserData"/>
+	FUNCTION VIRTUAL GetUserData
+		VAR_INPUT
+			pdatalen 	: ^UDINT;			//! <Variable Comment="Pointer to the bytelength of the userdata. &#13;&#10;Set this to the calculated value in your method override." Name="GetUserData.pdatalen"/>
+			pdatatype 	: ^UDINT;			//! <Variable Comment="Pointer to the value that defines the datatype of the userdata. Set this to the type implemented by your method override. &#13;&#10;Reserved values: &#13;&#10;0 invalid data &#13;&#10;1..10 unicode strings (4 Byte bytelength, followed by 0 terminated string data)" Name="GetUserData.pdatatype"/>
+			input 	: DINT;			//! <Variable Comment="New state of the alarm object (0..off, 1..on, 255..quit)" Name="GetUserData.input"/>
+		END_VAR
+		VAR_OUTPUT
+			retcode 	: ^void;			//! <Variable Comment="Returns NIL if there is no valid userdata or a pointer to the user data that should be stored with the alarm." Name="GetUserData.retcode"/>
+		END_VAR;
+				//! <Function Comment="Override this method to enable more than one alarm number to be represented by an instance of this alarm class. &#13;&#10;The system will use the config setting for the starting number and allows numbers from start to start + offset within the offset range returned by this method." Name="GetMultiConfig"/>
+	FUNCTION VIRTUAL GetMultiConfig
+		VAR_OUTPUT
+			retcode 	: UDINT;			//! <Variable Comment="Range of valid offsets to the starting alarm number of an instance of the alarm class." Name="GetMultiConfig.retcode"/>
+		END_VAR;
+				//! <Function Comment="This method reads the state of the alarm object or of a valid alarm number within the configured range, if the alarm object represents several alarms (GetMultiConfig returns &gt; 1). &#13;&#10;Override this method in your own subclass, if the implementation needs to support multiple alarms, because in this case the alarm class is responsible to manage the state of all subalarms within the configured range." Name="GetActualState"/>
+	FUNCTION VIRTUAL GLOBAL GetActualState
+		VAR_INPUT
+			alano 	: UDINT;			//! <Variable Comment="The alarm number for which the current state should be returned. &#13;&#10;Use a valid number (start + offset) within the configured range if the alarm object represents several alarms (GetMultiConfig returns &gt; 1)" Name="GetActualState.alano"/>
+		END_VAR
+		VAR_OUTPUT
+			retcode 	: DINT;			//! <Variable Comment="State of the requested alarm." Name="GetActualState.retcode"/>
+		END_VAR;
+				//! <Function Comment="This method raises an alarm event for the desired alarm state and alarm number. &#13;&#10;Override this method in your own subclass, if the implementation needs to support multiple alarms, because in this case the alarm class is responsible to manage the state of all subalarms within the configured range." Name="ActionAlarm"/>
+	FUNCTION VIRTUAL GLOBAL ActionAlarm
+		VAR_INPUT
+			input 	: DINT;			//! <Variable Comment="Desired state of the alarm (0..off,1..on,255..quit)" Name="ActionAlarm.input"/>
+			multiconfig_index 	: UDINT;			//! <Variable Comment="The desired offset to the start alarm number of the alarm object. &#13;&#10;Use 0 if the alarm object represents only one alarm number (GetMultiConfig returns 0 or 1) or a valid offset within the configured range if the alarm object represents several alarms (GetMultiConfig returns &gt; 1)" Name="ActionAlarm.multiconfig_index"/>
+		END_VAR
+		VAR_OUTPUT
+			retcode 	: BOOL;			//! <Variable Comment="True if successful, otherwhise false." Name="ActionAlarm.retcode"/>
 		END_VAR;
 	
 	FUNCTION VIRTUAL GLOBAL ClassSvr::Write
@@ -113,7 +154,7 @@ END_CLASS;
 FUNCTION GLOBAL TAB _AlarmX0Para::@CT_
 0$UINT,
 2#0100000000000000$UINT, //TY__ALARMX0PARA
-0$UINT, 11$UINT, (SIZEOF(::_AlarmX0Para))$UINT, 
+0$UINT, 20$UINT, (SIZEOF(::_AlarmX0Para))$UINT, 
 1$UINT, 3$UINT, 0$UINT, 
 TO_UDINT(800276940), "_AlarmX0Para", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
@@ -126,7 +167,7 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 END_FUNCTION
 
 
-#define USER_CNT__AlarmX0Para 5
+#define USER_CNT__AlarmX0Para 9
 
 TYPE
 	_LSL_STD_VMETH	: STRUCT
@@ -167,6 +208,22 @@ FUNCTION _AlarmX0Para::@STD
 	vmt.UserFcts[4]		:= #GetType();
 
 #pragma warning (default : 74)
+#pragma warning (disable : 74)
+	vmt.UserFcts[5]		:= #GetUserData();
+
+#pragma warning (default : 74)
+#pragma warning (disable : 74)
+	vmt.UserFcts[6]		:= #GetMultiConfig();
+
+#pragma warning (default : 74)
+#pragma warning (disable : 74)
+	vmt.UserFcts[7]		:= #GetActualState();
+
+#pragma warning (default : 74)
+#pragma warning (disable : 74)
+	vmt.UserFcts[8]		:= #ActionAlarm();
+
+#pragma warning (default : 74)
 	ClassSvr.pMeth		:= StoreCmd (pCmd := #vmt.CmdTable, SHARED);
 
 	IF ClassSvr.pMeth THEN
@@ -199,6 +256,7 @@ END_VAR
   ret_code         := C_OK;
   bAcknowEx        := false;
   bClientConnected := false;
+  MultiConfig      := 1;
 
 END_FUNCTION
 
@@ -206,7 +264,7 @@ FUNCTION VIRTUAL GLOBAL _AlarmX0Para::Init
   VAR
     p0    : ^VirtualBase;
     paras : ARRAY[0..MAX_ALARMPARA-1] of UDINT; 
-    anz   : UDINT;
+    anz : UDINT;
   END_VAR
 
   // increase init-counter
@@ -225,7 +283,8 @@ FUNCTION VIRTUAL GLOBAL _AlarmX0Para::Init
     end_if;
 
     if(PV_AlarmBuffer <> NIL) then
-      Config$UDINT := PV_AlarmBuffer^.RegisterAlarmXPara(this, Config$UDINT, Group$UDINT, anz, #paras[0]);
+      MultiConfig := GetMultiConfig(); // Wunsch Appli (12.10.23) dass ab jetzt nur mehr MemberVariable MultiConfig verwendet wird
+      Config$UDINT := PV_AlarmBuffer^.RegisterAlarmXPara(this, Config$UDINT, Group$UDINT, anz, #paras[0], MultiConfig);
     end_if;
     
     // init is done
@@ -238,6 +297,9 @@ FUNCTION VIRTUAL GLOBAL _AlarmX0Para::Init
 END_FUNCTION
 
 FUNCTION VIRTUAL GLOBAL _AlarmX0Para::QuitAlarm
+	VAR_INPUT
+		alano 	: UDINT;(* := 0xFFFFFFFF *)
+	END_VAR
 
   if(Acknow = 0) then
     Acknow := 1;
@@ -246,21 +308,69 @@ FUNCTION VIRTUAL GLOBAL _AlarmX0Para::QuitAlarm
     end_if;
 
     if(PV_AlarmBuffer <> NIL) then
-      Config := Config.Read();
-      PV_AlarmBuffer^.ActionAlarm(this$UDINT, Config$UDINT, 0, -1, 0, NIL);
+      if(alano = 0xFFFFFFFF) then
+        Config := Config.Read();
+        alano := Config$UDINT;
+      end_if;
+      
+      PV_AlarmBuffer^.ActionAlarm(this$UDINT, alano, 0, -1, 0, NIL);
     end_if;
   end_if;
   
 END_FUNCTION
 
 FUNCTION VIRTUAL GLOBAL _AlarmX0Para::QuitAlarmEx
+	VAR_INPUT
+		alano 	: UDINT;(* := 0xFFFFFFFF *)
+	END_VAR
 
   if(bAcknowEx = true) then
     if(ClassSvr = 0) then 
       bAcknowEx := false;
     end_if;
     Acknow := 0;
-    QuitAlarm();
+    QuitAlarm(alano);
+  end_if;
+
+END_FUNCTION
+
+FUNCTION VIRTUAL GLOBAL _AlarmX0Para::ActionAlarm
+VAR_INPUT
+	input		: DINT;
+  multiconfig_index : UDINT;
+END_VAR
+VAR_OUTPUT
+  retcode : BOOL;
+END_VAR
+VAR
+  paras : ARRAY[0..MAX_ALARMPARA] of DINT;
+  anz, datalen, datatype, alano : udint;
+  pdata : ^void;
+END_VAR
+
+  retcode := false;
+  if((multiconfig_index = 0) | (multiconfig_index < MultiConfig)) then
+  
+    alano := Config$UDINT + multiconfig_index;
+    
+    if(input = 255) then
+    
+      Acknow := 0; // so wie bei AcknowEx
+      QuitAlarm(alano);
+      retcode  := true;
+      
+    elsif(PV_AlarmBuffer <> NIL) then
+    
+      Group    := Group.Read();
+      anz      := GetParaVal(#paras[0]);
+      datatype := 0;
+      datalen  := 0;
+      pdata    := GetUserData(#datalen, #datatype, input);
+      
+      PV_AlarmBuffer^.ActionAlarm(this$UDINT, alano, Group$UDINT, input, anz, #paras[0], pdata, datalen, datatype);
+      retcode  := true;
+      
+    end_if;
   end_if;
 
 END_FUNCTION
@@ -272,30 +382,30 @@ END_VAR
 VAR_OUTPUT
 	result		: DINT;
 END_VAR
-VAR
-  paras : ARRAY[0..MAX_ALARMPARA-1] of DINT;
-  anz : udint;
-END_VAR
 
   if(input = 255) then
     QuitAlarm();
-  else 
-    if(ClassSvr <> input) then
-      if(PV_AlarmBuffer <> NIL) then
-        Acknow   := 0; // prepaire alarm to quit
-        if(input <> 0) then
-          bAcknowEx := true;
-        end_if;
-        Group    := Group.Read();
-        anz      := GetParaVal(#paras[0]);
-        PV_AlarmBuffer^.ActionAlarm(this$UDINT, Config$UDINT, Group$UDINT, input, anz, #paras[0]);
-        ClassSvr := input;
-      end_if;
+  elsif(ClassSvr <> input) then
+    Acknow := 0; // prepaire alarm to quit
+    if(input <> 0) then
+      bAcknowEx := true;
     end_if;
+    ActionAlarm(input, 0);
+    ClassSvr := input;
   end_if;
-
+  
   result := 0;
 
+END_FUNCTION
+
+FUNCTION VIRTUAL GLOBAL _AlarmX0Para::GetType
+	VAR_OUTPUT
+		usType 	: USINT;
+	END_VAR
+
+  // 0 => Standard-Alarms
+  usType := 0;
+  
 END_FUNCTION
 
 #pragma warning (disable:73)
@@ -322,15 +432,44 @@ END_VAR
   retcode := 0;
 
 END_FUNCTION
-#pragma warning (default:73)
 
-
-FUNCTION VIRTUAL GLOBAL _AlarmX0Para::GetType
+FUNCTION VIRTUAL _AlarmX0Para::GetUserData
+	VAR_INPUT
+		pdatalen 	: ^UDINT;
+		pdatatype 	: ^UDINT;
+		input 	: DINT;
+	END_VAR
 	VAR_OUTPUT
-		usType 	: USINT;
+		retcode 	: ^void;
 	END_VAR
 
-  // 0 => Standard-Alarms
-  usType := 0;
-  
+  retcode    := NIL;
+  pdatalen^  := 0;
+  pdatatype^ := 0;
+
 END_FUNCTION
+
+FUNCTION VIRTUAL GLOBAL _AlarmX0Para::GetActualState
+	VAR_INPUT
+		alano 	: UDINT;
+	END_VAR
+	VAR_OUTPUT
+		retcode 	: dint;
+	END_VAR
+  
+  retcode := ClassSvr;
+
+END_FUNCTION
+
+#pragma warning (default:73)
+
+FUNCTION VIRTUAL _AlarmX0Para::GetMultiConfig
+	VAR_OUTPUT
+		retcode 	: udint;
+	END_VAR
+
+  retcode := 0;
+
+END_FUNCTION
+
+

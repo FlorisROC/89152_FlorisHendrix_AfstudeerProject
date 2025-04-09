@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<IOConnectionManager Version="0" Detail="0" PLC="">
+	<!-- List of Entries -->
+	<Entry Name="**IOCONN_EMPTY**" GUID="{0F3C5AE6-9930-457C-BF48-01E71C766D05}" Objectsize="284">
+		<!-- List of Connections -->
+		<IOConnections>
+			<IOConnection ObjSrv="_DriveAxis1" Server="CmdState" ObjClt="DrivePosControl1" Client="cDriveAxis" IOI="IOState" SortIndex="0" KeyName="000000" Advanced="0"/>
+			<IOConnection ObjSrv="_DriveAxis1" Server="ActPos" ObjClt="_LMCAxisM1" Client="ActPosition" IOI="Input" Type="Analog" SortIndex="1" KeyName="000001" Advanced="0"/>
+			<IOConnection ObjSrv="_DriveMng_DC0621" Server="CmdState" ObjClt="_DriveAxis1" Client="DriveMng" IOI="IOState" SortIndex="2" KeyName="000002" Advanced="0"/>
+			<IOConnection ObjSrv="DM0811" Server="Input1" ObjClt="CM_SpeedControl1" Client="cDI_MotorRunEndless" IOI="Input" Type="Digital" SortIndex="3" KeyName="000003" Advanced="0"/>
+			<IOConnection ObjSrv="DM0811" Server="Input2" ObjClt="CM_SpeedControl1" Client="cDI_ReverseDirection" IOI="Input" Type="Digital" SortIndex="4" KeyName="000004" Advanced="0"/>
+			<IOConnection ObjSrv="DM0811" Server="Input3" ObjClt="CM_SpeedControl1" Client="cDI_ResetError" IOI="Input" SortIndex="5" KeyName="000005" Advanced="0"/>
+			<IOConnection ObjSrv="_DriveAxis1" Server="CmdState" ObjClt="AxisAlarmsM1" Client="DriveAxis" IOI="IOState" SortIndex="6" KeyName="000006" Advanced="0"/>
+		</IOConnections>
+	</Entry>
+	<Entry
+		Name       = "IO_Element"
+		GUID       = "NULL"
+		Objectsize = "284"
+		TempObj    = "true">
+		<!-- List of Connections -->
+		<IOConnections>
+			<IOConnection ObjSrv="DM0811" Server="Output1" ObjClt="Client_Splitter_41" Client="Ch1" IOI="Output" Type="Digital" SortIndex="2" KeyName="000007" Advanced="0"/>
+		</IOConnections>
+	</Entry>
+	<Entry
+		Name       = "IO_Element0"
+		GUID       = "NULL"
+		Objectsize = "284"
+		TempObj    = "true">
+		<!-- List of Connections -->
+		<IOConnections>
+			<IOConnection ObjSrv="DM0811" Server="Output2" ObjClt="Client_Splitter_41" Client="Ch2" IOI="Output" Type="Digital" SortIndex="3" KeyName="000008" Advanced="0"/>
+		</IOConnections>
+	</Entry>
+	<Entry
+		Name       = "IO_Element1"
+		GUID       = "NULL"
+		Objectsize = "284"
+		TempObj    = "true">
+		<!-- List of Connections -->
+		<IOConnections>
+			<IOConnection ObjSrv="DM0811" Server="Output4" ObjClt="Client_Splitter_41" Client="Ch3" IOI="Output" Type="Digital" SortIndex="4" KeyName="000009" Advanced="0"/>
+		</IOConnections>
+	</Entry>
+	<Entry
+		Name       = "IO_Element2"
+		GUID       = "NULL"
+		Objectsize = "284"
+		TempObj    = "true">
+		<!-- List of Connections -->
+		<IOConnections>
+			<IOConnection ObjSrv="DM0811" Server="Output3" ObjClt="Client_Splitter_41" Client="Ch4" IOI="Output" Type="Digital" SortIndex="6" KeyName="000010" Advanced="0"/>
+		</IOConnections>
+	</Entry>
+	<!-- List of Folders -->
+</IOConnectionManager>
