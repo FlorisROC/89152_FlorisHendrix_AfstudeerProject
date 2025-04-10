@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<File CRC="7326F569" Version="1.1" SubVersion="2">
+<File CRC="066D2F50" Version="1.1" SubVersion="2">
 	<Types>
 		<Type Name="_DRIVETYPE" Datatype="UDINT" TypeId="ENUM">
 			<Elements>
@@ -1334,6 +1334,56 @@
 			</Objects>
 		</Class>
 		<Class
+			Name     = "KTS_Read"
+			Datatype = "DINT"
+			Size     = "840"
+			Guid     = "ABCCEA66-D889-4046-967A-21BBED81E930">
+			<Types>
+				<Type Name="UDT_KTS_TeachCommand" Datatype="UDINT" TypeId="ENUM">
+					<Elements>
+						<Type Name="teach_1_Point_CS" Value="65"/>
+						<Type Name="teach_2_Points_KT_1" Value="67"/>
+						<Type Name="teach_2_points_KT_2" Value="68"/>
+						<Type Name="teach_Dynamic_KT_Start" Value="71"/>
+						<Type Name="teach_Dynamic_KT_Stop" Value="72"/>
+						<Type Name="teach_JobRead" Value="209"/>
+					</Elements>
+				</Type>
+			</Types>
+			<Servers>
+				<Server Name="sTeachStart" Datatype="DINT" Guid="595792B4-16D7-45F7-A9A4-A3122959F027" WriteProtected="false"/>
+				<Server Name="sTeachCommand" Datatype="KTS_Read::UDT_KTS_TeachCommand" Guid="9299867D-E504-4535-BD6E-94D83FA3326F" WriteProtected="false"/>
+				<Server Name="sTeachDynamic" Datatype="DINT" Guid="C6964D84-343F-4421-968C-658DD9BE5059" WriteProtected="false"/>
+				<Server Name="sTeach2Points" Datatype="DINT" Guid="DC2DB47C-CF65-433B-B49B-C750F1B5C8C1" WriteProtected="false"/>
+				<Server Name="sReadJob" Datatype="DINT" Guid="0C2EA99D-7976-4C28-A538-316EDC64FFE5" WriteProtected="false"/>
+				<Server Name="sRecipeNr" Datatype="DINT" Guid="3D89A130-00E7-4956-9450-5D14DB1DDFC0" WriteProtected="false"/>
+			</Servers>
+			<Objects>
+				<Object Name="StringProductName" Datatype="StringRAM" Guid="47EDC01D-F139-43DB-B65A-B446B2E4209D"/>
+				<Object Name="StringVendorName" Datatype="StringRAM" Guid="03512F88-68AF-4DB8-8E0F-EE8CEE141D24"/>
+			</Objects>
+		</Class>
+		<Class
+			Name     = "KTS_TimeStamp"
+			Datatype = "t_e_VaranErrors"
+			Base     = "SDCIDevice"
+			Size     = "492"
+			Guid     = "A1E1C5DE-DE27-4F1C-9125-A7C581D1EF7B">
+			<Servers>
+				<Server Name="ClassState" Datatype="t_e_VaranErrors" Guid="FF16F470-CB74-47DD-B6B7-D3CCBF4F6542" WriteProtected="true"/>
+				<Server Name="VendorID" Datatype="UDINT" Guid="929E4CA0-A0A9-444A-B615-EB4737394F26" WriteProtected="true"/>
+				<Server Name="DeviceID" Datatype="UDINT" Guid="CE3C5E2F-3759-4AA8-8D48-30A91FE836B0" WriteProtected="true"/>
+				<Server Name="MinCycleTime" Datatype="UDINT" Guid="1C584829-C990-4A35-9002-EAB6A805CF2F" WriteProtected="true"/>
+				<Server Name="ActualMode" Datatype="SdiasSDCIMaster::t_SDCIPortMode" Guid="DF443C00-58BB-4CB9-9642-E3506E8F16B4" WriteProtected="true"/>
+				<Server Name="PortStateBits" Datatype="SdiasSDCIMaster::t_SDCIPortStateBits" Guid="252ADF1A-187B-4E13-8C6A-EFDFA7474834" WriteProtected="true"/>
+				<Server Name="NbrOfEventsAvailable" Datatype="UDINT" Guid="CDAC79EA-E391-4A09-A068-DCFEA96A086E" WriteProtected="true"/>
+				<Server Name="FaultFlags" Datatype="SDCIDevice::t_FaultFlagSvr" Guid="9FF3155F-6598-4E0C-BD54-21DC659717A3" WriteProtected="true"/>
+				<Server Name="DirectInput" Datatype="DINT" Guid="E1E080A4-23C2-4B7D-91FD-EE98F772586C" WriteProtected="true"/>
+				<Server Name="Input" Datatype="DINT" Guid="3685DB7A-BC25-4054-B23A-FEEFA8D88F79" WriteProtected="true"/>
+				<Server Name="Output" Datatype="DINT" Guid="E24B5728-F784-4722-855C-D53EB66DA61F" WriteProtected="false"/>
+			</Servers>
+		</Class>
+		<Class
 			Name     = "PLC_Info"
 			Datatype = "IO_State"
 			Size     = "4832"
@@ -1457,6 +1507,40 @@
 			</Types>
 		</Class>
 		<Class
+			Name     = "SDCIDevice"
+			Datatype = "t_e_VaranErrors"
+			Size     = "492"
+			Guid     = "91BBED1F-E88A-4449-AE23-662CD017F568">
+			<Types>
+				<Type Name="t_FaultFlagSvr" Datatype="UDINT" TypeId="ENUM">
+					<Elements>
+						<Type Name="_NoFault" Value="0"/>
+						<Type Name="_ComLost" Value="1"/>
+						<Type Name="_RevisionFault" Value="2"/>
+						<Type Name="_CompatibilityFault" Value="3"/>
+						<Type Name="_SerialNumFault" Value="4"/>
+						<Type Name="_DataStorageFault" Value="5"/>
+					</Elements>
+				</Type>
+			</Types>
+		</Class>
+		<Class
+			Name     = "SDCIDevice_AsyncPara"
+			Datatype = "iprStates"
+			Size     = "144"
+			Guid     = "359E306C-F10F-4028-B87A-56DE26455329">
+			<Servers>
+				<Server Name="CmdState" Datatype="iprStates" Guid="C8A49DE1-9D53-4809-AA1B-DFD4935C316E" WriteProtected="true"/>
+				<Server Name="ParaRdWr" Datatype="DINT" Guid="CF24CD8C-18C1-4F90-AA85-2C5BD0F1213F" WriteProtected="false"/>
+				<Server Name="ParaIndex" Datatype="UDINT" Guid="0EB5D546-9ACC-4647-8E1F-7528966B0BF7" WriteProtected="false"/>
+				<Server Name="ParaSubIndex" Datatype="UDINT" Guid="B7428093-BFBB-48FB-8754-E69FEDBD1021" WriteProtected="false"/>
+				<Server Name="ParaSize" Datatype="UDINT" Guid="CDD3AF24-26F5-4F6B-82CC-7BF6DACC32B0" WriteProtected="false"/>
+				<Server Name="ParaValue" Datatype="DINT" Guid="D17393AA-AB5F-48BA-9A8F-32D09AD1778A" WriteProtected="false"/>
+				<Server Name="SDCIRetcode" Datatype="SdiasSDCIMaster::t_SDCIRetCode" Guid="CE99EB00-685C-48DE-9181-E26FEDE38F5D" WriteProtected="true"/>
+				<Server Name="ErrorCode" Datatype="HDINT" Guid="CD9F1BB7-0F2B-4808-9D82-3475ECE07A3A" WriteProtected="true"/>
+			</Servers>
+		</Class>
+		<Class
 			Name     = "SdiasBase"
 			Datatype = "t_e_VaranErrors"
 			Size     = "448"
@@ -1528,6 +1612,54 @@
 			Base     = "SdiasBase"
 			Size     = "3192"
 			Guid     = "8830CD78-3D0B-4EA6-8C49-10FBE95E042B">
+			<Types>
+				<Type Name="t_SDCIPortMode" Datatype="UDINT" TypeId="ENUM">
+					<Elements>
+						<Type Name="_Inactive" Value="0"/>
+						<Type Name="_DigitalInput" Value="1"/>
+						<Type Name="_DigitalOutput" Value="2"/>
+						<Type Name="_SDCI" Value="3"/>
+					</Elements>
+				</Type>
+				<Type Name="t_SDCIPortStateBits" Datatype="BDINT" TypeId="BIT">
+					<Elements>
+						<Type Name="Operating" BitNo="1"/>
+						<Type Name="ReadyToOperate" BitNo="2"/>
+						<Type Name="InputProcessDataValid" BitNo="3"/>
+						<Type Name="EventAvailable" BitNo="4"/>
+						<Type Name="OdeState" BitNo="5"/>
+						<Type Name="PdeState" BitNo="6"/>
+						<Type Name="DuState" BitNo="7"/>
+						<Type Name="DsUploaded" BitNo="8"/>
+					</Elements>
+				</Type>
+				<Type Name="t_SDCIRetCode" Datatype="DINT" TypeId="ENUM">
+					<Elements>
+						<Type Name="SDCI_Busy" Value="1"/>
+						<Type Name="SDCI_Ready_Ok" Value="0"/>
+						<Type Name="SDCI_InvalidPointer" Value="4294967295"/>
+						<Type Name="SDCI_InvalidLength" Value="4294967294"/>
+						<Type Name="SDCI_InvalidLengthOffsetCombination" Value="4294967293"/>
+						<Type Name="SDCI_NoReadDataAtModule" Value="4294967292"/>
+						<Type Name="SDCI_NoWriteDataAtModule" Value="4294967291"/>
+						<Type Name="SDCI_NotAvailableAtThisPort" Value="4294967290"/>
+						<Type Name="SDCI_ModuleNotAvailable" Value="4294967289"/>
+						<Type Name="SDCI_ReadDataCurrentlyNotValid" Value="4294967288"/>
+						<Type Name="SDCI_PortNbrNotSupported" Value="4294967287"/>
+						<Type Name="SDCI_UnspecifiedError" Value="4294967286"/>
+						<Type Name="SDCI_TimeoutInComToMicroCtrl" Value="4294967285"/>
+						<Type Name="SDCI_InvalidChecksumFromMicroCtrl" Value="4294967284"/>
+						<Type Name="SDCI_MicroCtrl_ApplicationError" Value="4294967283"/>
+						<Type Name="SDCI_MicroCtrl_InvalidChkSum" Value="4294967282"/>
+						<Type Name="SDCI_MicroCtrl_FunctionIdNotSupported" Value="4294967281"/>
+						<Type Name="SDCI_MicroCtrl_InvalidParamUsage" Value="4294967280"/>
+						<Type Name="SDCI_MicroCtrl_ServiceNotAvailable" Value="4294967279"/>
+						<Type Name="SDCI_MicroCtrl_RspLengthTooBig" Value="4294967278"/>
+						<Type Name="SDCI_MicroCtrl_UnexpectedRspLength" Value="4294967277"/>
+						<Type Name="SDCI_MicroCtrl_UnexpectedRspData" Value="4294967276"/>
+					</Elements>
+				</Type>
+			</Types>
 		</Class>
 		<Class
 			Name     = "String"
@@ -1545,6 +1677,16 @@
 			Base     = "VirtualBaseInit"
 			Size     = "48"
 			Guid     = "2C12408A-7CCA-458A-912B-98C634EE4BD9">
+		</Class>
+		<Class
+			Name     = "StringRAM"
+			Datatype = "UDINT"
+			Base     = "StringInternal"
+			Size     = "60"
+			Guid     = "98E72A8A-307A-4EB2-9A52-A75C6DC58534">
+			<Servers>
+				<Server Name="Data" Datatype="STRING" Guid="81990015-D505-4977-9326-733789F9FEAA" WriteProtected="false"/>
+			</Servers>
 		</Class>
 		<Class
 			Name     = "Varan_Base"
@@ -1661,7 +1803,10 @@
 		<Object Name="DM1611" Datatype="DM161" Guid="196B2686-F2F2-4EB3-885B-5F0DCF546155"/>
 		<Object Name="DrivePosControl1" Datatype="DrivePosControl" Guid="D08B4087-D787-46C2-83AA-174FD68567E1"/>
 		<Object Name="HwControl1" Datatype="HwControl" Guid="9A639F66-ADAA-4E02-965A-54EDEB4C4405"/>
-		<Object Name="IIO0411" Datatype="IIO041" Guid="724A33B5-AE21-4C34-AF83-EC0A34195728"/>
+		<Object Name="IIO0411" Datatype="IIO041" Guid="D313CE89-0212-4CE2-82CA-70B1141B9C54"/>
+		<Object Name="KTS_TimeStamp1" Datatype="KTS_TimeStamp" Guid="480C05DF-0F04-40F7-8B5D-FFB62EAF5D35"/>
+		<Object Name="KTS_TimeStamp_Uitlezen1" Datatype="KTS_Read" Guid="83D7EBD7-AFD8-4063-B0C5-A723B003746F"/>
+		<Object Name="SDCIDevice_AsyncPara_KTS_TimeStamp" Datatype="SDCIDevice_AsyncPara" Guid="651CDC73-ADBB-434E-A0E2-2DD31F9F347F"/>
 		<Object Name="SdiasPLC1" Datatype="SdiasPLC" Guid="76B9E6A5-3A5D-4181-B4A5-4070B926ADFB"/>
 		<Object Name="STDPLC_InfoMC1" Datatype="PLC_Info" Guid="15E4E01C-5367-49B3-94D8-B0816F917D5B"/>
 		<Object Name="StringOSVersion_Plc" Datatype="String" Guid="D6F18298-04FF-4934-A7A3-34DBBABF0843"/>

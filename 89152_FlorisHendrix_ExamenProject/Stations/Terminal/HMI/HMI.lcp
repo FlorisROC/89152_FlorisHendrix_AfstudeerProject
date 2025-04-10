@@ -296,7 +296,7 @@
 		<File Path=".\Class\TCPCommunication\TCPCommunication_en.pdf"/>
 	</DocuFiles>
 	<Options>
-		<Target UseFPU="true">
+		<Target UseFPU="true" Processor="ARM">
 		</Target>
 		<Compiler
 			CompilerVersion         = "74"

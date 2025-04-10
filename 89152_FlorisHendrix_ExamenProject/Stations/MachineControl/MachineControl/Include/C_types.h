@@ -856,6 +856,17 @@ typedef struct SafetyDiagState
   } SafetyDiagState;
 #pragma pack(pop)
 
+#pragma pack(push, 1)
+typedef struct strFileInfo 
+  {
+    DINT Handle;
+    DINT DataSize;  //! <Type Comment="in bytes" Name="strFileInfo.DataSize"/>
+    DINT FileSize;
+    DINT *pData;
+    HDINT Id;
+  } strFileInfo;
+#pragma pack(pop)
+
 typedef UDINT t_e_OPMode;   //! <Type Comment="Reihenfolge der Enumeration darf nicht verändert werden!" Name="t_e_OPMode"/>
     #define OPMode_Init 0
     #define OPMode_Homing 1

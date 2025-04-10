@@ -111,6 +111,7 @@
 		<File Path=".\Class\_LMCMathFunctions\C_MathFunct.h"/>
 		<File Path=".\Class\_LMCAxisBase\BacklashLogin.h"/>
 		<File Path=".\Source\code\Global_Functions\H_Get_ptr_on_Obj.h" Global="true"/>
+		<File Path=".\Class\KTS_TimeStamp\\KTS_TimeStamp_SDCI_Parameters.h"/>
 	</HeaderFiles>
 	<ClassFiles>
 		<File Path=".\Class\PLC_Info\cpu_id.c"/>
@@ -188,7 +189,6 @@
 		<File Path=".\Class\HWKVarSizeFIFO\HWKVarSizeFIFO.st"/>
 		<File Path=".\Class\HWRtPostScan\HWRtPostScan.st"/>
 		<File Path=".\Class\I2CCDIAS\I2CCDIAS.st"/>
-		<File Path=".\Class\IIO041\IIO041.st"/>
 		<File Path=".\Class\SafetyCDIAS_Base\SafetyCDIAS_Base.st"/>
 		<File Path=".\Class\SafetyManager\SafetyManager.st"/>
 		<File Path=".\Class\SafetyUDP\SafetyUDP.st"/>
@@ -250,6 +250,12 @@
 		<File Path=".\Class\Bridge\Bridge.st"/>
 		<File Path=".\Class\Client_Splitter_4\Client_Splitter_4.st"/>
 		<File Path=".\Class\Client_Splitter_Base\Client_Splitter_Base.st"/>
+		<File Path=".\Class\StringRAM\StringRAM.st"/>
+		<File Path=".\Class\IIO041\IIO041.st"/>
+		<File Path=".\Class\FileBaseCsv\FileBaseCsv.st"/>
+		<File Path=".\Class\KTS_TimeStamp\KTS_TimeStamp.st"/>
+		<File Path=".\Class\KTS_Read\KTS_Read.st"/>
+		<File Path=".\Class\SDCIDevice_AsyncPara\SDCIDevice_AsyncPara.st"/>
 	</ClassFiles>
 	<NetworkFiles>
 		<File Path=".\Network\STDAlarm\STDAlarm.lcn"/>
@@ -258,6 +264,8 @@
 		<File Path=".\Network\STDTimeSync\STDTimeSync.lcn"/>
 		<File Path=".\Network\HW_Network\HW_Network.lcn"/>
 		<File Path=".\Network\Motor_Network\Motor_Network.lcn"/>
+		<File Path=".\Network\KTS_Network\KTS_Network.lcn"/>
+		<File Path=".\Network\XML_Network\XML_Network.lcn"/>
 	</NetworkFiles>
 	<ObjectFiles>
 		<File Path=".\Loader\Source\Loader.lob" Downloadable="false"/>
@@ -288,6 +296,7 @@
 		<File Path=".\Class\_LMCAxisAlarmsOP\_LMCAxisAlarms_en.pdf"/>
 		<File Path=".\Class\_QuitErrorLMCaxis\_QuitErrorLMCAxis_de.pdf"/>
 		<File Path=".\Class\_QuitErrorLMCaxis\_QuitErrorLMCAxis_en.pdf"/>
+		<File Path=".\Class\KTS_TimeStamp\SICK-KTSKTX-TimeStamp-20170515-IODD1.1.xml"/>
 	</DocuFiles>
 	<Options>
 		<Target UseFPU="true" Processor="ARM">
@@ -334,6 +343,7 @@
 			<Folder Name="Communication">
 				<Folder Name="SDCI">
 					<Class Name="IIO041"/>
+					<Class Name="SDCIDevice_AsyncPara"/>
 					<Folder Name="Internal">
 						<Class Name="SDCIDevice"/>
 					</Folder>
@@ -418,6 +428,7 @@
 				<Class Name="RAMex"/>
 				<Class Name="String"/>
 				<Class Name="StringInternal"/>
+				<Class Name="StringRAM"/>
 				<Class Name="VirtualBaseInit"/>
 			</Folder>
 			<Folder Name="Miscellaneous">
@@ -520,6 +531,9 @@
 	<ClassFolders>
 		<Folder Name="SleeveTechnology">
 			<Class Name="CM_SpeedControl"/>
+			<Class Name="FileBaseCsv"/>
+			<Class Name="KTS_Read"/>
+			<Class Name="KTS_TimeStamp"/>
 		</Folder>
 		<Folder Name="Template">
 			<Folder Name="Alarm">

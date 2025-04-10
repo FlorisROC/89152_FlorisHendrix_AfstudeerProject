@@ -156,7 +156,7 @@
 			Name       = "_DriveMng_DC0621"
 			GUID       = "{004BC1F3-0305-46DD-AB55-153E157F707C}"
 			Class      = "_DriveMng_DC062"
-			Position   = "(5820,90)"
+			Position   = "(6660,90)"
 			Visualized = "true"
 			Remotely   = "true"
 			CyclicTime = "10 ms">
@@ -789,7 +789,7 @@
 			Name       = "CP112_IOs1"
 			GUID       = "{7BAC6AE4-6D64-4575-9D84-D0DC909CA8E8}"
 			Class      = "CP112_IOs"
-			Position   = "(660,90)"
+			Position   = "(1500,90)"
 			Visualized = "true"
 			Remotely   = "true">
 			<Channels>
@@ -876,7 +876,7 @@
 			Name       = "DM0811"
 			GUID       = "{09616647-CD2B-4CF7-A161-0F32662170D1}"
 			Class      = "DM081"
-			Position   = "(5130,90)"
+			Position   = "(5970,90)"
 			Visualized = "true"
 			Remotely   = "true">
 			<Channels>
@@ -1112,7 +1112,7 @@
 			Name        = "HwControl1"
 			GUID        = "{9A639F66-ADAA-4E02-965A-54EDEB4C4405}"
 			Class       = "HwControl"
-			Position    = "(1620,90)"
+			Position    = "(2460,90)"
 			Visualized  = "true"
 			Remotely    = "true"
 			RealTime    = "1 ms"
@@ -1239,195 +1239,10 @@
 			</Networks>
 		</Object>
 		<Object
-			Name       = "IIO0411"
-			GUID       = "{724A33B5-AE21-4C34-AF83-EC0A34195728}"
-			Class      = "IIO041"
-			Position   = "(10440,90)"
-			Visualized = "true"
-			Remotely   = "true">
-			<Channels>
-				<Server Name="ClassState"/>
-				<Server Name="CycleTime"/>
-				<Server Name="DeviceID"/>
-				<Server Name="FirmwareVersion"/>
-				<Server Name="FPGAVersion"/>
-				<Server Name="HwVersion"/>
-				<Server Name="LEDControl" Value="0"/>
-				<Server Name="NbrOfEventsAvailable"/>
-				<Server Name="PowerSupply"/>
-				<Server Name="RetryCounter"/>
-				<Server Name="SdciOut_1"/>
-				<Server Name="SdciOut_2"/>
-				<Server Name="SdciOut_3"/>
-				<Server Name="SdciOut_4"/>
-				<Server Name="SerialNo"/>
-				<Client Name="MaxBufferSize" Value="1024"/>
-				<Client Name="Place" Value="2"/>
-				<Client Name="Required" Value="1"/>
-				<Client Name="SdiasIn"/>
-				<Client Name="StartInInit" Value="1"/>
-				<Client Name="WaitTimeReconnect" Value="500"/>
-			</Channels>
-			<!-- List of Networks in this component -->
-			<Networks>
-				<Network>
-					<!-- List of Components in this network -->
-					<Components>
-						<Object Name="_base" GUID="{152D2C4E-33FA-4F29-B94C-E8011D8EFEFF}" Class="SdiasSDCIMaster">
-							<Channels>
-								<Server Name="ClassState"/>
-								<Server Name="CycleTime"/>
-								<Server Name="DeviceID"/>
-								<Server Name="FirmwareVersion"/>
-								<Server Name="FPGAVersion"/>
-								<Server Name="HwVersion"/>
-								<Server Name="LEDControl" Value="0"/>
-								<Server Name="NbrOfEventsAvailable"/>
-								<Server Name="PowerSupply"/>
-								<Server Name="RetryCounter"/>
-								<Server Name="SerialNo"/>
-								<Client Name="MaxBufferSize" Value="1024"/>
-								<Client Name="Place" Value="2"/>
-								<Client Name="Required" Value="1"/>
-								<Client Name="SdiasIn"/>
-								<Client Name="StartInInit" Value="1"/>
-								<Client Name="WaitTimeReconnect" Value="500"/>
-							</Channels>
-							<!-- List of Networks in this component -->
-							<Networks>
-								<Network>
-									<!-- List of Components in this network -->
-									<Components>
-										<Object Name="_base" GUID="{EFB64040-67FE-4D24-9B06-12BE7F1FA92D}" Class="SdiasBase">
-											<Channels>
-												<Server Name="ClassState"/>
-												<Server Name="DeviceID"/>
-												<Server Name="FPGAVersion"/>
-												<Server Name="HwVersion"/>
-												<Server Name="LEDControl" Value="0"/>
-												<Server Name="RetryCounter"/>
-												<Server Name="SDOState"/>
-												<Server Name="SerialNo"/>
-												<Client Name="Place" Value="2"/>
-												<Client Name="Required" Value="1"/>
-												<Client Name="SdiasIn"/>
-												<Client Name="ToStdLib"/>
-											</Channels>
-											<!-- List of Networks in this component -->
-											<Networks>
-												<Network>
-													<!-- List of Components in this network -->
-													<Components>
-														<Object Name="SerialNoStr" GUID="{016F794C-857F-482F-8C65-B5EE24158A3F}" Class="String">
-															<Channels>
-																<Server Name="Data"/>
-																<Client Name="SingleRealloc" Value="1"/>
-															</Channels>
-															<!-- List of Networks in this component -->
-															<Networks>
-																<Network>
-																	<!-- List of Components in this network -->
-																	<Components>
-																		<Object Name="_base" GUID="{B9D2D328-1416-469A-BE13-9F6CBBB1958D}" Class="StringInternal">
-																			<Channels>
-																				<Server Name="Data"/>
-																				<Client Name="DataBuffer"/>
-																				<Client Name="SingleRealloc" Value="1"/>
-																			</Channels>
-																			<!-- List of Networks in this component -->
-																			<Networks>
-																				<Network>
-																					<!-- List of Components in this network -->
-																					<Components>
-																						<Object Name="_base" GUID="{6CBDDE57-D222-420A-BC45-D2266096244E}" Class="VirtualBaseInit">
-																							<Channels>
-																								<Server Name="Data"/>
-																							</Channels>
-																						</Object>
-																					</Components>
-																					<Connections>
-																					</Connections>
-																				</Network>
-																			</Networks>
-																		</Object>
-																		<Object Name="MerkerEx0" GUID="{53955FF7-8ABE-4B49-B914-227100C3FDEF}" Class="MerkerEx">
-																			<Channels>
-																				<Server Name="m_udLength"/>
-																				<Client Name="ThreadSafe" Value="0"/>
-																			</Channels>
-																		</Object>
-																	</Components>
-																	<Connections>
-																	</Connections>
-																</Network>
-															</Networks>
-														</Object>
-													</Components>
-													<Connections>
-													</Connections>
-												</Network>
-											</Networks>
-										</Object>
-										<Object Name="HWKVarSizeFIFO1" GUID="{24FF9822-823F-4F6B-8F01-847FAFCA97F5}" Class="HWKVarSizeFIFO">
-											<Channels>
-												<Server Name="ClassState"/>
-												<Client Name="MaxBufferSize" Value="1024"/>
-												<Client Name="ToStdLib"/>
-											</Channels>
-										</Object>
-										<Object Name="PdoProtection" GUID="{682CD3A2-8381-4DBB-9D2F-615B5528BCBC}" Class="CriticalSection">
-											<Channels>
-												<Server Name="ClassSvr"/>
-											</Channels>
-										</Object>
-									</Components>
-									<Connections>
-									</Connections>
-								</Network>
-							</Networks>
-						</Object>
-						<Object Name="SDCIPort1" GUID="{601B36C3-FE51-424F-B253-C7A72576C4D3}" Class="SDCIPort">
-							<Channels>
-								<Server Name="ClassSvr"/>
-								<Client Name="PortNo" Value="0"/>
-								<Client Name="ToMaster"/>
-							</Channels>
-						</Object>
-						<Object Name="SDCIPort2" GUID="{344086B3-F880-4C3C-A799-402FD6C58B43}" Class="SDCIPort">
-							<Channels>
-								<Server Name="ClassSvr"/>
-								<Client Name="PortNo" Value="1"/>
-								<Client Name="ToMaster"/>
-							</Channels>
-						</Object>
-						<Object Name="SDCIPort3" GUID="{508B71F2-3169-4FF0-AB1B-EFC1B25BB143}" Class="SDCIPort">
-							<Channels>
-								<Server Name="ClassSvr"/>
-								<Client Name="PortNo" Value="2"/>
-								<Client Name="ToMaster"/>
-							</Channels>
-						</Object>
-						<Object Name="SDCIPort4" GUID="{2F24C8B7-E165-4540-8651-CCFAA24E0D9B}" Class="SDCIPort">
-							<Channels>
-								<Server Name="ClassSvr"/>
-								<Client Name="PortNo" Value="3"/>
-								<Client Name="ToMaster"/>
-							</Channels>
-						</Object>
-					</Components>
-					<Connections>
-					</Connections>
-				</Network>
-			</Networks>
-			<AdditionalData>
-				<Entry Name="DeviceType" Value="IIO041"/>
-			</AdditionalData>
-		</Object>
-		<Object
 			Name       = "SdiasPLC1"
 			GUID       = "{76B9E6A5-3A5D-4181-B4A5-4070B926ADFB}"
 			Class      = "SdiasPLC"
-			Position   = "(2460,90)"
+			Position   = "(3300,90)"
 			Visualized = "true"
 			Remotely   = "true">
 			<Channels>
@@ -1512,7 +1327,7 @@
 			Name       = "VaranManager_11"
 			GUID       = "{40AEB1F6-8AE4-4DF6-B09D-573FD3AE0ACF}"
 			Class      = "VaranManager_1"
-			Position   = "(3390,90)"
+			Position   = "(4230,90)"
 			Visualized = "true"
 			Remotely   = "true">
 			<Channels>
@@ -1662,7 +1477,7 @@
 			Name       = "VI0211"
 			GUID       = "{46D9E05E-DB92-45CC-8F18-63E0AD58BA26}"
 			Class      = "VI021"
-			Position   = "(4200,90)"
+			Position   = "(5040,90)"
 			Visualized = "true"
 			Remotely   = "true">
 			<Channels>
@@ -1895,17 +1710,16 @@
 	</Comments>
 	<!-- List of Connections in this network -->
 	<Connections>
-		<Connection Source="SdiasPLC1.ToHwControl" Destination="HwControl1.Control" Vertices="(2460,180),(2282,180),"/>
-		<Connection Source="CP112_IOs1.To_HwControl" Destination="HwControl1.Control" Vertices="(660,180),(2282,180),"/>
-		<Connection Source="VaranManager_11.To_HwControl" Destination="HwControl1.Control" Vertices="(3390,180),(2282,180),"/>
-		<Connection Source="VI0211.VaranIn" Destination="VaranManager_11.VaranOut_1" Vertices="(4200,180),(4034,1140),"/>
-		<Connection Source="DM0811.SdiasIn" Destination="VI0211.SdiasOut_1" Vertices="(5130,180),(4946,1380),"/>
-		<Connection Source="_DriveMng_DC0621.SdiasIn" Destination="VI0211.SdiasOut_1" Vertices="(5820,180),(4946,1380),"/>
-		<Connection Source="_DriveMng_DC0622.SdiasIn" Destination="VI0211.SdiasOut_1" Vertices="(7380,180),(4946,1380),"/>
+		<Connection Source="SdiasPLC1.ToHwControl" Destination="HwControl1.Control" Vertices="(3300,180),(3122,180),"/>
+		<Connection Source="CP112_IOs1.To_HwControl" Destination="HwControl1.Control" Vertices="(1500,180),(3122,180),"/>
+		<Connection Source="VaranManager_11.To_HwControl" Destination="HwControl1.Control" Vertices="(4230,180),(3122,180),"/>
+		<Connection Source="VI0211.VaranIn" Destination="VaranManager_11.VaranOut_1" Vertices="(5040,180),(4874,1140),"/>
+		<Connection Source="DM0811.SdiasIn" Destination="VI0211.SdiasOut_1" Vertices="(5970,180),(5786,1380),"/>
+		<Connection Source="_DriveMng_DC0621.SdiasIn" Destination="VI0211.SdiasOut_1" Vertices="(6660,180),(5786,1380),"/>
+		<Connection Source="_DriveMng_DC0622.SdiasIn" Destination="VI0211.SdiasOut_1" Vertices="(7380,180),(5786,1380),"/>
 		<Connection Source="_DriveAxis2.DriveMng" Destination="_DriveMng_DC0622.CmdState" Vertices="(8160,180),(7982,180),"/>
-		<Connection Source="DM1611.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(8940,180),(3206,780),"/>
-		<Connection Source="AI0431.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(9630,180),(3206,780),"/>
-		<Connection Source="IIO0411.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(10440,180),(3206,780),"/>
+		<Connection Source="DM1611.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(8940,180),(4046,780),"/>
+		<Connection Source="AI0431.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(9630,180),(4046,780),"/>
 	</Connections>
 	<!-- Headerfiles -->
 	<Options>

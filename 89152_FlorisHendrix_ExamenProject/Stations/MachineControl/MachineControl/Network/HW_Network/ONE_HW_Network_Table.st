@@ -248,14 +248,6 @@
 #include "..\..\Source\interfaces\lsl_st_sysinfo.h"
 #include "..\..\Source\interfaces\lsl_st_systrace.h"
 #include "..\..\Class\HwControl\_HWKScope.h"
-//Define part of class HWKVarSizeFIFO
-#define _HWKBUF_MEMID 16#1E3B0000
-//Define part of class SdiasSDCIMaster
-#define SSDCIM_SDO_LOCK    16#1B3D5F2A
-#define SSDCIM_SDO_UNLOCK  16#2E9A3C57
-#include "..\..\Class\SdiasSDCIMaster\SdiasSDCIMaster.h"
-//Define part of class IIO041
-#define IIO041_DEVICE_ID  1077
 #include <.\lsl_st_mt.h>
 //Define part of class SafetyUDP
 #define SAFETY_UDP_MAX_SOCKETS                6     // Max number of socket
@@ -425,7 +417,7 @@ FUNCTION GLOBAL TAB ONE_HW_Network
 -1$UINT, 0$UINT, 
 0$UINT, 0$UINT,
 
-44$UDINT,
+40$UDINT,
 TO_UDINT(1048633017), "_BusInterfaceSdiasDriveMng", 1$UINT, 14$UINT, 2$UINT,
 TO_UDINT(529317953), "_CanLib", 1$UINT, 10$UINT, 2$UINT,
 TO_UDINT(912370472), "_DriveAxis", 1$UINT, 72$UINT, 1$UINT,
@@ -439,7 +431,7 @@ TO_UDINT(2897291062), "ASCII_BIN", 1$UINT, 21$UINT, 1$UINT,
 TO_UDINT(3882880897), "BusInterfaceSDIASInternal", 2$UINT, 1$UINT, 0$UINT,
 TO_UDINT(24783181), "BusInterfaceVARAN", 1$UINT, 75$UINT, 0$UINT,
 TO_UDINT(658879389), "CP112_IOs", 1$UINT, 1$UINT, 1$UINT,
-TO_UDINT(794617671), "CriticalSection", 0$UINT, 4$UINT, 3$UINT,
+TO_UDINT(794617671), "CriticalSection", 0$UINT, 4$UINT, 2$UINT,
 TO_UDINT(1610993701), "DM081", 1$UINT, 13$UINT, 1$UINT,
 TO_UDINT(4282685340), "DM161", 1$UINT, 14$UINT, 1$UINT,
 TO_UDINT(3238133653), "Hub_Base", 1$UINT, 21$UINT, 1$UINT,
@@ -447,21 +439,17 @@ TO_UDINT(1770276445), "Hub_Base_Root", 2$UINT, 11$UINT, 1$UINT,
 TO_UDINT(3078259981), "HwcLogging", 1$UINT, 0$UINT, 1$UINT,
 TO_UDINT(2471641665), "HwControl", 5$UINT, 21$UINT, 1$UINT,
 TO_UDINT(1193052171), "HwControlBase", 1$UINT, 10$UINT, 0$UINT,
-TO_UDINT(2647432661), "HWKVarSizeFIFO", 1$UINT, 0$UINT, 1$UINT,
 TO_UDINT(4260294091), "HWRtPostScan", 1$UINT, 0$UINT, 1$UINT,
-TO_UDINT(3248397833), "IIO041", 1$UINT, 17$UINT, 1$UINT,
-TO_UDINT(2225119864), "MerkerEx", 1$UINT, 22$UINT, 12$UINT,
+TO_UDINT(2225119864), "MerkerEx", 1$UINT, 22$UINT, 11$UINT,
 TO_UDINT(933570811), "RAMex", 1$UINT, 17$UINT, 1$UINT,
 TO_UDINT(3591333481), "RamFile", 1$UINT, 9$UINT, 1$UINT,
 TO_UDINT(1799751072), "SafetyManager", 2$UINT, 26$UINT, 1$UINT,
 TO_UDINT(3727715967), "SafetyUDP", 1$UINT, 4$UINT, 0$UINT,
-TO_UDINT(2258655160), "SDCIPort", 1$UINT, 0$UINT, 4$UINT,
 TO_UDINT(3175101883), "SdiasBase", 1$UINT, 60$UINT, 0$UINT,
 TO_UDINT(4173303375), "SdiasHubBase", 1$UINT, 10$UINT, 2$UINT,
 TO_UDINT(2118381352), "SdiasManager", 1$UINT, 97$UINT, 2$UINT,
 TO_UDINT(1159122596), "SdiasPLC", 2$UINT, 6$UINT, 1$UINT,
-TO_UDINT(2874110376), "SdiasSDCIMaster", 1$UINT, 15$UINT, 0$UINT,
-TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 11$UINT,
+TO_UDINT(1850111279), "String", 1$UINT, 11$UINT, 10$UINT,
 TO_UDINT(2898603620), "StringInternal", 1$UINT, 85$UINT, 0$UINT,
 TO_UDINT(862125188), "Varan_Base", 2$UINT, 20$UINT, 0$UINT,
 TO_UDINT(2940693151), "VaranManager", 3$UINT, 7$UINT, 0$UINT,
@@ -500,7 +488,6 @@ _NO_ATTR, TO_UDINT(222643709), "CP112_IOS1",
 
 1$UINT, TO_UDINT(2972590922), "HWCONTROL1\SAFETYMANAGER\UDPRECEIVEDATA", 
 1$UINT, TO_UDINT(1868223583), "HWCONTROL1\SAFETYMANAGER\UDPSENDDATA", 
-1$UINT, TO_UDINT(2270667760), "IIO0411\_BASE\PDOPROTECTION", 
 
 _NO_ATTR, TO_UDINT(3367517728), "DM0811", 
 
@@ -515,16 +502,11 @@ _NO_ATTR, TO_UDINT(2056942671), "DM1611",
 _NO_ATTR, TO_UDINT(2190789875), "HWCONTROL1", 
 
 
-1$UINT, TO_UDINT(3344372028), "IIO0411\_BASE\HWKVARSIZEFIFO1", 
-
 1$UINT, TO_UDINT(1673205898), "HWCONTROL1\HWRTPOSTSCAN", 
-
-_NO_ATTR, TO_UDINT(4207004045), "IIO0411", 
 
 1$UINT, TO_UDINT(3111676623), "AI0431\_BASE\SERIALNOSTR\MERKEREX0", 
 1$UINT, TO_UDINT(3763871537), "DM0811\_BASE\SERIALNOSTR\MERKEREX0", 
 1$UINT, TO_UDINT(1089285877), "DM1611\_BASE\SERIALNOSTR\MERKEREX0", 
-1$UINT, TO_UDINT(1001843434), "IIO0411\_BASE\_BASE\SERIALNOSTR\MERKEREX0", 
 1$UINT, TO_UDINT(1965133148), "VI0211\_BASE\_BASE\SERIALNOSTR\MERKEREX0", 
 1$UINT, TO_UDINT(2138211921), "_DRIVEAXIS2\MERKEREX2", 
 1$UINT, TO_UDINT(1361534785), "_DRIVEMNG_DC0621\BUSINTERFACESDIASDRIVEMNG\_BASE\SERIALNOSTR\MERKEREX0", 
@@ -541,11 +523,6 @@ _NO_ATTR, TO_UDINT(4207004045), "IIO0411",
 1$UINT, TO_UDINT(1778590035), "HWCONTROL1\SAFETYMANAGER", 
 
 
-1$UINT, TO_UDINT(2446752732), "IIO0411\SDCIPORT1", 
-1$UINT, TO_UDINT(148843110), "IIO0411\SDCIPORT2", 
-1$UINT, TO_UDINT(2144869104), "IIO0411\SDCIPORT3", 
-1$UINT, TO_UDINT(3787231059), "IIO0411\SDCIPORT4", 
-
 
 1$UINT, TO_UDINT(1007630054), "SDIASPLC1\SDIASHUBBASE1", 
 1$UINT, TO_UDINT(1199943557), "VI0211\SDIASHUBBASE", 
@@ -555,11 +532,9 @@ _NO_ATTR, TO_UDINT(4207004045), "IIO0411",
 
 _NO_ATTR, TO_UDINT(1378000520), "SDIASPLC1", 
 
-
 1$UINT, TO_UDINT(2796855937), "AI0431\_BASE\SERIALNOSTR", 
 1$UINT, TO_UDINT(3004072747), "DM0811\_BASE\SERIALNOSTR", 
 1$UINT, TO_UDINT(2011818843), "DM1611\_BASE\SERIALNOSTR", 
-1$UINT, TO_UDINT(2058560523), "IIO0411\_BASE\_BASE\SERIALNOSTR", 
 1$UINT, TO_UDINT(3053332208), "VI0211\_BASE\_BASE\SERIALNOSTR", 
 1$UINT, TO_UDINT(189353776), "_DRIVEMNG_DC0621\BUSINTERFACESDIASDRIVEMNG\_BASE\SERIALNOSTR", 
 1$UINT, TO_UDINT(275191107), "_DRIVEMNG_DC0621\FWDATESTRING", 
@@ -580,109 +555,95 @@ _NO_ATTR, TO_UDINT(2125577894), "VI0211",
 
 //Internal connections
 0$UDINT,
-51$UDINT,
-TO_UDINT(0), "SerialNoStr", TO_UDINT(55),
-TO_UDINT(1), "SerialNoStr", TO_UDINT(58),
+43$UDINT,
+TO_UDINT(0), "SerialNoStr", TO_UDINT(46),
+TO_UDINT(1), "SerialNoStr", TO_UDINT(49),
 TO_UDINT(4), "SDDAxSet1", TO_UDINT(5),
-TO_UDINT(4), "MerkerEx2", TO_UDINT(31),
-TO_UDINT(4), "RAMex2", TO_UDINT(38),
-TO_UDINT(6), "FWDateString", TO_UDINT(56),
-TO_UDINT(6), "FWNumSTring", TO_UDINT(57),
+TO_UDINT(4), "MerkerEx2", TO_UDINT(27),
+TO_UDINT(4), "RAMex2", TO_UDINT(34),
+TO_UDINT(6), "FWDateString", TO_UDINT(47),
+TO_UDINT(6), "FWNumSTring", TO_UDINT(48),
 TO_UDINT(6), "BusInterfaceSdiasDriveMng", TO_UDINT(0),
-TO_UDINT(7), "FWDateString", TO_UDINT(59),
-TO_UDINT(7), "FWNumSTring", TO_UDINT(60),
+TO_UDINT(7), "FWDateString", TO_UDINT(50),
+TO_UDINT(7), "FWNumSTring", TO_UDINT(51),
 TO_UDINT(7), "BusInterfaceSdiasDriveMng", TO_UDINT(1),
-TO_UDINT(11), "SerialNoStr", TO_UDINT(50),
+TO_UDINT(11), "SerialNoStr", TO_UDINT(42),
 TO_UDINT(13), "_SerLib1", TO_UDINT(8),
 TO_UDINT(13), "_SerLib2", TO_UDINT(9),
 TO_UDINT(13), "_CanLib1", TO_UDINT(2),
 TO_UDINT(13), "_CanLib2", TO_UDINT(3),
 TO_UDINT(13), "_SerLib3", TO_UDINT(10),
-TO_UDINT(17), "SerialNoStr", TO_UDINT(51),
-TO_UDINT(18), "SerialNoStr", TO_UDINT(52),
-TO_UDINT(22), "SafetyManager", TO_UDINT(40),
-TO_UDINT(22), "HWRtPostScan", TO_UDINT(24),
-TO_UDINT(22), "HwcLogging", TO_UDINT(21),
-TO_UDINT(25), "SerialNoStr", TO_UDINT(53),
-TO_UDINT(25), "PdoProtection", TO_UDINT(16),
-TO_UDINT(25), "HWKVarSizeFIFO1", TO_UDINT(23),
-TO_UDINT(25), "SDCIPort1", TO_UDINT(41),
-TO_UDINT(25), "SDCIPort2", TO_UDINT(42),
-TO_UDINT(25), "SDCIPort3", TO_UDINT(43),
-TO_UDINT(25), "SDCIPort4", TO_UDINT(44),
-TO_UDINT(40), "UdpSendData", TO_UDINT(15),
-TO_UDINT(40), "UdpReceiveData", TO_UDINT(14),
-TO_UDINT(49), "SdiasManager1", TO_UDINT(47),
-TO_UDINT(49), "SdiasHubBase1", TO_UDINT(45),
-TO_UDINT(50), "MerkerEx0", TO_UDINT(26),
-TO_UDINT(51), "MerkerEx0", TO_UDINT(27),
-TO_UDINT(52), "MerkerEx0", TO_UDINT(28),
-TO_UDINT(53), "MerkerEx0", TO_UDINT(29),
-TO_UDINT(54), "MerkerEx0", TO_UDINT(30),
-TO_UDINT(55), "MerkerEx0", TO_UDINT(32),
-TO_UDINT(56), "MerkerEx0", TO_UDINT(33),
-TO_UDINT(57), "MerkerEx0", TO_UDINT(34),
-TO_UDINT(58), "MerkerEx0", TO_UDINT(35),
-TO_UDINT(59), "MerkerEx0", TO_UDINT(36),
-TO_UDINT(60), "MerkerEx0", TO_UDINT(37),
-TO_UDINT(61), "ASCII_BIN1", TO_UDINT(12),
-TO_UDINT(61), "Hub_Base_Root0", TO_UDINT(20),
-TO_UDINT(62), "SerialNoStr", TO_UDINT(54),
-TO_UDINT(62), "SerNoBackup", TO_UDINT(39),
-TO_UDINT(62), "Hub_Base1", TO_UDINT(19),
-TO_UDINT(62), "SdiasManager", TO_UDINT(48),
-TO_UDINT(62), "SdiasHubBase", TO_UDINT(46),
+TO_UDINT(16), "SerialNoStr", TO_UDINT(43),
+TO_UDINT(17), "SerialNoStr", TO_UDINT(44),
+TO_UDINT(21), "SafetyManager", TO_UDINT(36),
+TO_UDINT(21), "HWRtPostScan", TO_UDINT(22),
+TO_UDINT(21), "HwcLogging", TO_UDINT(20),
+TO_UDINT(36), "UdpSendData", TO_UDINT(15),
+TO_UDINT(36), "UdpReceiveData", TO_UDINT(14),
+TO_UDINT(41), "SdiasManager1", TO_UDINT(39),
+TO_UDINT(41), "SdiasHubBase1", TO_UDINT(37),
+TO_UDINT(42), "MerkerEx0", TO_UDINT(23),
+TO_UDINT(43), "MerkerEx0", TO_UDINT(24),
+TO_UDINT(44), "MerkerEx0", TO_UDINT(25),
+TO_UDINT(45), "MerkerEx0", TO_UDINT(26),
+TO_UDINT(46), "MerkerEx0", TO_UDINT(28),
+TO_UDINT(47), "MerkerEx0", TO_UDINT(29),
+TO_UDINT(48), "MerkerEx0", TO_UDINT(30),
+TO_UDINT(49), "MerkerEx0", TO_UDINT(31),
+TO_UDINT(50), "MerkerEx0", TO_UDINT(32),
+TO_UDINT(51), "MerkerEx0", TO_UDINT(33),
+TO_UDINT(52), "ASCII_BIN1", TO_UDINT(12),
+TO_UDINT(52), "Hub_Base_Root0", TO_UDINT(19),
+TO_UDINT(53), "SerialNoStr", TO_UDINT(45),
+TO_UDINT(53), "SerNoBackup", TO_UDINT(35),
+TO_UDINT(53), "Hub_Base1", TO_UDINT(18),
+TO_UDINT(53), "SdiasManager", TO_UDINT(40),
+TO_UDINT(53), "SdiasHubBase", TO_UDINT(38),
 0$UDINT,
-45$UDINT,
+39$UDINT,
 TO_UDINT(4), "DriveMng", TO_UDINT(7), "CmdState",
 TO_UDINT(4), "DriveAxisSet", TO_UDINT(5), "Server0",
-TO_UDINT(5), "coMerkerEx", TO_UDINT(31), "m_udLength",
-TO_UDINT(5), "coRamEx", TO_UDINT(38), "m_udLength",
+TO_UDINT(5), "coMerkerEx", TO_UDINT(27), "m_udLength",
+TO_UDINT(5), "coRamEx", TO_UDINT(34), "m_udLength",
 TO_UDINT(6), "cOnline", TO_UDINT(0), "Online",
-TO_UDINT(6), "FwNumStr", TO_UDINT(57), "Data",
-TO_UDINT(6), "FwDatetr", TO_UDINT(56), "Data",
+TO_UDINT(6), "FwNumStr", TO_UDINT(48), "Data",
+TO_UDINT(6), "FwDatetr", TO_UDINT(47), "Data",
 TO_UDINT(6), "ToBusIF", TO_UDINT(0), "CallCommand",
-TO_UDINT(6), "SdiasIn", TO_UDINT(46), "ClassSvr",
+TO_UDINT(6), "SdiasIn", TO_UDINT(38), "ClassSvr",
 TO_UDINT(7), "cOnline", TO_UDINT(1), "Online",
-TO_UDINT(7), "FwNumStr", TO_UDINT(60), "Data",
-TO_UDINT(7), "FwDatetr", TO_UDINT(59), "Data",
+TO_UDINT(7), "FwNumStr", TO_UDINT(51), "Data",
+TO_UDINT(7), "FwDatetr", TO_UDINT(50), "Data",
 TO_UDINT(7), "ToBusIF", TO_UDINT(1), "CallCommand",
-TO_UDINT(7), "SdiasIn", TO_UDINT(46), "ClassSvr",
-TO_UDINT(11), "SdiasIn", TO_UDINT(45), "ClassSvr",
-TO_UDINT(13), "To_HwControl", TO_UDINT(22), "Control",
-TO_UDINT(17), "SdiasIn", TO_UDINT(46), "ClassSvr",
-TO_UDINT(18), "SdiasIn", TO_UDINT(45), "ClassSvr",
-TO_UDINT(19), "VaranIn", TO_UDINT(62), "State",
-TO_UDINT(20), "VaranConnect", TO_UDINT(61), "Control",
-TO_UDINT(24), "toHwControlBase", TO_UDINT(22), "Control",
-TO_UDINT(25), "SdiasIn", TO_UDINT(45), "ClassSvr",
-TO_UDINT(40), "To_HwControl", TO_UDINT(22), "Control",
-TO_UDINT(41), "ToMaster", TO_UDINT(25), "ClassState",
-TO_UDINT(42), "ToMaster", TO_UDINT(25), "ClassState",
-TO_UDINT(43), "ToMaster", TO_UDINT(25), "ClassState",
-TO_UDINT(44), "ToMaster", TO_UDINT(25), "ClassState",
-TO_UDINT(45), "ToNextSDIAS", TO_UDINT(47), "ClassState",
-TO_UDINT(46), "ToNextSDIAS", TO_UDINT(48), "ClassState",
-TO_UDINT(47), "ToBusInterface", TO_UDINT(49), "CallCommand",
-TO_UDINT(48), "ToBusInterface", TO_UDINT(62), "CallCommand",
-TO_UDINT(49), "ToHwControl", TO_UDINT(22), "Control",
-TO_UDINT(50), "DataBuffer", TO_UDINT(26), "m_udLength",
-TO_UDINT(51), "DataBuffer", TO_UDINT(27), "m_udLength",
-TO_UDINT(52), "DataBuffer", TO_UDINT(28), "m_udLength",
-TO_UDINT(53), "DataBuffer", TO_UDINT(29), "m_udLength",
-TO_UDINT(54), "DataBuffer", TO_UDINT(30), "m_udLength",
-TO_UDINT(55), "DataBuffer", TO_UDINT(32), "m_udLength",
-TO_UDINT(56), "DataBuffer", TO_UDINT(33), "m_udLength",
-TO_UDINT(57), "DataBuffer", TO_UDINT(34), "m_udLength",
-TO_UDINT(58), "DataBuffer", TO_UDINT(35), "m_udLength",
-TO_UDINT(59), "DataBuffer", TO_UDINT(36), "m_udLength",
-TO_UDINT(60), "DataBuffer", TO_UDINT(37), "m_udLength",
-TO_UDINT(61), "To_HwControl", TO_UDINT(22), "Control",
-TO_UDINT(62), "VaranIn", TO_UDINT(20), "Control",
+TO_UDINT(7), "SdiasIn", TO_UDINT(38), "ClassSvr",
+TO_UDINT(11), "SdiasIn", TO_UDINT(37), "ClassSvr",
+TO_UDINT(13), "To_HwControl", TO_UDINT(21), "Control",
+TO_UDINT(16), "SdiasIn", TO_UDINT(38), "ClassSvr",
+TO_UDINT(17), "SdiasIn", TO_UDINT(37), "ClassSvr",
+TO_UDINT(18), "VaranIn", TO_UDINT(53), "State",
+TO_UDINT(19), "VaranConnect", TO_UDINT(52), "Control",
+TO_UDINT(22), "toHwControlBase", TO_UDINT(21), "Control",
+TO_UDINT(36), "To_HwControl", TO_UDINT(21), "Control",
+TO_UDINT(37), "ToNextSDIAS", TO_UDINT(39), "ClassState",
+TO_UDINT(38), "ToNextSDIAS", TO_UDINT(40), "ClassState",
+TO_UDINT(39), "ToBusInterface", TO_UDINT(41), "CallCommand",
+TO_UDINT(40), "ToBusInterface", TO_UDINT(53), "CallCommand",
+TO_UDINT(41), "ToHwControl", TO_UDINT(21), "Control",
+TO_UDINT(42), "DataBuffer", TO_UDINT(23), "m_udLength",
+TO_UDINT(43), "DataBuffer", TO_UDINT(24), "m_udLength",
+TO_UDINT(44), "DataBuffer", TO_UDINT(25), "m_udLength",
+TO_UDINT(45), "DataBuffer", TO_UDINT(26), "m_udLength",
+TO_UDINT(46), "DataBuffer", TO_UDINT(28), "m_udLength",
+TO_UDINT(47), "DataBuffer", TO_UDINT(29), "m_udLength",
+TO_UDINT(48), "DataBuffer", TO_UDINT(30), "m_udLength",
+TO_UDINT(49), "DataBuffer", TO_UDINT(31), "m_udLength",
+TO_UDINT(50), "DataBuffer", TO_UDINT(32), "m_udLength",
+TO_UDINT(51), "DataBuffer", TO_UDINT(33), "m_udLength",
+TO_UDINT(52), "To_HwControl", TO_UDINT(21), "Control",
+TO_UDINT(53), "VaranIn", TO_UDINT(19), "Control",
 
 //Initialization values
 0$UDINT,
-104$UDINT,
+91$UDINT,
 TO_UDINT(0), "LEDControl", TO_UDINT(0),//|HW_Network._DriveMng_DC0621\BusInterfaceSdiasDriveMng.LEDControl;
 TO_UDINT(0), "Place", TO_UDINT(1),//|HW_Network._DriveMng_DC0621\BusInterfaceSdiasDriveMng.Place;
 TO_UDINT(0), "Required", TO_UDINT(1),//|HW_Network._DriveMng_DC0621\BusInterfaceSdiasDriveMng.Required;
@@ -718,75 +679,62 @@ TO_UDINT(11), "AI1_Active", TO_UDINT(1),//|HW_Network.AI0431.AI1_Active;
 TO_UDINT(11), "AI2_Active", TO_UDINT(1),//|HW_Network.AI0431.AI2_Active;
 TO_UDINT(11), "AI3_Active", TO_UDINT(1),//|HW_Network.AI0431.AI3_Active;
 TO_UDINT(11), "AI4_Active", TO_UDINT(1),//|HW_Network.AI0431.AI4_Active;
-TO_UDINT(17), "LEDControl", TO_UDINT(0),//|HW_Network.DM0811.LEDControl;
-TO_UDINT(17), "Place", TO_UDINT(0),//|HW_Network.DM0811.Place;
-TO_UDINT(17), "Required", TO_UDINT(1),//|HW_Network.DM0811.Required;
-TO_UDINT(18), "LEDControl", TO_UDINT(0),//|HW_Network.DM1611.LEDControl;
-TO_UDINT(18), "Place", TO_UDINT(0),//|HW_Network.DM1611.Place;
-TO_UDINT(18), "Required", TO_UDINT(1),//|HW_Network.DM1611.Required;
-TO_UDINT(19), "Splitter_Place", TO_UDINT(0),//|HW_Network.VI0211\Hub_Base1.Splitter_Place;
-TO_UDINT(20), "Splitter_Place", TO_UDINT(0),//|HW_Network.VaranManager_11\Hub_Base_Root0.Splitter_Place;
-TO_UDINT(22), "UdpSafetyPort", TO_UDINT(10823),//|HW_Network.HwControl1.UdpSafetyPort;
-TO_UDINT(22), "InterfaceNo", TO_UDINT(1),//|HW_Network.HwControl1.InterfaceNo;
-TO_UDINT(22), "RtTaskSync", TO_UDINT(0),//|HW_Network.HwControl1.RtTaskSync;
-TO_UDINT(23), "MaxBufferSize", TO_UDINT(1024),//|HW_Network._base\IIO0411\HWKVarSizeFIFO1.MaxBufferSize;
-TO_UDINT(25), "LEDControl", TO_UDINT(0),//|HW_Network.IIO0411.LEDControl;
-TO_UDINT(25), "Place", TO_UDINT(2),//|HW_Network.IIO0411.Place;
-TO_UDINT(25), "Required", TO_UDINT(1),//|HW_Network.IIO0411.Required;
-TO_UDINT(25), "StartInInit", TO_UDINT(1),//|HW_Network.IIO0411.StartInInit;
-TO_UDINT(25), "MaxBufferSize", TO_UDINT(1024),//|HW_Network.IIO0411.MaxBufferSize;
-TO_UDINT(25), "WaitTimeReconnect", TO_UDINT(500),//|HW_Network.IIO0411.WaitTimeReconnect;
-TO_UDINT(26), "ThreadSafe", TO_UDINT(0),//|HW_Network.SerialNoStr\_base\AI0431\MerkerEx0.ThreadSafe;
-TO_UDINT(27), "ThreadSafe", TO_UDINT(0),//|HW_Network.SerialNoStr\_base\DM0811\MerkerEx0.ThreadSafe;
-TO_UDINT(28), "ThreadSafe", TO_UDINT(0),//|HW_Network.SerialNoStr\_base\DM1611\MerkerEx0.ThreadSafe;
-TO_UDINT(29), "ThreadSafe", TO_UDINT(0),//|HW_Network.SerialNoStr\_base\_base\IIO0411\MerkerEx0.ThreadSafe;
-TO_UDINT(30), "ThreadSafe", TO_UDINT(0),//|HW_Network.SerialNoStr\_base\_base\VI0211\MerkerEx0.ThreadSafe;
-TO_UDINT(31), "ThreadSafe", TO_UDINT(0),//|HW_Network._DriveAxis2\MerkerEx2.ThreadSafe;
-TO_UDINT(32), "ThreadSafe", TO_UDINT(0),//|HW_Network.SerialNoStr\_base\BusInterfaceSdiasDriveMng\_DriveMng_DC0621\MerkerEx0.ThreadSafe;
-TO_UDINT(33), "ThreadSafe", TO_UDINT(0),//|HW_Network.FWDateString\_DriveMng_DC0621\MerkerEx0.ThreadSafe;
-TO_UDINT(34), "ThreadSafe", TO_UDINT(0),//|HW_Network.FWNumSTring\_DriveMng_DC0621\MerkerEx0.ThreadSafe;
-TO_UDINT(35), "ThreadSafe", TO_UDINT(0),//|HW_Network.SerialNoStr\_base\BusInterfaceSdiasDriveMng\_DriveMng_DC0622\MerkerEx0.ThreadSafe;
-TO_UDINT(36), "ThreadSafe", TO_UDINT(0),//|HW_Network.FWDateString\_DriveMng_DC0622\MerkerEx0.ThreadSafe;
-TO_UDINT(37), "ThreadSafe", TO_UDINT(0),//|HW_Network.FWNumSTring\_DriveMng_DC0622\MerkerEx0.ThreadSafe;
-TO_UDINT(38), "ThreadSafe", TO_UDINT(0),//|HW_Network._DriveAxis2\RAMex2.ThreadSafe;
-TO_UDINT(39), "Setup", TO_UDINT(2#1101),//|HW_Network._base\_base\VI0211\SerNoBackup.Setup;
-TO_UDINT(40), "UdpSafetyPort", TO_UDINT(10823),//|HW_Network.HwControl1\SafetyManager.UdpSafetyPort;
-TO_UDINT(40), "InterfaceNo", TO_UDINT(1),//|HW_Network.HwControl1\SafetyManager.InterfaceNo;
-TO_UDINT(40), "UdpSafetyRequestCycle", TO_UDINT(UDP_MIN_REQUEST_TIME),//|HW_Network.HwControl1\SafetyManager.UdpSafetyRequestCycle;
-TO_UDINT(40), "UdpSafetyResponseTimeout", TO_UDINT(UDP_MIN_RESPONSE_TIMEOUT),//|HW_Network.HwControl1\SafetyManager.UdpSafetyResponseTimeout;
-TO_UDINT(41), "PortNo", TO_UDINT(0),//|HW_Network.IIO0411\SDCIPort1.PortNo;
-TO_UDINT(42), "PortNo", TO_UDINT(1),//|HW_Network.IIO0411\SDCIPort2.PortNo;
-TO_UDINT(43), "PortNo", TO_UDINT(2),//|HW_Network.IIO0411\SDCIPort3.PortNo;
-TO_UDINT(44), "PortNo", TO_UDINT(3),//|HW_Network.IIO0411\SDCIPort4.PortNo;
-TO_UDINT(45), "SplitterPlace", TO_UDINT(0),//|HW_Network.SdiasPLC1\SdiasHubBase1.SplitterPlace;
-TO_UDINT(46), "SplitterPlace", TO_UDINT(0),//|HW_Network.VI0211\SdiasHubBase.SplitterPlace;
-TO_UDINT(47), "DeviceID", TO_UDINT(0),//|HW_Network.SdiasPLC1\SdiasManager1.DeviceID;
-TO_UDINT(47), "AutoFarMem", TO_UDINT(0),//|HW_Network.SdiasPLC1\SdiasManager1.AutoFarMem;
-TO_UDINT(48), "DeviceID", TO_UDINT(1187),//|HW_Network.VI0211\SdiasManager.DeviceID;
-TO_UDINT(48), "AutoFarMem", TO_UDINT(0),//|HW_Network.VI0211\SdiasManager.AutoFarMem;
-TO_UDINT(49), "CycleTime", TO_UDINT(1000),//|HW_Network.SdiasPLC1.CycleTime;
-TO_UDINT(49), "IsoStartPoint", TO_UDINT(50),//|HW_Network.SdiasPLC1.IsoStartPoint;
-TO_UDINT(49), "AutoFarMem", TO_UDINT(0),//|HW_Network.SdiasPLC1.AutoFarMem;
-TO_UDINT(50), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\AI0431\SerialNoStr.SingleRealloc;
-TO_UDINT(51), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\DM0811\SerialNoStr.SingleRealloc;
-TO_UDINT(52), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\DM1611\SerialNoStr.SingleRealloc;
-TO_UDINT(53), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\_base\IIO0411\SerialNoStr.SingleRealloc;
-TO_UDINT(54), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\_base\VI0211\SerialNoStr.SingleRealloc;
-TO_UDINT(55), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\BusInterfaceSdiasDriveMng\_DriveMng_DC0621\SerialNoStr.SingleRealloc;
-TO_UDINT(56), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0621\FWDateString.SingleRealloc;
-TO_UDINT(57), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0621\FWNumSTring.SingleRealloc;
-TO_UDINT(58), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\BusInterfaceSdiasDriveMng\_DriveMng_DC0622\SerialNoStr.SingleRealloc;
-TO_UDINT(59), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0622\FWDateString.SingleRealloc;
-TO_UDINT(60), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0622\FWNumSTring.SingleRealloc;
-TO_UDINT(61), "VaranManagerTime", TO_UDINT(1000000),//|HW_Network.VaranManager_11.VaranManagerTime;
-TO_UDINT(61), "VaranManagerNr", TO_UDINT(0),//|HW_Network.VaranManager_11.VaranManagerNr;
-TO_UDINT(61), "PayloadFrame", TO_UDINT(0),//|HW_Network.VaranManager_11.PayloadFrame;
-TO_UDINT(61), "CoreSelect", TO_UDINT(0),//|HW_Network.VaranManager_11.CoreSelect;
-TO_UDINT(61), "InterframeGap", TO_UDINT(0),//|HW_Network.VaranManager_11.InterframeGap;
-TO_UDINT(62), "Required", TO_UDINT(1),//|HW_Network.VI0211.Required;
-TO_UDINT(62), "Transparent", TO_UDINT(0),//|HW_Network.VI0211.Transparent;
-TO_UDINT(62), "TimeBase", TO_UDINT(0),//|HW_Network.VI0211.TimeBase;
-TO_UDINT(62), "TimeBaseOffset", TO_UDINT(0),//|HW_Network.VI0211.TimeBaseOffset;
+TO_UDINT(16), "LEDControl", TO_UDINT(0),//|HW_Network.DM0811.LEDControl;
+TO_UDINT(16), "Place", TO_UDINT(0),//|HW_Network.DM0811.Place;
+TO_UDINT(16), "Required", TO_UDINT(1),//|HW_Network.DM0811.Required;
+TO_UDINT(17), "LEDControl", TO_UDINT(0),//|HW_Network.DM1611.LEDControl;
+TO_UDINT(17), "Place", TO_UDINT(0),//|HW_Network.DM1611.Place;
+TO_UDINT(17), "Required", TO_UDINT(1),//|HW_Network.DM1611.Required;
+TO_UDINT(18), "Splitter_Place", TO_UDINT(0),//|HW_Network.VI0211\Hub_Base1.Splitter_Place;
+TO_UDINT(19), "Splitter_Place", TO_UDINT(0),//|HW_Network.VaranManager_11\Hub_Base_Root0.Splitter_Place;
+TO_UDINT(21), "UdpSafetyPort", TO_UDINT(10823),//|HW_Network.HwControl1.UdpSafetyPort;
+TO_UDINT(21), "InterfaceNo", TO_UDINT(1),//|HW_Network.HwControl1.InterfaceNo;
+TO_UDINT(21), "RtTaskSync", TO_UDINT(0),//|HW_Network.HwControl1.RtTaskSync;
+TO_UDINT(23), "ThreadSafe", TO_UDINT(0),//|HW_Network.SerialNoStr\_base\AI0431\MerkerEx0.ThreadSafe;
+TO_UDINT(24), "ThreadSafe", TO_UDINT(0),//|HW_Network.SerialNoStr\_base\DM0811\MerkerEx0.ThreadSafe;
+TO_UDINT(25), "ThreadSafe", TO_UDINT(0),//|HW_Network.SerialNoStr\_base\DM1611\MerkerEx0.ThreadSafe;
+TO_UDINT(26), "ThreadSafe", TO_UDINT(0),//|HW_Network.SerialNoStr\_base\_base\VI0211\MerkerEx0.ThreadSafe;
+TO_UDINT(27), "ThreadSafe", TO_UDINT(0),//|HW_Network._DriveAxis2\MerkerEx2.ThreadSafe;
+TO_UDINT(28), "ThreadSafe", TO_UDINT(0),//|HW_Network.SerialNoStr\_base\BusInterfaceSdiasDriveMng\_DriveMng_DC0621\MerkerEx0.ThreadSafe;
+TO_UDINT(29), "ThreadSafe", TO_UDINT(0),//|HW_Network.FWDateString\_DriveMng_DC0621\MerkerEx0.ThreadSafe;
+TO_UDINT(30), "ThreadSafe", TO_UDINT(0),//|HW_Network.FWNumSTring\_DriveMng_DC0621\MerkerEx0.ThreadSafe;
+TO_UDINT(31), "ThreadSafe", TO_UDINT(0),//|HW_Network.SerialNoStr\_base\BusInterfaceSdiasDriveMng\_DriveMng_DC0622\MerkerEx0.ThreadSafe;
+TO_UDINT(32), "ThreadSafe", TO_UDINT(0),//|HW_Network.FWDateString\_DriveMng_DC0622\MerkerEx0.ThreadSafe;
+TO_UDINT(33), "ThreadSafe", TO_UDINT(0),//|HW_Network.FWNumSTring\_DriveMng_DC0622\MerkerEx0.ThreadSafe;
+TO_UDINT(34), "ThreadSafe", TO_UDINT(0),//|HW_Network._DriveAxis2\RAMex2.ThreadSafe;
+TO_UDINT(35), "Setup", TO_UDINT(2#1101),//|HW_Network._base\_base\VI0211\SerNoBackup.Setup;
+TO_UDINT(36), "UdpSafetyPort", TO_UDINT(10823),//|HW_Network.HwControl1\SafetyManager.UdpSafetyPort;
+TO_UDINT(36), "InterfaceNo", TO_UDINT(1),//|HW_Network.HwControl1\SafetyManager.InterfaceNo;
+TO_UDINT(36), "UdpSafetyRequestCycle", TO_UDINT(UDP_MIN_REQUEST_TIME),//|HW_Network.HwControl1\SafetyManager.UdpSafetyRequestCycle;
+TO_UDINT(36), "UdpSafetyResponseTimeout", TO_UDINT(UDP_MIN_RESPONSE_TIMEOUT),//|HW_Network.HwControl1\SafetyManager.UdpSafetyResponseTimeout;
+TO_UDINT(37), "SplitterPlace", TO_UDINT(0),//|HW_Network.SdiasPLC1\SdiasHubBase1.SplitterPlace;
+TO_UDINT(38), "SplitterPlace", TO_UDINT(0),//|HW_Network.VI0211\SdiasHubBase.SplitterPlace;
+TO_UDINT(39), "DeviceID", TO_UDINT(0),//|HW_Network.SdiasPLC1\SdiasManager1.DeviceID;
+TO_UDINT(39), "AutoFarMem", TO_UDINT(0),//|HW_Network.SdiasPLC1\SdiasManager1.AutoFarMem;
+TO_UDINT(40), "DeviceID", TO_UDINT(1187),//|HW_Network.VI0211\SdiasManager.DeviceID;
+TO_UDINT(40), "AutoFarMem", TO_UDINT(0),//|HW_Network.VI0211\SdiasManager.AutoFarMem;
+TO_UDINT(41), "CycleTime", TO_UDINT(1000),//|HW_Network.SdiasPLC1.CycleTime;
+TO_UDINT(41), "IsoStartPoint", TO_UDINT(50),//|HW_Network.SdiasPLC1.IsoStartPoint;
+TO_UDINT(41), "AutoFarMem", TO_UDINT(0),//|HW_Network.SdiasPLC1.AutoFarMem;
+TO_UDINT(42), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\AI0431\SerialNoStr.SingleRealloc;
+TO_UDINT(43), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\DM0811\SerialNoStr.SingleRealloc;
+TO_UDINT(44), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\DM1611\SerialNoStr.SingleRealloc;
+TO_UDINT(45), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\_base\VI0211\SerialNoStr.SingleRealloc;
+TO_UDINT(46), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\BusInterfaceSdiasDriveMng\_DriveMng_DC0621\SerialNoStr.SingleRealloc;
+TO_UDINT(47), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0621\FWDateString.SingleRealloc;
+TO_UDINT(48), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0621\FWNumSTring.SingleRealloc;
+TO_UDINT(49), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\BusInterfaceSdiasDriveMng\_DriveMng_DC0622\SerialNoStr.SingleRealloc;
+TO_UDINT(50), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0622\FWDateString.SingleRealloc;
+TO_UDINT(51), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0622\FWNumSTring.SingleRealloc;
+TO_UDINT(52), "VaranManagerTime", TO_UDINT(1000000),//|HW_Network.VaranManager_11.VaranManagerTime;
+TO_UDINT(52), "VaranManagerNr", TO_UDINT(0),//|HW_Network.VaranManager_11.VaranManagerNr;
+TO_UDINT(52), "PayloadFrame", TO_UDINT(0),//|HW_Network.VaranManager_11.PayloadFrame;
+TO_UDINT(52), "CoreSelect", TO_UDINT(0),//|HW_Network.VaranManager_11.CoreSelect;
+TO_UDINT(52), "InterframeGap", TO_UDINT(0),//|HW_Network.VaranManager_11.InterframeGap;
+TO_UDINT(53), "Required", TO_UDINT(1),//|HW_Network.VI0211.Required;
+TO_UDINT(53), "Transparent", TO_UDINT(0),//|HW_Network.VI0211.Transparent;
+TO_UDINT(53), "TimeBase", TO_UDINT(0),//|HW_Network.VI0211.TimeBase;
+TO_UDINT(53), "TimeBaseOffset", TO_UDINT(0),//|HW_Network.VI0211.TimeBaseOffset;
 
 //Symbolic initialization values
 0$UDINT,
@@ -799,7 +747,7 @@ TO_UDINT(62), "TimeBaseOffset", TO_UDINT(0),//|HW_Network.VI0211.TimeBaseOffset;
 //Configuration of tasks (RealTime, Cyclic, Background)
 0$UDINT,
 1$UDINT,
-TO_UDINT(24), (1)$UDINT, 4194304$DINT, 	//HWCONTROL1\HWRTPOSTSCAN
+TO_UDINT(22), (1)$UDINT, 4194304$DINT, 	//HWCONTROL1\HWRTPOSTSCAN
 
 0$UDINT,
 2$UDINT,
@@ -815,7 +763,7 @@ TO_UDINT(7), (10)$UDINT, 4194303$DINT, 	//_DRIVEMNG_DC0622
 
 //Magic internal connections
 0$UDINT,
-18$UDINT,
+17$UDINT,
 TO_UDINT(0), "SdiasIn", TO_UDINT(6), "SdiasIn",
 TO_UDINT(0), "Place", TO_UDINT(6), "Place",
 TO_UDINT(0), "Required", TO_UDINT(6), "Required",
@@ -829,11 +777,10 @@ TO_UDINT(5), "OverwriteMotorPara", TO_UDINT(4), "OverwriteMotorPara",
 TO_UDINT(5), "ParaTab", TO_UDINT(4), "ParaTab",
 TO_UDINT(5), "FileHandle", TO_UDINT(4), "FileHandle",
 TO_UDINT(5), "TableIndex", TO_UDINT(4), "TableIndex",
-TO_UDINT(23), "MaxBufferSize", TO_UDINT(25), "MaxBufferSize",
-TO_UDINT(40), "UdpSafetyPort", TO_UDINT(22), "UdpSafetyPort",
-TO_UDINT(40), "InterfaceNo", TO_UDINT(22), "InterfaceNo",
-TO_UDINT(40), "SafetyDomainTimeout", TO_UDINT(22), "SafetyDomainTimeout",
-TO_UDINT(47), "AutoFarMem", TO_UDINT(49), "AutoFarMem",
+TO_UDINT(36), "UdpSafetyPort", TO_UDINT(21), "UdpSafetyPort",
+TO_UDINT(36), "InterfaceNo", TO_UDINT(21), "InterfaceNo",
+TO_UDINT(36), "SafetyDomainTimeout", TO_UDINT(21), "SafetyDomainTimeout",
+TO_UDINT(39), "AutoFarMem", TO_UDINT(41), "AutoFarMem",
 
 //Configuration of timeslots of tasks (RealTime, Cyclic)
 #ifdef __LSLLDR_TIMESLOTS__

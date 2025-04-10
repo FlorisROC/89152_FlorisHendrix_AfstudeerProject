@@ -336,6 +336,11 @@ TYPE
     dData : DINT;
     pCmd : ^EEPROM;
   END_STRUCT;
+  CltChCmd_FileBaseCsv : STRUCT
+    pCh : ^SvrChCmd_DINT;
+    dData : DINT;
+    pCmd : ^FileBaseCsv;
+  END_STRUCT;
   CltChCmd_GetTaskHandle : STRUCT
     pCh : ^SvrChCmd_DINT;
     dData : DINT;
@@ -421,6 +426,16 @@ TYPE
     dData : DINT;
     pCmd : ^SafetyManager;
   END_STRUCT;
+  CltChCmd_SDCIDevice : STRUCT
+    pCh : ^SvrChCmd_t_e_VaranErrors;
+    dData : t_e_VaranErrors;
+    pCmd : ^SDCIDevice;
+  END_STRUCT;
+  CltChCmd_SDCIDevice_AsyncPara : STRUCT
+    pCh : ^SvrChCmd_iprStates;
+    dData : iprStates;
+    pCmd : ^SDCIDevice_AsyncPara;
+  END_STRUCT;
   CltChCmd_SDCIPort : STRUCT
     pCh : ^SvrChCmd_DINT;
     dData : DINT;
@@ -450,6 +465,11 @@ TYPE
     pCh : ^SvrChCmd_UDINT;
     dData : UDINT;
     pCmd : ^StringInternal;
+  END_STRUCT;
+  CltChCmd_StringRAM : STRUCT
+    pCh : ^SvrChCmd_UDINT;
+    dData : UDINT;
+    pCmd : ^StringRAM;
   END_STRUCT;
   SvrChCmd_IO_State : STRUCT
     pMeth : ^CMDMETH;
@@ -676,9 +696,19 @@ TYPE
     dData : SdiasSDCIMaster::t_SDCIPortStateBits;
     pDsc : ^SVRDSC;
   END_STRUCT;
+  SvrCh_t_SDCIRetCode_PTofCls_SdiasSDCIMaster : STRUCT
+    pMeth : ^CHMETH;
+    dData : SdiasSDCIMaster::t_SDCIRetCode;
+    pDsc : ^SVRDSC;
+  END_STRUCT;
   SvrCh_TIME_LSL : STRUCT
     pMeth : ^CHMETH;
     dData : TIME_LSL;
+    pDsc : ^SVRDSC;
+  END_STRUCT;
+  SvrCh_UDT_KTS_TeachCommand_PTofCls_KTS_Read : STRUCT
+    pMeth : ^CHMETH;
+    dData : KTS_Read::UDT_KTS_TeachCommand;
     pDsc : ^SVRDSC;
   END_STRUCT;
   SvrChCmd_DATE_LSL : STRUCT

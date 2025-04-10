@@ -9,7 +9,6 @@
 	<HwVisualConfig Key="CP112_IOs1" Top="20" Left="20"/>
 	<HwVisualConfig Key="DM0811" Top="286.07" Left="20"/>
 	<HwVisualConfig Key="DM1611" Top="286.07" Left="20"/>
-	<HwVisualConfig Key="IIO0411" Top="286.07" Left="20"/>
 	<HwVisualConfig Key="VaranManager_11" Top="128.8" Left="20"/>
 	<HwVisualConfig Key="VI0211" Top="256.8" Left="20"/>
 	<HwVisualConnection Source="VI0211.VaranIn" Destination="VaranManager_11.VaranOut_1" Vertices="(28.01,286),(6,286),(6,6),(41,6),(41,57.28),"/>

@@ -469,6 +469,13 @@ typedef struct CltChCmd_EEPROM
     EEPROM *pCmd;
   } CltChCmd_EEPROM;
 
+typedef struct CltChCmd_FileBaseCsv 
+  {
+    struct SvrChCmd_DINT *pCh;
+    DINT dData;
+    FileBaseCsv *pCmd;
+  } CltChCmd_FileBaseCsv;
+
 typedef struct CltChCmd_GetTaskHandle 
   {
     struct SvrChCmd_DINT *pCh;
@@ -588,6 +595,20 @@ typedef struct CltChCmd_SafetyManager
     SafetyManager *pCmd;
   } CltChCmd_SafetyManager;
 
+typedef struct CltChCmd_SDCIDevice 
+  {
+    struct SvrChCmd_t_e_VaranErrors *pCh;
+    t_e_VaranErrors dData;
+    SDCIDevice *pCmd;
+  } CltChCmd_SDCIDevice;
+
+typedef struct CltChCmd_SDCIDevice_AsyncPara 
+  {
+    struct SvrChCmd_iprStates *pCh;
+    iprStates dData;
+    SDCIDevice_AsyncPara *pCmd;
+  } CltChCmd_SDCIDevice_AsyncPara;
+
 typedef struct CltChCmd_SDCIPort 
   {
     struct SvrChCmd_DINT *pCh;
@@ -629,6 +650,13 @@ typedef struct CltChCmd_StringInternal
     UDINT dData;
     StringInternal *pCmd;
   } CltChCmd_StringInternal;
+
+typedef struct CltChCmd_StringRAM 
+  {
+    struct SvrChCmd_UDINT *pCh;
+    UDINT dData;
+    StringRAM *pCmd;
+  } CltChCmd_StringRAM;
 
 typedef struct SvrChCmd_IO_State 
   {
@@ -945,12 +973,26 @@ typedef struct SvrCh_t_SDCIPortStateBits_PTofCls_SdiasSDCIMaster
     SVRDSC *pDsc;
   } SvrCh_t_SDCIPortStateBits_PTofCls_SdiasSDCIMaster;
 
+typedef struct SvrCh_t_SDCIRetCode_PTofCls_SdiasSDCIMaster 
+  {
+    CHMETH *pMeth;
+    t_SDCIRetCode dData;
+    SVRDSC *pDsc;
+  } SvrCh_t_SDCIRetCode_PTofCls_SdiasSDCIMaster;
+
 typedef struct SvrCh_TIME_LSL 
   {
     CHMETH *pMeth;
     TIME_LSL dData;
     SVRDSC *pDsc;
   } SvrCh_TIME_LSL;
+
+typedef struct SvrCh_UDT_KTS_TeachCommand_PTofCls_KTS_Read 
+  {
+    CHMETH *pMeth;
+    UDT_KTS_TeachCommand dData;
+    SVRDSC *pDsc;
+  } SvrCh_UDT_KTS_TeachCommand_PTofCls_KTS_Read;
 
 typedef struct SvrChCmd_DATE_LSL 
   {

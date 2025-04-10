@@ -840,6 +840,15 @@ TYPE
     ErrorCounterIOState : UINT;  //! <Type Comment="Is increased on change of the error state of any input or output" Name="SafetyDiagState.ErrorCounterIOState"/>
   END_STRUCT;
 #pragma pack(pop)
+#pragma pack(push, 1)
+  strFileInfo : STRUCT
+    Handle : DINT;
+    DataSize : DINT;  //! <Type Comment="in bytes" Name="strFileInfo.DataSize"/>
+    FileSize : DINT;
+    pData : ^DINT;
+    Id : HDINT;
+  END_STRUCT;
+#pragma pack(pop)
   t_e_OPMode :  //! <Type Comment="Reihenfolge der Enumeration darf nicht verändert werden!" Name="t_e_OPMode"/>
   (
     OPMode_Init,

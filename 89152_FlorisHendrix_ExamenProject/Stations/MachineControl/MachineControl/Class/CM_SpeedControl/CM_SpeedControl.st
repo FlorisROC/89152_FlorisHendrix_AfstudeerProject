@@ -226,8 +226,6 @@ FUNCTION CM_SpeedControl::@STD
 END_FUNCTION
 
 //{{LSL_IMPLEMENTATION
-
-
 FUNCTION VIRTUAL GLOBAL CM_SpeedControl::Init
   if _FirstScan then
     coLMC.ExUnits.Write(input:=65536);
@@ -235,8 +233,9 @@ FUNCTION VIRTUAL GLOBAL CM_SpeedControl::Init
     coLMC.Modulo.Write(360 deg);
     coLMC.VMax.Write(10 * 360 deg);
     coLMC.AMax.Write(10 * 360 deg);
-    CalcDimensions();
+    CalcDimensions(); // Bereken omtrek en graden per mm
   end_if;
+
   if (sSpeedBaseRPM < 10) then
     sSpeedBaseRPM.Write(10);
   end_if;
@@ -244,8 +243,8 @@ FUNCTION VIRTUAL GLOBAL CM_SpeedControl::Init
   if (sSpeedBaseRPM > 400) then
     sSpeedBaseRPM.Write(400);
   end_if;
-  
 END_FUNCTION
+
 
 FUNCTION VIRTUAL GLOBAL CM_SpeedControl::CyWork
 	VAR_INPUT
@@ -254,33 +253,35 @@ FUNCTION VIRTUAL GLOBAL CM_SpeedControl::CyWork
 	VAR_OUTPUT
 		state (EAX) 	: UDINT;
 	END_VAR
+
   CoS_LMCState := coLMC;
   coLMC := coLMC.Read();
-  
+
   if sStartCycles = 1 then
-    cDI_MotorRunEndless := 0;  
+    cDI_MotorRunEndless := 0;
   elsif sMotorRunEndless=1 then
     cDI_MotorRunEndless := 1;
   else
     cDI_MotorRunEndless := cDI_MotorRunEndless.Read();
   end_if;
-  
+
   cDI_ReverseDirection := cDI_ReverseDirection.Read();
   cDI_ResetError := cDI_ResetError.Read();
-  
-  sSpeedDegPerSec := sSpeedBaseRPM deg * 6; // 360/60
+
+  sSpeedDegPerSec := sSpeedBaseRPM deg * 6; // 1 RPM = 6 graden/sec
   if cDI_ReverseDirection = 1 then
     sSpeedDegPerSec *= -1;
   end_if;
 
   vSetSpeed := coLMC.ReadVelocity(Mode:=LMCAXIS_SETVEL_APPUNIT_SEC);
   sPosInMM := coLMC.ReadPosition(LMCAXIS_SETPOS_APPUNIT)/vDegPerMM;
-  
+
   case coLMC of
     PASSIVE_LMCAXIS:
       if (cDI_MotorRunEndless=1) | (sStartCycles = 1)  then
         coLMC.PowerOn(Mode:=LMCAXIS_MOVE_ANY_WAY);
       end_if;
+
     IDLE_LMCAXIS:
       if cDI_MotorRunEndless=1 then
         coLMC.MoveEndless(Speed:=sSpeedDegPerSec, Accel:=coLMC.AMax, Jerk:=0);
@@ -290,11 +291,11 @@ FUNCTION VIRTUAL GLOBAL CM_SpeedControl::CyWork
             sRemainingCycles -= 1;
           end_if;
           coLMC.MoveRelative(
-              Position:=360 deg, 
-              Mode:=LMCAXIS_MOVE_RELATIVE_TO_DESTINATION, 
-              Speed:=360 deg, 
-              Accel:=360 deg, 
-              Decel:=0, 
+              Position:=360 deg,
+              Mode:=LMCAXIS_MOVE_RELATIVE_TO_DESTINATION,
+              Speed:=360 deg,
+              Accel:=360 deg,
+              Decel:=0,
               Jerk:=0);
         else
           sStartCycles := 0;
@@ -302,12 +303,12 @@ FUNCTION VIRTUAL GLOBAL CM_SpeedControl::CyWork
       else
         coLMC.PowerOff(Mode:=LMCAXIS_SMOOTH_STOPP);
       end_if;
-      
+
     MOVE_LMCAXIS:
       if (cDI_MotorRunEndless=1) then
         if (vSetSpeed <> sSpeedDegPerSec) then
           if (vSetSpeed >= 0) XOR (sSpeedDegPerSec>=0) then
-            coLMC.StopMove(Decel:=coLMC.AMax, Jerk:=0);
+            coLMC.StopMove(Decel:=coLMC.AMax, Jerk:=0); // Richtingsverandering
           else
             coLMC.MoveEndless(Speed:=sSpeedDegPerSec, Accel:=coLMC.AMax, Jerk:=0);
           end_if;
@@ -316,10 +317,10 @@ FUNCTION VIRTUAL GLOBAL CM_SpeedControl::CyWork
         coLMC.StopMove(Decel:=coLMC.AMax, Jerk:=0);
       end_if;
   end_case;
-  
-	state := READY;
 
+	state := READY;
 END_FUNCTION
+
 
 FUNCTION VIRTUAL GLOBAL CM_SpeedControl::Background
 	VAR_INPUT
@@ -330,17 +331,19 @@ FUNCTION VIRTUAL GLOBAL CM_SpeedControl::Background
 	END_VAR
 
 	state := READY;
-
 END_FUNCTION
+
 
 FUNCTION CM_SpeedControl::CalcDimensions
   if sDiameter<=0 then
     sDiameter.Write(200);
   end_if;
-  vPi := 4 * coLMCMath.atan2(1,1,#vCalcSuccess);
+
+  vPi := 4 * coLMCMath.atan2(1,1,#vCalcSuccess); // p-berekening via atan2
   vCircum := to_Dint(sDiameter * vPi);
   vDegPerMM := 360 deg / vCircum;
 END_FUNCTION
+
 
 FUNCTION VIRTUAL GLOBAL CM_SpeedControl::sDiameter::Write
 	VAR_INPUT
@@ -352,19 +355,19 @@ FUNCTION VIRTUAL GLOBAL CM_SpeedControl::sDiameter::Write
 
 	sDiameter := input;
 	result := sDiameter;
-  CalcDimensions();
-  
+  CalcDimensions(); // Herbereken bij nieuwe diameter
 END_FUNCTION
+
 
 FUNCTION VIRTUAL GLOBAL CM_SpeedControl::sSpeedRPM::Read
 	VAR_OUTPUT
 		output (EAX) 	: DINT;
 	END_VAR
 
-  sSpeedRPM:= 60 * vSetSpeed / (360 deg);
+  sSpeedRPM:= 60 * vSetSpeed / (360 deg); // Omrekening van deg/sec naar RPM
 	output := sSpeedRPM;
-
 END_FUNCTION
+
 
 FUNCTION VIRTUAL GLOBAL CM_SpeedControl::sStartCycles::Write
 	VAR_INPUT
@@ -379,5 +382,4 @@ FUNCTION VIRTUAL GLOBAL CM_SpeedControl::sStartCycles::Write
     sRemainingCycles := sCycleCount;
   end_if;
 	result := sStartCycles;
-
 END_FUNCTION

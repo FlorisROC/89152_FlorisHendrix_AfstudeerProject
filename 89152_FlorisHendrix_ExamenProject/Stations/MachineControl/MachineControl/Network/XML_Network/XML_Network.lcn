@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Network Name="XML_Network" Revision="0.0">
+	<!-- List of Components in this network -->
+	<Components>
+		<Object
+			Name       = "FileBaseCsv1"
+			GUID       = "{4B1AEF03-6A75-430B-8CC9-4A6445C19D66}"
+			Class      = "FileBaseCsv"
+			Position   = "(1110,210)"
+			Visualized = "false">
+			<Channels>
+				<Server Name="ClassSvr"/>
+				<Client Name="FileOS"/>
+				<Client Name="KernelOS"/>
+			</Channels>
+		</Object>
+	</Components>
+	<Comments>
+	</Comments>
+	<!-- List of Connections in this network -->
+	<Connections>
+	</Connections>
+	<!-- Headerfiles -->
+	<Options>
+	</Options>
+</Network>

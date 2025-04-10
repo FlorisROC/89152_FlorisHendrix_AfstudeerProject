@@ -654,6 +654,20 @@ GetTaskHandle : CLASS_PUBLIC
 	END_TYPE
 END_CLASS;
 #pragma define (restore)
+KTS_Read : CLASS_PUBLIC
+	TYPE
+	  UDT_KTS_TeachCommand :
+	  (
+	    teach_1_Point_CS:=65,
+	    teach_2_Points_KT_1:=67,
+	    teach_2_points_KT_2:=68,
+	    teach_Dynamic_KT_Start:=71,
+	    teach_Dynamic_KT_Stop:=72,
+	    teach_JobRead:=209
+	  )$UDINT;
+	END_TYPE
+END_CLASS;
+#pragma define (restore)
 MerkerEx : CLASS_PUBLIC
 #include <.\lsl_st_mt.h>
 	TYPE
