@@ -22,7 +22,6 @@
 	<Channels>
 		<Server Name="ClassSvr" GUID="{8BC82379-624D-481C-A9C4-3AE71B477BA1}" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
 		<Server Name="sReadJob" GUID="{0C2EA99D-7976-4C28-A538-316EDC64FFE5}" Visualized="true" Initialize="false" WriteProtected="false" Retentive="false"/>
-		<Server Name="sRecipeNr" GUID="{3D89A130-00E7-4956-9450-5D14DB1DDFC0}" Visualized="true" Initialize="false" WriteProtected="false" Retentive="false"/>
 		<Server Name="sRetcode" GUID="{DD25F051-75D8-43A5-9A15-BAB9BB3E4EDF}" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
 		<Server Name="sTeach2Points" GUID="{DC2DB47C-CF65-433B-B49B-C750F1B5C8C1}" Visualized="true" Initialize="false" WriteProtected="false" Retentive="false"/>
 		<Server Name="sTeachCommand" GUID="{9299867D-E504-4535-BD6E-94D83FA3326F}" Visualized="true" Initialize="false" WriteProtected="false" Retentive="false"/>
@@ -34,11 +33,6 @@
 		<Client Name="StringProductName" Required="true" Internal="true"/>
 		<Client Name="StringVendorName" Required="true" Internal="true"/>
 	</Channels>
-	<Separators>
-		<Servers>
-			<SepChn Position="2"/>
-		</Servers>
-	</Separators>
 	<Network Name="KTS_Read">
 		<!-- List of Components in this network -->
 		<Components>
@@ -144,7 +138,6 @@ KTS_Read : CLASS
 	sTeachDynamic 	: SvrCh_DINT;
 	sTeach2Points 	: SvrCh_DINT;
 	sReadJob 	: SvrCh_DINT;
-	sRecipeNr 	: SvrCh_DINT;
   //Clients:
 	SDCI_Device 	: CltChCmd_SDCIDevice;
 	SDCI_Device_Async 	: CltChCmd_SDCIDevice_AsyncPara;
@@ -153,11 +146,8 @@ KTS_Read : CLASS
 	coCSVFile 	: CltChCmd_FileBaseCsv;
   //Variables:
 		vParamUINT8 	: UINT;
-		CoS_Teach 	: DINT;
 		vJobReadState 	: UDT_ReadJob;
 		vJobData 	: UDT_JobData;
-		vRecipes : ARRAY [0..10] OF UDT_JobData;
-
 		vCsvHandle 	: DINT;
 		TxtLine : ARRAY [0..255] OF CHAR;
 
@@ -174,14 +164,6 @@ KTS_Read : CLASS
 		END_VAR;
 	
 	FUNCTION VIRTUAL GLOBAL RtWork
-		VAR_INPUT
-			EAX 	: UDINT;
-		END_VAR
-		VAR_OUTPUT
-			state (EAX) 	: UDINT;
-		END_VAR;
-	
-	FUNCTION VIRTUAL GLOBAL Background
 		VAR_INPUT
 			EAX 	: UDINT;
 		END_VAR
@@ -220,6 +202,14 @@ KTS_Read : CLASS
 	FUNCTION WriteCsvLine
 		VAR_INPUT
 			JobValue 	: DINT;
+		END_VAR;
+	
+	FUNCTION VIRTUAL GLOBAL Background
+		VAR_INPUT
+			EAX 	: UDINT;
+		END_VAR
+		VAR_OUTPUT
+			state (EAX) 	: UDINT;
 		END_VAR;
 	
 	FUNCTION VIRTUAL GLOBAL sTeachStart::Write
@@ -274,7 +264,7 @@ FUNCTION GLOBAL TAB KTS_Read::@CT_
 0$UINT,
 2#0100000000000010$UINT, //TY_KTS_READ
 0$UINT, 0$UINT, (SIZEOF(::KTS_Read))$UINT, 
-8$UINT, 5$UINT, 0$UINT, 
+7$UINT, 5$UINT, 0$UINT, 
 TO_UDINT(2039520762), "KTS_Read", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 //Servers:
@@ -285,7 +275,6 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 (::KTS_Read.sTeachDynamic.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(2798348343), "sTeachDynamic", 
 (::KTS_Read.sTeach2Points.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(372580240), "sTeach2Points", 
 (::KTS_Read.sReadJob.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(3062861310), "sReadJob", 
-(::KTS_Read.sRecipeNr.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(638228312), "sRecipeNr", 
 //Clients:
 (::KTS_Read.SDCI_Device.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1372521186), "SDCI_Device", TO_UDINT(205726265), "SDCIDevice", 1$UINT, 9$UINT, 
 (::KTS_Read.SDCI_Device_Async.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1886387860), "SDCI_Device_Async", TO_UDINT(1321842971), "SDCIDevice_AsyncPara", 1$UINT, 4$UINT, 
@@ -359,13 +348,6 @@ FUNCTION KTS_Read::@STD
 	END_IF;
 	sReadJob.pMeth			:= StoreMethod( #M_RD_DIRECT(), #sReadJob::Write() );
 	IF sReadJob.pMeth THEN
-		ret_code	:= C_OK;
-	ELSE
-		ret_code	:= C_OUTOF_NEAR;
-		RETURN;
-	END_IF;
-	sRecipeNr.pMeth			:= StoreMethod( #M_RD_DIRECT(), #M_WR_DIRECT() );
-	IF sRecipeNr.pMeth THEN
 		ret_code	:= C_OK;
 	ELSE
 		ret_code	:= C_OUTOF_NEAR;
@@ -517,9 +499,6 @@ FUNCTION KTS_Read::CallBackReadJob
         vJobData.jd_TeachLight := SwapColors(vJobData.jd_TeachLight);
         vJobData.jd_TeachDark := SwapColors(vJobData.jd_TeachDark);
         vJobData.jd_Switching_threshold := SwapColors(vJobData.jd_Switching_threshold);
-        if (sRecipeNr >=0) & (sRecipeNr<=10) then
-          vRecipes[sRecipeNr] := vJobData;
-        end_if;
       end_if;
           
     end_if;

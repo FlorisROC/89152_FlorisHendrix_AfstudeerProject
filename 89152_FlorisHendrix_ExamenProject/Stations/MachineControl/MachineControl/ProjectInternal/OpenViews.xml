@@ -3,7 +3,7 @@
 	<View Key="KTS_Network" Type="0"/>
 	<View Key="FileBaseCsv" Type="2" LineNr="1"/>
 	<View Key="XML_Network" Type="0"/>
-	<View Key="KTS_Read" Type="2" LineNr="24"/>
-	<View Key="KTS_Read" Type="2" LineNr="24"/>
-	<Setting Variable="OutputDebugger" Value=""/>
+	<View Key="KTS_Read" Type="2" LineNr="262"/>
+	<View Key="KTS_Read" Type="2" LineNr="262"/>
+	<Setting Variable="OutputDebugger" Value="2"/>
 </OpenViews>

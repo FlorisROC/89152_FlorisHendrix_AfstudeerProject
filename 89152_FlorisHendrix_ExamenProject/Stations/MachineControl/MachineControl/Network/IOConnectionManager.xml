@@ -11,6 +11,8 @@
 			<IOConnection ObjSrv="DM0811" Server="Input2" ObjClt="CM_SpeedControl1" Client="cDI_ReverseDirection" IOI="Input" Type="Digital" SortIndex="4" KeyName="000004" Advanced="0"/>
 			<IOConnection ObjSrv="DM0811" Server="Input3" ObjClt="CM_SpeedControl1" Client="cDI_ResetError" IOI="Input" SortIndex="5" KeyName="000005" Advanced="0"/>
 			<IOConnection ObjSrv="_DriveAxis1" Server="CmdState" ObjClt="AxisAlarmsM1" Client="DriveAxis" IOI="IOState" SortIndex="6" KeyName="000006" Advanced="0"/>
+			<IOConnection ObjSrv="KTS_TimeStamp1" Server="ClassState" ObjClt="SDCIDevice_AsyncPara_KTS_TimeStamp" Client="ToDevice" IOI="IOState" SortIndex="11" KeyName="000011" Advanced="0"/>
+			<IOConnection ObjSrv="KTS_TimeStamp1" Server="ClassState" ObjClt="KTS_Read" Client="SDCI_Device" IOI="IOState" SortIndex="12" KeyName="000012" Advanced="0"/>
 		</IOConnections>
 	</Entry>
 	<Entry

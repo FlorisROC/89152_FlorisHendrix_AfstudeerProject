@@ -191,84 +191,7 @@
 			</AdditionalData>
 		</Object>
 		<Object
-			Name       = "KTS_TimeStamp1"
-			GUID       = "{480C05DF-0F04-40F7-8B5D-FFB62EAF5D35}"
-			Class      = "KTS_TimeStamp"
-			Position   = "(120,90)"
-			Visualized = "true"
-			Remotely   = "true">
-			<Channels>
-				<Server Name="ActualMode"/>
-				<Server Name="ClassState"/>
-				<Server Name="DeviceID"/>
-				<Server Name="DirectInput"/>
-				<Server Name="FaultFlags"/>
-				<Server Name="Input"/>
-				<Server Name="MinCycleTime" Value="0"/>
-				<Server Name="NbrOfEventsAvailable"/>
-				<Server Name="Output"/>
-				<Server Name="PortStateBits"/>
-				<Server Name="VendorID"/>
-				<Client Name="AutoConnectTime" Value="0"/>
-				<Client Name="ModeChangeTime" Value="500"/>
-				<Client Name="ReadPdoSize" Value="16"/>
-				<Client Name="Required" Value="0"/>
-				<Client Name="SdciIn"/>
-				<Client Name="SkipEndianSwap" Value="1"/>
-				<Client Name="SkipEndianSwapAsy" Value="1"/>
-				<Client Name="StartUpMode" Value="_SDCI"/>
-				<Client Name="WritePdoSize" Value="0"/>
-			</Channels>
-			<!-- List of Networks in this component -->
-			<Networks>
-				<Network>
-					<!-- List of Components in this network -->
-					<Components>
-						<Object Name="_base" GUID="{D33CFECA-6A0B-4A17-96C7-C8F9D1AA5601}" Class="SDCIDevice">
-							<Channels>
-								<Server Name="ActualMode"/>
-								<Server Name="ClassState"/>
-								<Server Name="DeviceID"/>
-								<Server Name="DirectInput"/>
-								<Server Name="FaultFlags"/>
-								<Server Name="Input"/>
-								<Server Name="MinCycleTime" Value="0"/>
-								<Server Name="NbrOfEventsAvailable"/>
-								<Server Name="Output"/>
-								<Server Name="PortStateBits"/>
-								<Server Name="VendorID"/>
-								<Client Name="AutoConnectTime" Value="0"/>
-								<Client Name="ModeChangeTime" Value="500"/>
-								<Client Name="ReadPdoSize" Value="16"/>
-								<Client Name="Required" Value="0"/>
-								<Client Name="SdciIn"/>
-								<Client Name="SkipEndianSwap" Value="1"/>
-								<Client Name="SkipEndianSwapAsy" Value="1"/>
-								<Client Name="StartUpMode" Value="_SDCI"/>
-								<Client Name="WritePdoSize" Value="0"/>
-							</Channels>
-							<!-- List of Networks in this component -->
-							<Networks>
-								<Network>
-									<!-- List of Components in this network -->
-									<Components>
-									</Components>
-									<Connections>
-									</Connections>
-								</Network>
-							</Networks>
-						</Object>
-					</Components>
-					<Connections>
-					</Connections>
-				</Network>
-			</Networks>
-			<AdditionalData>
-				<Entry Name="DeviceType" Value="KTS_TimeStamp"/>
-			</AdditionalData>
-		</Object>
-		<Object
-			Name       = "KTS_TimeStamp_Uitlezen1"
+			Name       = "KTS_Read"
 			GUID       = "{83D7EBD7-AFD8-4063-B0C5-A723B003746F}"
 			Class      = "KTS_Read"
 			Position   = "(2370,90)"
@@ -278,7 +201,6 @@
 			<Channels>
 				<Server Name="ClassSvr"/>
 				<Server Name="sReadJob"/>
-				<Server Name="sRecipeNr"/>
 				<Server Name="sRetcode"/>
 				<Server Name="sTeach2Points"/>
 				<Server Name="sTeachCommand"/>
@@ -426,6 +348,83 @@
 			</Networks>
 		</Object>
 		<Object
+			Name       = "KTS_TimeStamp1"
+			GUID       = "{480C05DF-0F04-40F7-8B5D-FFB62EAF5D35}"
+			Class      = "KTS_TimeStamp"
+			Position   = "(120,90)"
+			Visualized = "true"
+			Remotely   = "true">
+			<Channels>
+				<Server Name="ActualMode"/>
+				<Server Name="ClassState"/>
+				<Server Name="DeviceID"/>
+				<Server Name="DirectInput"/>
+				<Server Name="FaultFlags"/>
+				<Server Name="Input"/>
+				<Server Name="MinCycleTime" Value="0"/>
+				<Server Name="NbrOfEventsAvailable"/>
+				<Server Name="Output"/>
+				<Server Name="PortStateBits"/>
+				<Server Name="VendorID"/>
+				<Client Name="AutoConnectTime" Value="0"/>
+				<Client Name="ModeChangeTime" Value="500"/>
+				<Client Name="ReadPdoSize" Value="16"/>
+				<Client Name="Required" Value="0"/>
+				<Client Name="SdciIn"/>
+				<Client Name="SkipEndianSwap" Value="1"/>
+				<Client Name="SkipEndianSwapAsy" Value="1"/>
+				<Client Name="StartUpMode" Value="_SDCI"/>
+				<Client Name="WritePdoSize" Value="0"/>
+			</Channels>
+			<!-- List of Networks in this component -->
+			<Networks>
+				<Network>
+					<!-- List of Components in this network -->
+					<Components>
+						<Object Name="_base" GUID="{D33CFECA-6A0B-4A17-96C7-C8F9D1AA5601}" Class="SDCIDevice">
+							<Channels>
+								<Server Name="ActualMode"/>
+								<Server Name="ClassState"/>
+								<Server Name="DeviceID"/>
+								<Server Name="DirectInput"/>
+								<Server Name="FaultFlags"/>
+								<Server Name="Input"/>
+								<Server Name="MinCycleTime" Value="0"/>
+								<Server Name="NbrOfEventsAvailable"/>
+								<Server Name="Output"/>
+								<Server Name="PortStateBits"/>
+								<Server Name="VendorID"/>
+								<Client Name="AutoConnectTime" Value="0"/>
+								<Client Name="ModeChangeTime" Value="500"/>
+								<Client Name="ReadPdoSize" Value="16"/>
+								<Client Name="Required" Value="0"/>
+								<Client Name="SdciIn"/>
+								<Client Name="SkipEndianSwap" Value="1"/>
+								<Client Name="SkipEndianSwapAsy" Value="1"/>
+								<Client Name="StartUpMode" Value="_SDCI"/>
+								<Client Name="WritePdoSize" Value="0"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+					</Components>
+					<Connections>
+					</Connections>
+				</Network>
+			</Networks>
+			<AdditionalData>
+				<Entry Name="DeviceType" Value="KTS_TimeStamp"/>
+			</AdditionalData>
+		</Object>
+		<Object
 			Name       = "SDCIDevice_AsyncPara_KTS_TimeStamp"
 			GUID       = "{651CDC73-ADBB-434E-A0E2-2DD31F9F347F}"
 			Class      = "SDCIDevice_AsyncPara"
@@ -454,10 +453,10 @@
 	<Connections>
 		<Connection Source="KTS_TimeStamp1.SdciIn" Destination="IIO0411.SdciOut_1" Vertices="(120,180),(1658,1590),"/>
 		<Connection Source="SDCIDevice_AsyncPara_KTS_TimeStamp.ToDevice" Destination="KTS_TimeStamp1.ClassState" Vertices="(960,330),(788,180),"/>
-		<Connection Source="KTS_TimeStamp_Uitlezen1.SDCI_Device_Async" Destination="SDCIDevice_AsyncPara_KTS_TimeStamp.CmdState" Vertices="(2370,240),(2193,240),(1953,270),(1696,330),"/>
-		<Connection Source="KTS_TimeStamp_Uitlezen1.SDCI_Device" Destination="KTS_TimeStamp1.ClassState" Vertices="(2370,180),(788,180),"/>
+		<Connection Source="KTS_Read.SDCI_Device_Async" Destination="SDCIDevice_AsyncPara_KTS_TimeStamp.CmdState" Vertices="(2370,240),(2193,240),(1953,270),(1696,330),"/>
+		<Connection Source="KTS_Read.SDCI_Device" Destination="KTS_TimeStamp1.ClassState" Vertices="(2370,180),(788,180),"/>
 		<Connection Source="IIO0411.SdiasIn" Destination="SdiasPLC1.SdiasOut_1"/>
-		<Connection Source="KTS_TimeStamp_Uitlezen1.coCSVFile" Destination="FileBaseCsv1.ClassSvr"/>
+		<Connection Source="KTS_Read.coCSVFile" Destination="FileBaseCsv1.ClassSvr"/>
 	</Connections>
 	<!-- Headerfiles -->
 	<Options>

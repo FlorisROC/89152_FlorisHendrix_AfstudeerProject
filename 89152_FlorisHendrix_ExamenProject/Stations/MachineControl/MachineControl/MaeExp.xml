@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<File CRC="066D2F50" Version="1.1" SubVersion="2">
+<File CRC="638D6F7B" Version="1.1" SubVersion="2">
 	<Types>
 		<Type Name="_DRIVETYPE" Datatype="UDINT" TypeId="ENUM">
 			<Elements>
@@ -1336,7 +1336,7 @@
 		<Class
 			Name     = "KTS_Read"
 			Datatype = "DINT"
-			Size     = "840"
+			Size     = "448"
 			Guid     = "ABCCEA66-D889-4046-967A-21BBED81E930">
 			<Types>
 				<Type Name="UDT_KTS_TeachCommand" Datatype="UDINT" TypeId="ENUM">
@@ -1356,7 +1356,6 @@
 				<Server Name="sTeachDynamic" Datatype="DINT" Guid="C6964D84-343F-4421-968C-658DD9BE5059" WriteProtected="false"/>
 				<Server Name="sTeach2Points" Datatype="DINT" Guid="DC2DB47C-CF65-433B-B49B-C750F1B5C8C1" WriteProtected="false"/>
 				<Server Name="sReadJob" Datatype="DINT" Guid="0C2EA99D-7976-4C28-A538-316EDC64FFE5" WriteProtected="false"/>
-				<Server Name="sRecipeNr" Datatype="DINT" Guid="3D89A130-00E7-4956-9450-5D14DB1DDFC0" WriteProtected="false"/>
 			</Servers>
 			<Objects>
 				<Object Name="StringProductName" Datatype="StringRAM" Guid="47EDC01D-F139-43DB-B65A-B446B2E4209D"/>
@@ -1804,8 +1803,8 @@
 		<Object Name="DrivePosControl1" Datatype="DrivePosControl" Guid="D08B4087-D787-46C2-83AA-174FD68567E1"/>
 		<Object Name="HwControl1" Datatype="HwControl" Guid="9A639F66-ADAA-4E02-965A-54EDEB4C4405"/>
 		<Object Name="IIO0411" Datatype="IIO041" Guid="D313CE89-0212-4CE2-82CA-70B1141B9C54"/>
+		<Object Name="KTS_Read" Datatype="KTS_Read" Guid="83D7EBD7-AFD8-4063-B0C5-A723B003746F"/>
 		<Object Name="KTS_TimeStamp1" Datatype="KTS_TimeStamp" Guid="480C05DF-0F04-40F7-8B5D-FFB62EAF5D35"/>
-		<Object Name="KTS_TimeStamp_Uitlezen1" Datatype="KTS_Read" Guid="83D7EBD7-AFD8-4063-B0C5-A723B003746F"/>
 		<Object Name="SDCIDevice_AsyncPara_KTS_TimeStamp" Datatype="SDCIDevice_AsyncPara" Guid="651CDC73-ADBB-434E-A0E2-2DD31F9F347F"/>
 		<Object Name="SdiasPLC1" Datatype="SdiasPLC" Guid="76B9E6A5-3A5D-4181-B4A5-4070B926ADFB"/>
 		<Object Name="STDPLC_InfoMC1" Datatype="PLC_Info" Guid="15E4E01C-5367-49B3-94D8-B0816F917D5B"/>

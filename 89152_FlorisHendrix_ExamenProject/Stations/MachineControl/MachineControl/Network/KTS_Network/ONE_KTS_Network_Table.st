@@ -107,14 +107,14 @@ TO_UDINT(3232495061), "VirtualBaseInit", 1$UINT, 3$UINT, 0$UINT,
 
 _NO_ATTR, TO_UDINT(4207004045), "IIO0411", 
 
-_NO_ATTR, TO_UDINT(1041481591), "KTS_TIMESTAMP_UITLEZEN1", 
+_NO_ATTR, TO_UDINT(2039520762), "KTS_READ", 
 
 _NO_ATTR, TO_UDINT(667498585), "KTS_TIMESTAMP1", 
 
 1$UINT, TO_UDINT(1001843434), "IIO0411\_BASE\_BASE\SERIALNOSTR\MERKEREX0", 
 
-1$UINT, TO_UDINT(1828475471), "KTS_TIMESTAMP_UITLEZEN1\STRINGPRODUCTNAME\DATABUFFER", 
-1$UINT, TO_UDINT(1164169211), "KTS_TIMESTAMP_UITLEZEN1\STRINGVENDORNAME\DATABUFFER", 
+1$UINT, TO_UDINT(524577153), "KTS_READ\STRINGPRODUCTNAME\DATABUFFER", 
+1$UINT, TO_UDINT(558793340), "KTS_READ\STRINGVENDORNAME\DATABUFFER", 
 
 
 _NO_ATTR, TO_UDINT(729601649), "SDCIDEVICE_ASYNCPARA_KTS_TIMESTAMP", 
@@ -129,8 +129,8 @@ _NO_ATTR, TO_UDINT(729601649), "SDCIDEVICE_ASYNCPARA_KTS_TIMESTAMP",
 1$UINT, TO_UDINT(2058560523), "IIO0411\_BASE\_BASE\SERIALNOSTR", 
 
 
-1$UINT, TO_UDINT(3056322846), "KTS_TIMESTAMP_UITLEZEN1\STRINGPRODUCTNAME", 
-1$UINT, TO_UDINT(583050250), "KTS_TIMESTAMP_UITLEZEN1\STRINGVENDORNAME", 
+1$UINT, TO_UDINT(901476136), "KTS_READ\STRINGPRODUCTNAME", 
+1$UINT, TO_UDINT(1642288413), "KTS_READ\STRINGVENDORNAME", 
 
 
 //Internal connections
@@ -182,8 +182,8 @@ TO_UDINT(4), "WritePdoSize", TO_UDINT(0),//|KTS_Network.KTS_TimeStamp1.WritePdoS
 TO_UDINT(4), "AutoConnectTime", TO_UDINT(0),//|KTS_Network.KTS_TimeStamp1.AutoConnectTime;
 TO_UDINT(4), "ModeChangeTime", TO_UDINT(500),//|KTS_Network.KTS_TimeStamp1.ModeChangeTime;
 TO_UDINT(5), "ThreadSafe", TO_UDINT(0),//|KTS_Network.SerialNoStr\_base\_base\IIO0411\MerkerEx0.ThreadSafe;
-TO_UDINT(6), "ThreadSafe", TO_UDINT(0),//|KTS_Network.StringProductName\KTS_TimeStamp_Uitlezen1\DataBuffer.ThreadSafe;
-TO_UDINT(7), "ThreadSafe", TO_UDINT(0),//|KTS_Network.StringVendorName\KTS_TimeStamp_Uitlezen1\DataBuffer.ThreadSafe;
+TO_UDINT(6), "ThreadSafe", TO_UDINT(0),//|KTS_Network.StringProductName\KTS_Read\DataBuffer.ThreadSafe;
+TO_UDINT(7), "ThreadSafe", TO_UDINT(0),//|KTS_Network.StringVendorName\KTS_Read\DataBuffer.ThreadSafe;
 TO_UDINT(8), "useBufferedAsyCmds", TO_UDINT(1),//|KTS_Network.SDCIDevice_AsyncPara_KTS_TimeStamp.useBufferedAsyCmds;
 TO_UDINT(8), "TimeoutAsyCmd", TO_UDINT(10000),//|KTS_Network.SDCIDevice_AsyncPara_KTS_TimeStamp.TimeoutAsyCmd;
 TO_UDINT(9), "PortNo", TO_UDINT(0),//|KTS_Network.IIO0411\SDCIPort1.PortNo;
@@ -191,8 +191,8 @@ TO_UDINT(10), "PortNo", TO_UDINT(1),//|KTS_Network.IIO0411\SDCIPort2.PortNo;
 TO_UDINT(11), "PortNo", TO_UDINT(2),//|KTS_Network.IIO0411\SDCIPort3.PortNo;
 TO_UDINT(12), "PortNo", TO_UDINT(3),//|KTS_Network.IIO0411\SDCIPort4.PortNo;
 TO_UDINT(13), "SingleRealloc", TO_UDINT(1),//|KTS_Network._base\_base\IIO0411\SerialNoStr.SingleRealloc;
-TO_UDINT(14), "SingleRealloc", TO_UDINT(1),//|KTS_Network.KTS_TimeStamp_Uitlezen1\StringProductName.SingleRealloc;
-TO_UDINT(15), "SingleRealloc", TO_UDINT(1),//|KTS_Network.KTS_TimeStamp_Uitlezen1\StringVendorName.SingleRealloc;
+TO_UDINT(14), "SingleRealloc", TO_UDINT(1),//|KTS_Network.KTS_Read\StringProductName.SingleRealloc;
+TO_UDINT(15), "SingleRealloc", TO_UDINT(1),//|KTS_Network.KTS_Read\StringVendorName.SingleRealloc;
 
 //Symbolic initialization values
 0$UDINT,
@@ -205,11 +205,11 @@ TO_UDINT(15), "SingleRealloc", TO_UDINT(1),//|KTS_Network.KTS_TimeStamp_Uitlezen
 //Configuration of tasks (RealTime, Cyclic, Background)
 0$UDINT,
 1$UDINT,
-TO_UDINT(3), (10)$UDINT, 4194303$DINT, 	//KTS_TIMESTAMP_UITLEZEN1
+TO_UDINT(3), (10)$UDINT, 4194303$DINT, 	//KTS_READ
 
 0$UDINT,
 2$UDINT,
-TO_UDINT(3), (50)$UDINT, 4194303$DINT, 	//KTS_TIMESTAMP_UITLEZEN1
+TO_UDINT(3), (50)$UDINT, 4194303$DINT, 	//KTS_READ
 TO_UDINT(8), (10)$UDINT, 4194303$DINT, 	//SDCIDEVICE_ASYNCPARA_KTS_TIMESTAMP
 
 0$UDINT,
@@ -249,11 +249,11 @@ TO_UDINT(7), "UseFile", TO_UDINT(15), "UseFile",
 "\\\\TASKS2  "
 0$UDINT,
 1$UDINT,
-(0)$UDINT, 	//KTS_TIMESTAMP_UITLEZEN1
+(0)$UDINT, 	//KTS_READ
 
 0$UDINT,
 2$UDINT,
-(0)$UDINT, 	//KTS_TIMESTAMP_UITLEZEN1
+(0)$UDINT, 	//KTS_READ
 (0)$UDINT, 	//SDCIDEVICE_ASYNCPARA_KTS_TIMESTAMP
 
 0$UDINT,
