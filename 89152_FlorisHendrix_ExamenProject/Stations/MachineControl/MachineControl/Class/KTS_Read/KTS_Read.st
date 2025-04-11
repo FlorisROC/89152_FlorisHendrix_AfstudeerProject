@@ -204,14 +204,6 @@ KTS_Read : CLASS
 			JobValue 	: DINT;
 		END_VAR;
 	
-	FUNCTION VIRTUAL GLOBAL Background
-		VAR_INPUT
-			EAX 	: UDINT;
-		END_VAR
-		VAR_OUTPUT
-			state (EAX) 	: UDINT;
-		END_VAR;
-	
 	FUNCTION VIRTUAL GLOBAL sTeachStart::Write
 		VAR_INPUT
 			input (EAX) 	: DINT;
@@ -284,7 +276,7 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 END_FUNCTION
 
 
-#define USER_CNT_KTS_Read 1
+#define USER_CNT_KTS_Read 0
 
 TYPE
 	_LSL_STD_VMETH	: STRUCT
@@ -306,10 +298,6 @@ FUNCTION KTS_Read::@STD
 	vmt.CmdTable.Init		:= #Init();
 	vmt.CmdTable.CyWork		:= #CyWork();
 	vmt.CmdTable.RtWork		:= #RtWork();
-#pragma warning (disable : 74)
-	vmt.UserFcts[0]		:= #Background();
-
-#pragma warning (default : 74)
 	ClassSvr.pMeth		:= StoreCmd (pCmd := #vmt.CmdTable, SHARED);
 
 	IF ClassSvr.pMeth THEN
@@ -527,19 +515,6 @@ FUNCTION VIRTUAL GLOBAL KTS_Read::sReadJob::Write
 END_FUNCTION
 
 
-FUNCTION VIRTUAL GLOBAL KTS_Read::Background
-	VAR_INPUT
-		EAX 	: UDINT;
-	END_VAR
-	VAR_OUTPUT
-		state (EAX) 	: UDINT;
-	END_VAR
-
-	state := READY;
-
-END_FUNCTION
-
-
 FUNCTION KTS_Read::Swap2Bytes
 	VAR_INPUT
 		uiValue 	: UINT;
@@ -599,7 +574,7 @@ FUNCTION KTS_Read::WriteCsvFile
   WriteCsvLine(vJobData.jd_31_Sensitivity);
   WriteCsvLine(vJobData.jd_32_Threshold_adjustment);
   WriteCsvLine(vJobData.jd_33_Process_quality_alarm_threshold);
-  
+
  
   coCSVFile.CloseFile(handle:=vCsvHandle);
   
