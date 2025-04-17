@@ -6,7 +6,7 @@
 			Name       = "FileBaseCsv1"
 			GUID       = "{4B1AEF03-6A75-430B-8CC9-4A6445C19D66}"
 			Class      = "FileBaseCsv"
-			Position   = "(1110,210)"
+			Position   = "(60,60)"
 			Visualized = "false">
 			<Channels>
 				<Server Name="ClassSvr"/>

@@ -2,9 +2,11 @@
 <OpenViews>
 	<View Key="KTS_Network" Type="0"/>
 	<View Key="FileBaseCsv" Type="2" LineNr="1"/>
-	<View Key="XML_Network" Type="0"/>
-	<View Key="KTS_Read" Type="2" LineNr="217"/>
+	<View Key="KTS_Read" Type="2" LineNr="29"/>
 	<View Key="CM_SpeedControl" Type="2" LineNr="8"/>
-	<View Key="KTS_Read" Type="2" LineNr="217"/>
+	<View Key="KTS_TimeStamp" Type="20" Class="KTS_TimeStamp"/>
+	<View Key="HW_Network" Type="0"/>
+	<View Key="Motor_Network" Type="0"/>
+	<View Key="Motor_Network" Type="0"/>
 	<Setting Variable="OutputDebugger" Value="2"/>
 </OpenViews>
